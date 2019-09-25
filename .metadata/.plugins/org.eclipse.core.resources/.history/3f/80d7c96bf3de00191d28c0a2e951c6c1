@@ -1,0 +1,4 @@
+package logica;
+public class VentanaSemicircular extends Ventana {
+
+}

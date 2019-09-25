@@ -1,0 +1,8 @@
+package logica;
+
+public class SeccionMasAlta extends Seccion{
+	public SeciconMasAlta() {};
+	
+	public void generarPajaro(){};
+
+}

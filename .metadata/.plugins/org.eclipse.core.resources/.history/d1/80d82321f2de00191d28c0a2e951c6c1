@@ -1,0 +1,11 @@
+package logica;
+public class Ventana {
+	private Posicion posVent;
+	private Obstaculo obst;
+	private Estado[] salud;
+	
+	public Ventana(){};
+	
+	public void serReparada(){};
+	public void romper(){};
+}

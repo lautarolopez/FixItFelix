@@ -1,0 +1,9 @@
+package logica;
+public class Seccion {
+
+	private Ventana[] etapa;
+	
+	public Seccion() {};
+	
+	public void nuevaEtapa(){};
+}

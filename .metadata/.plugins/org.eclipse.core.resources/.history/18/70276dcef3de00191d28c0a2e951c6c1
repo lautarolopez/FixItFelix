@@ -1,0 +1,16 @@
+package logica;
+public class VentanaSemicircular extends Ventana {
+
+	public VentanaSemicircular (Posicion pos, boolean x) {
+		super(pos);
+		Estado a = new Estado();
+		Estado b = new Estado();
+		Estado c = new Estado();
+		Estado d = new Estado();
+		this.salud = new Estado[4];
+		this.salud[0] = a;
+		this.salud[1] = b;
+		this.salud[2] = c;
+		this.salud[3] = d;
+	}
+}

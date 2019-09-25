@@ -1,0 +1,4 @@
+package logica;
+public class VentanaConHojas extends Ventana {
+	private boolean abierta;
+}

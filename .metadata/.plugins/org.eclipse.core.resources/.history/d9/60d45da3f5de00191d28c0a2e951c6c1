@@ -1,0 +1,11 @@
+package logica;
+public class Estado {
+	
+	private String estadoPanel;
+	
+	public Estado(){};
+	
+	public String getEstado() {
+		return this.estadoPanel;
+	}
+}

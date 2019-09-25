@@ -1,0 +1,8 @@
+package logica;
+
+public class SeccionMedio extends Seccion {
+
+	public Seccion() {};
+	
+	public void generarPajaro();
+}

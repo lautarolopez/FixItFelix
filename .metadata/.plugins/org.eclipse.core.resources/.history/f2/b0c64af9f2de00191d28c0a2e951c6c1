@@ -1,0 +1,19 @@
+package logica;
+public class Obstaculo {
+	private boolean mold;
+	private boolean mac;
+	
+	public Obstaculo(){};
+	
+	public boolean tieneObstaculo(){
+		return mold && mac;
+	};
+	
+	public boolean tieneMoldura(){
+		return mold;
+	};
+	
+	public boolean tieneMacetero() {
+		return mac;
+	};
+}
