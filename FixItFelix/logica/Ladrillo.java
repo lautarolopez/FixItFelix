@@ -12,7 +12,7 @@ public class Ladrillo extends Objeto {
 		}
 	}
 	
-	public boolean destruir() {
+	public boolean destruir() { //Cuando cae fuera del tablero se destruye.
 		return this.getPosicion().getY() < 0;
 	}
 }

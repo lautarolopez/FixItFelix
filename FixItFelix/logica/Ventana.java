@@ -11,7 +11,7 @@ public class Ventana {
 	
 	
 	
-	public boolean arreglada() {
+	public boolean arreglada() { //Retorna si todos los paneles de la ventana están sanos.
 		boolean aux = true;
 		for (Estado est : this.salud) {
 			if (!(est == Estado.SANO)) aux = false;
@@ -28,7 +28,7 @@ public class Ventana {
 	}
 	
 	
-	public void reparar (){
+	public void reparar (){ //Cuando encuentra un panel que no está sano cambia su estado de Roto a Casi roto o de Casi roto a Sano.
 		int x = 0;
 		while((this.salud[x] == Estado.SANO) && x < salud.length) {
 			x++;
@@ -49,7 +49,7 @@ public class Ventana {
 		}
 	}
 	
-	public boolean generarNicelander() {
+	public boolean generarNicelander() { //Las subclases que lo implementan deben sobreescribirlo.
 		return false;
 	}
 }

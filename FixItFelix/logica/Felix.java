@@ -13,8 +13,10 @@ public class Felix {
 		this.timeLeftInv = 0;
 	}
 	
-	public void reset() {
+	public void reset() { //Reinicia la posición y la invulnerabilidad se desactiva si está activada, pero no cambian las vidas.
 		this.posFelix = new Posicion (2, 0);
+		this.invulnerable = false;
+		this.timeLeftInv = 0;
 	}
 	
 	
@@ -44,7 +46,7 @@ public class Felix {
 
 
 
-	public void actualizarFelix (String dir) {	
+	public void actualizarFelix (String dir) {	//Se mueve en la dirección recibida y actualiza el estado de invulnerabilidad.
 		this.moverse(dir);
 		if (this.invulnerable) this.timeLeftInv--;
 		if (this.timeLeftInv == 0) this.invulnerable = false;

@@ -2,7 +2,7 @@ package logica;
 
 public class SeccionSuelo extends Seccion {
 
-	public SeccionSuelo(int dificultad) {
+	public SeccionSuelo(int dificultad) { //Crea aletoriamente una matriz de ventanas aleatorias, y en el medio del piso más bajo la ventana es semicircular con 4 paneles.
 		this.etapa = new Ventana[5][3];
 		Posicion posi;
 		for (int x = 0; x < 4; x++) {

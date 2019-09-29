@@ -20,7 +20,7 @@ public class VentanaNormal extends Ventana {
 	}
 	
 	
-	public boolean generarNicelander(){
+	public boolean generarNicelander(){ //Devuelve aleatoriamente si debe generar un nicelander o no, siempre y cuando el panel de más abajo esté roto.
 		boolean aux = false;
 		if (this.salud[0] == Estado.ROTO) {
 			double a = Math.random();

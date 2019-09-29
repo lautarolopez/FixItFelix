@@ -3,7 +3,7 @@ public class VentanaConHojas extends Ventana {
 	
 	private boolean abierta;
 	
-	public VentanaConHojas(Posicion pos) {
+	public VentanaConHojas(Posicion pos) { //Establece aletoriamente si la ventana está abierta o cerrada. FALTA IMPLEMENTAR QUE LAS POSIBILIDADES DEPENDAN DE LA DIFICULTAD.
 		super(pos);
 		double x = Math.random();
 		this.abierta = x < 0.70;

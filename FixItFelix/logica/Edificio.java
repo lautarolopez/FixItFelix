@@ -33,10 +33,17 @@ public class Edificio {
 	}
 	
 	public boolean nivelTerminado() {
-		for (Seccion secc : this.arregloSecciones) {
-			if (!secc.etapaTerminada())	return false;
-		}
-		return true;
+		if (this.seccionActual == 2) {  //Si estamos en la última sección, devuelve verdadero si está terminada
+			return this.arregloSecciones[this.seccionActual].etapaTerminada(); 
+		} else return false;
+	}
+	
+	public boolean seccionTerminada() {
+		return this.arregloSecciones[this.seccionActual].etapaTerminada();
+	}
+	
+	public void proximaEtapa() {
+		this.seccionActual++;
 	}
 	
 	public Ventana[][] getVentanas(){

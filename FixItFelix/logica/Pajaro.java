@@ -10,7 +10,7 @@ public class Pajaro extends Objeto {
 	
 
 	
-	public void actualizar(int dificultad) {
+	public void actualizar(int dificultad) { //Se mueve de acuerdo a la dirección que lleva.
 		if(this.direccion.equals("Izq")) {
 			this.posObjeto.moverIzq();
 		} else {
@@ -18,7 +18,7 @@ public class Pajaro extends Objeto {
 		}
 	}
 	
-	public boolean destruir() {
+	public boolean destruir() { //Si cae fuera del tablero se destruye.
 		return ((this.posObjeto.getX() < 0) || (this.posObjeto.getX() > 4));
 	}
 }

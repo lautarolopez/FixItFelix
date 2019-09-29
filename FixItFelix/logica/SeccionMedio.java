@@ -2,7 +2,7 @@ package logica;
 
 public class SeccionMedio extends Seccion {
 	
-	public SeccionMedio(int dificultad) {
+	public SeccionMedio(int dificultad) { //Similar al constructor de la Seccion Suelo, pero avisa por booleano que es la Sección Medio.
 		this.etapa = new Ventana[5][3];
 		Posicion posi;
 		for (int x = 0; x < 4; x++) {
@@ -22,7 +22,7 @@ public class SeccionMedio extends Seccion {
 		}
 	}
 	
-	public boolean generarPajaro() {
+	public boolean generarPajaro() { //Devuelve aleatoriamente si generar un pájaro o no.
 		double a = Math.random();
 		return a < 0.20;
 	};

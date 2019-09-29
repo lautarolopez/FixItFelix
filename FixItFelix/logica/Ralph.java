@@ -9,7 +9,7 @@ public class Ralph {
 		this.frecuencia = 10;
 	}
 	
-	public boolean generarLadrillo(int dificultad){
+	public boolean generarLadrillo(int dificultad){ //Genera una cantidad de ladrillos si frecuencia está en cero, y actualiza frecuencia. Una vez generado un ladrillo aumenta la frecuencia de acuerdo a la dificultad.
 		this.frecuencia--;
 		if (frecuencia == 0) {
 			this.ladrillosRestantes--;

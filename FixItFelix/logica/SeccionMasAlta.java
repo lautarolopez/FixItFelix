@@ -3,7 +3,7 @@ package logica;
 public class SeccionMasAlta extends Seccion{
 	
 
-	public SeccionMasAlta(int dificultad) {
+	public SeccionMasAlta(int dificultad) { //Genera aleatoriamente una matriz de ventanas normales o con hojas, con mayor probabilidad de normales. FALTA IMPLEMENTAR QUE LA PROBABILIDAD CAMBIE CON LA DIFICULTAD.
 		this.etapa = new Ventana[5][3];
 		Posicion posi;
 		for (int x = 0; x < 4; x++) {
