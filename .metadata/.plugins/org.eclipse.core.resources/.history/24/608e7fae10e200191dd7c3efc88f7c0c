@@ -1,0 +1,7 @@
+package logica;
+public class VentanaSemicircular extends Ventana {
+
+	public VentanaSemicircular (Posicion pos, boolean x) {
+		super(pos);
+	}
+}

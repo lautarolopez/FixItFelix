@@ -1,29 +1,23 @@
 package logica;
 public class VentanaSemicircular extends Ventana {
 
-	public VentanaSemicircular (Posicion pos, boolean x) {
+	public VentanaSemicircular (Posicion pos, boolean p, int dificultad) {
 		super(pos);
-		Estado a = new Estado();
-		Estado b = new Estado();
-		Estado c = new Estado();
-		Estado d = new Estado();
-		if (x) {
-			this.salud = new Estado[4];
-			
-		} else {
-			this.salud = new Estado [8];
-			Estado e = new Estado();
-			Estado f = new Estado();
-			Estado g = new Estado();
-			Estado h = new Estado();
-			this.salud[4] = e;
-			this.salud[5] = f;
-			this.salud[6] = g;
-			this.salud[7] = h;
+		int x = 8;
+		if(p) x= 4;
+		this.salud = new Estado[x];
+		double a;
+		for (Estado est : this.salud) {
+			a = Math.random();
+			if (a < (0.33) + (dificultad * 0.1)) {
+				est = Estado.ROTO;
+			} else {
+				if (a < (0.66) + (dificultad * 0.1)) {
+					est = Estado.CASIROTO;
+				} else {
+					est = Estado.SANO;
+				}
+			}
 		}
-		this.salud[0] = a;
-		this.salud[1] = b;
-		this.salud[2] = c;
-		this.salud[3] = d;
 	}
 }

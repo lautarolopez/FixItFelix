@@ -1,0 +1,12 @@
+package logica;
+public class VentanaNormal extends Ventana {
+	
+	public VentanaNormal (Posicion pos, int dificultad){
+		super(pos);
+		
+
+	}
+	
+	
+	public void generarNicelander(){};
+}

@@ -1,0 +1,33 @@
+package logica;
+import java.util.ArrayList;
+
+public class Partida {
+
+	private int tiempo;
+	private int dificultad;
+	private Felix pj;
+	private Ralph boss;
+	private Jugador player;
+	private Edificio tablero;
+	private ArrayList<Objeto> objetosPartida;
+	
+	public Partida(String nombre) {
+		this.tiempo = 120;
+		this.dificultad = 1;
+		this.pj = new Felix();
+		this.boss = new Ralph();
+		this.player = new Jugador(nombre);
+		this.tablero = new Edificio(this.dificultad);
+		this.objetosPartida = new ArrayList<Objeto>();
+	}
+	
+	public void comenzarPartida(){}
+	
+	public void decTiempo(){}
+	
+	public void masDificultad(){}
+	
+	public void reiniciarNivel() {}
+	
+	
+}

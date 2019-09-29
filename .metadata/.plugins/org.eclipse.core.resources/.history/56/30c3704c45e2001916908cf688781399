@@ -1,0 +1,14 @@
+package logica;
+public class Seccion {
+
+	protected Ventana[][] etapa;
+	
+	public Seccion() {
+	};
+	
+	
+	
+	public boolean generarPajaro() {
+		return false;
+	}
+}

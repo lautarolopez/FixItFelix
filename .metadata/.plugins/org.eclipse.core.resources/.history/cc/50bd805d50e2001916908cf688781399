@@ -1,0 +1,27 @@
+package logica;
+public class Seccion {
+
+	protected Ventana[][] etapa;
+	
+	public Seccion() {
+	};
+	
+	
+	public Ventana[][] getEtapa(){
+		return this.etapa;
+	}
+	
+	public boolean etapaTerminada() {
+		boolean a = true;
+		for (Ventana[] arrVent : this.etapa) {
+			for (Ventana vent : arrVent) {
+				if (!vent.arreglada()) a = false;
+			}
+		}
+		return false;
+	}
+	
+	public boolean generarPajaro() {
+		return false;
+	}
+}

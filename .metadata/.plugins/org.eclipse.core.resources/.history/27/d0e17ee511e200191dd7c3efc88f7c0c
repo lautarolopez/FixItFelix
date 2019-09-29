@@ -1,0 +1,18 @@
+package logica;
+public class Ventana {
+	private Posicion posVent;
+	private Obstaculo obst;
+	protected Estado[] salud;
+	
+	public Ventana(Posicion posi){
+		this.posVent = posi;
+	};
+	
+	public boolean arreglada() {
+		boolean aux = true;
+		for (Estado est : this.salud) {
+			if (!est.equals("SANO")) aux = false;
+		}
+		return aux;
+	}
+}

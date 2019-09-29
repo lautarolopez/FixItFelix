@@ -13,6 +13,12 @@ public class Felix {
 		this.timeLeftInv = 0;
 	}
 	
+	public void reset() {
+		this.posFelix = new Posicion (2, 0);
+	}
+	
+	
+	
 	public void moverse(String dir){
 		switch(dir) {
 		  case "Arriba":
@@ -27,10 +33,40 @@ public class Felix {
 		  case "Izquierda":
 			    this.posFelix.moverIzq();
 			    break;
-		  default:
-		    // code block
 		}
 	}
+
+
+
+	public Posicion getPosFelix() {
+		return posFelix;
+	}
+
+
+
+	public void actualizarFelix (String dir) {	
+		this.moverse(dir);
+		if (this.invulnerable) this.timeLeftInv--;
+		if (this.timeLeftInv == 0) this.invulnerable = false;
+	}
 	
-	public void reparar() {}
+	public void setInvulnerable() {
+		this.invulnerable = true;
+		this.timeLeftInv = 2;
+	}
+
+	public void perderVida() {
+		this.vidas--;
+	}
+
+
+	public int getVidas() {
+		return vidas;
+	}
+
+
+
+
+	
+	
 }

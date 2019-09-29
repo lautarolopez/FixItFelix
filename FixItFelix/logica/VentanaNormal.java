@@ -1,15 +1,31 @@
 package logica;
 public class VentanaNormal extends Ventana {
 	
-	public VentanaNormal (Posicion pos){
+	public VentanaNormal (Posicion pos, int dificultad){
 		super(pos);
-		Estado a = new Estado();
-		Estado b = new Estado();
 		this.salud = new Estado[2];
-		this.salud[0] = a;
-		this.salud[1] = b;
+		double a;
+		for (Estado est : this.salud) {
+			a = Math.random();
+			if (a < (0.33) + (dificultad * 0.1)) {
+				est = Estado.ROTO;
+			} else {
+				if (a < (0.66) + (dificultad * 0.1)) {
+					est = Estado.CASIROTO;
+				} else {
+					est = Estado.SANO;
+				}
+			}
+		}
 	}
 	
 	
-	public void generarNicelander(){};
+	public boolean generarNicelander(){
+		boolean aux = false;
+		if (this.salud[0] == Estado.ROTO) {
+			double a = Math.random();
+			if (a < 0.30) aux = true;
+		}
+		return aux;
+	};
 }

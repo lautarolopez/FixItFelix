@@ -1,5 +1,4 @@
 package logica;
-import java.math.*;
 public class Obstaculo {
 	private boolean mold;
 	private boolean mac;

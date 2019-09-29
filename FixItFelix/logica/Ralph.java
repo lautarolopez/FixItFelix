@@ -3,7 +3,7 @@ public class Ralph {
 	
 	private int ladrillosRestantes;
 	
-	public Ralph (int x) {
+	public Ralph () {
 		this.ladrillosRestantes = 40;
 	}
 	

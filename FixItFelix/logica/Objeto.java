@@ -2,11 +2,17 @@ package logica;
 public class Objeto {
 	protected Posicion posObjeto;
 	
-	public Objeto () {};
+	public Objeto (Posicion posi) {
+		this.posObjeto = posi;
+	};
 	
 	public Posicion getPosicion() {
 		return this.posObjeto;
 	}
 	
-	public void destruir() {};
+	public boolean destruir() {
+		return false;
+	};
+	
+	public void actualizar (int dificultad) {}
 }
