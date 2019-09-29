@@ -11,8 +11,4 @@ public class Ladrillo extends Objeto {
 			this.posObjeto.moverAb(); // repetir x veces de acuerdo a la dificultad
 		}
 	}
-	
-	public boolean destruir() {
-		return this.getPosicion().getY() < 0;
-	}
 }

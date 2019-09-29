@@ -27,7 +27,6 @@ public class Ventana {
 		return this.obst.tieneMacetero();
 	}
 	
-	
 	public void reparar (){
 		int x = 0;
 		while((this.salud[x] == Estado.SANO) && x < salud.length) {

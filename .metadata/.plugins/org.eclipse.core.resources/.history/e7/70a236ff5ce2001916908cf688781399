@@ -19,8 +19,4 @@ public class Nicelander extends Objeto{
 	public int getCicloDeVida() {
 		return this.cicloDeVida;
 	}
-	
-	public boolean destruir() {
-		return this.cicloDeVida == 0;
-	}
 }

@@ -12,7 +12,6 @@ public class Ralph {
 	public boolean generarLadrillo(int dificultad){
 		this.frecuencia--;
 		if (frecuencia == 0) {
-			this.ladrillosRestantes--;
 			this.frecuencia = 10-dificultad;
 			return true;
 		}

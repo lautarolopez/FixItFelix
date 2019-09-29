@@ -27,6 +27,13 @@ public class Ventana {
 		return this.obst.tieneMacetero();
 	}
 	
+	public int getY() {
+		return this.posVent.getY();
+	}
+	
+	public int getX() {
+		return this.posVent.getX();
+	}
 	
 	public void reparar (){
 		int x = 0;

@@ -4,7 +4,6 @@ public class Torta extends Objeto{
 
 	public Torta(Posicion posi) {
 		super(posi);
-		this.cicloDeVida = 2;
 	}
 	
 	public void actualizar(int dificultad) {

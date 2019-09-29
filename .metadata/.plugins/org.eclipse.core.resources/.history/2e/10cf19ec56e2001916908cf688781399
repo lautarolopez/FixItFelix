@@ -6,7 +6,6 @@ public class Ventana {
 	
 	public Ventana(Posicion posi){
 		this.posVent = posi;
-		this.obst = new Obstaculo();
 	};
 	
 	
@@ -18,15 +17,6 @@ public class Ventana {
 		}
 		return aux;
 	}
-	
-	public boolean tieneMoldura() {
-		return this.obst.tieneMoldura();
-	}
-	
-	public boolean tieneMacetero() {
-		return this.obst.tieneMacetero();
-	}
-	
 	
 	public void reparar (){
 		int x = 0;

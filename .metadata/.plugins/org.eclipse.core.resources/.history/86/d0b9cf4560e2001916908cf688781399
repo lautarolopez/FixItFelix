@@ -47,9 +47,4 @@ public class Edificio {
 		return this.seccionActual;
 	}
 	
-	public boolean generarPajaro() {
-		if (this.seccionActual != 0) {
-			return this.arregloSecciones[this.seccionActual].generarPajaro();
-		} else return false;
-	}
 }
