@@ -5,6 +5,7 @@
 <fullyQualifiedTypeName name="logica.Jugador"/>
 <fullyQualifiedTypeName name="logica.Edificio"/>
 <fullyQualifiedTypeName name="com.sun.org.apache.bcel.internal.generic.NEWARRAY"/>
-<fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="logica.Estado"/>
 </qualifiedTypeNameHistroy>

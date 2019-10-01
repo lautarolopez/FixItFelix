@@ -22,7 +22,7 @@ public class Partida {
 	}
 	
 	
-	public void ciclo(String dir, boolean martillazo) {
+	public void ciclo(String dir, int martillazos) {
 		
 		if (this.tiempo != 0 && this.pj.getVidas() !=0 && this.dificultad < 11) { ///Ejecuta el ciclo si todavía hay tiempo, si Félix todavía tiene vidas y si no terminamos los diez niveles.
 		
@@ -31,34 +31,14 @@ public class Partida {
 			
 			
 			/**Suma puntos si Félix repara una ventana**/
-			this.player.setPuntaje(this.pj.repararVentana(this.tablero.getVentanas(), martillazo, this.tablero.nivelTerminado()));
+			this.player.setPuntaje(this.pj.repararVentana(this.tablero.getVentanas(), martillazos, this.tablero.nivelTerminado()));
+			
+			System.out.println("1------------------------");
 			
 			
+			this.gestionarColisiones();
 			
-			
-			/**Recorre los objetos de la partida, si alguno está en la posición de Félix, de acuerdo a qué objeto es
-			 * se realizan las acciones correspondientes. **/
-			for(Objeto obj : this.objetosPartida) {
-				if (obj.getPosicion().equals(pj.getPosFelix())) {	
-					if (obj instanceof Torta) {  //Las tortas se eliminan una vez que Felix las recoge, y activan su invulnerabilidad
-						this.pj.setInvulnerable();
-						this.objetosPartida.remove(obj);
-					} else {
-						if (obj instanceof Pajaro) {  //Los pájaros reincial la etapa, no el nivel completo. se elimnan todos los objetos de la partida y se reinicia la posición de Félix al comienzo de la sección. Como la entrega no lo indica, Félix no pierde vidas.
-							this.objetosPartida.removeAll(objetosPartida);
-							this.tablero.reiniciarEtapa(dificultad);
-							this.pj.reset();
-						} else {
-							if (obj instanceof Ladrillo) { //En el caso de los ladrillos se crea un nuevo tablero porque se reinicia el nivel, Félix pierde vida, vuelve a la posición inicial y  se eliminan todos los objetos de la partida.
-								this.pj.perderVida();
-								this.tablero = new Edificio(dificultad);
-								this.objetosPartida.removeAll(objetosPartida);
-								this.pj.reset();
-							}
-						}
-					}
-				}
-			}
+			System.out.println("2------------------------");
 			
 			
 			////BLOQUE DE ACTUALIZACIONES
@@ -71,7 +51,9 @@ public class Partida {
 				Objeto p = new Pajaro(posi, this.tablero.getVentanas());
 				this.objetosPartida.add(p);
 			}
-			
+
+			System.out.println("3------------------------");
+
 			
 			/**Si Ralph decide generar un ladrillo agrega un nuevo Objeto Ladrillo al vector de objetos de la partida, 
 			 * instanciádolo con una posición aleatoria en x y siempre en la parte más alta de la sección. **/
@@ -80,7 +62,9 @@ public class Partida {
 				Objeto l = new Ladrillo(posi, this.tablero.getVentanas());
 				this.objetosPartida.add(l);
 			}
-			
+
+			System.out.println("4------------------------");
+
 			
 			/**Actualiza todos los objetos del arreglo de Objetos de la partida, cada uno implementa 
 			 * una actualización distinta. Además, si hay un Nicelander pregunta si hay que generar una torta. En tal caso
@@ -89,12 +73,14 @@ public class Partida {
 				obj.actualizar(dificultad, this.tablero.getVentanas());
 			}
 			
+			System.out.println("5------------------------");
 			
 			
 			
 			/**MOVER Y TODAS LAS COMPARACIONES SE FUERON A UN MÉTODO DE FÉLIX. **/
 			this.pj.mover(dir, this.tablero.getVentanas());
 			
+			System.out.println("6------------------------");
 			
 			
 			
@@ -107,6 +93,23 @@ public class Partida {
 			}
 			
 			
+			System.out.println("7------------------------");
+			
+			
+			for (Ventana[] arrVent : this.tablero.getVentanas()) {
+				for (Ventana vent : arrVent) {
+					if (vent.generarNicelander()) {
+						Objeto n = new Nicelander(vent.getPos(), this.tablero.getVentanas());
+						this.objetosPartida.add(n);
+					}
+				}
+			}
+
+			
+			System.out.println("8------------------------");
+
+			
+			
 			/**Si se terminó el nivel se crea un nuevo tablero con mayor dificultad. Es importante
 			 * verificar primero el nivel y luego la etapa porque si terminamos la última etapa el
 			 * tablero va a intentar llevarnos a la etapa 4 del nivel, que no existe. **/
@@ -117,6 +120,9 @@ public class Partida {
 				this.objetosPartida.removeAll(objetosPartida);
 			}
 			
+			System.out.println("9------------------------");
+
+			
 			
 			/** Si termina la sección avanzamos a la próxima etapa.**/
 			if (this.tablero.seccionTerminada()) {
@@ -125,9 +131,11 @@ public class Partida {
 				this.objetosPartida.removeAll(objetosPartida);
 			}
 			
+			System.out.println("10------------------------");
 			
 		
 			this.tiempo--; //Decrementamos el tiempo para el próximo ciclo.
+			System.out.println("FINDECICLOFINDECICLOFINDECICLOFINDECICLOFINDECICLO");
 		
 		} else { //Si el tiempo o las vidas de Félix llegan a cero se termina el juego. Si la dificultad (que a su vez es el nivel) es mayor que diez el jugador ganó el juego.
 			if (this.dificultad <= 10) {
@@ -137,8 +145,27 @@ public class Partida {
 			}
 			
 		}
+		
 	}
 	
+	private void gestionarColisiones() {
+		if (this.tablero.getVentanas()[this.pj.getPosFelix().getX()][this.pj.getPosFelix().getY()].pajaro()) {
+			this.objetosPartida.removeAll(objetosPartida);
+			this.tablero.reiniciarEtapa(dificultad);
+			this.pj.reset();
+		} else {
+			if (this.tablero.getVentanas()[this.pj.getPosFelix().getX()][this.pj.getPosFelix().getY()].ladrillo()) {
+				this.pj.perderVida();
+				this.tablero = new Edificio(dificultad);
+				this.objetosPartida.removeAll(objetosPartida);
+				this.pj.reset();
+			} else {
+				if (this.tablero.getVentanas()[this.pj.getPosFelix().getX()][this.pj.getPosFelix().getY()].ladrillo()){
+					this.pj.setInvulnerable();
+				}
+			}
+		}
+	}
 	
 	
 	

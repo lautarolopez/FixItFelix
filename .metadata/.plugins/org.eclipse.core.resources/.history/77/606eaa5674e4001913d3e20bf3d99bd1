@@ -1,0 +1,40 @@
+package logica;
+import java.util.*;
+public class VentanaNormal extends Ventana {
+	
+	public VentanaNormal (Posicion pos, int dificultad){
+		super(pos);
+		this.salud = new ArrayList<Estado>();
+		double a;
+		for (int i = 0; i < 2 ; i++) {
+			a = Math.random();
+			if (a <= (0.33) + (dificultad * 0.1)) {
+				Estado est = Estado.ROTO;
+				this.salud.add(est);
+				System.out.println(est.toString());
+			} else {
+				if (a <= (0.66) + (dificultad * 0.1)) {
+					Estado est = Estado.CASIROTO;
+					this.salud.add(est);
+					System.out.println(est.toString());
+
+				} else {
+					Estado est = Estado.SANO;
+					this.salud.add(est);
+					System.out.println(est.toString());
+
+				}
+			}
+		}
+	}
+	
+	
+	public boolean generarNicelander(){ //Devuelve aleatoriamente si debe generar un nicelander o no, siempre y cuando el panel de más abajo esté roto.
+		boolean aux = false;
+		if (this.salud.get(0) == Estado.ROTO) {
+			double a = Math.random();
+			if (a < 0.30) aux = true;
+		}
+		return aux;
+	};
+}

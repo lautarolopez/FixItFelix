@@ -5,8 +5,8 @@ public class SeccionSuelo extends Seccion {
 	public SeccionSuelo(int dificultad) { //Crea aletoriamente una matriz de ventanas aleatorias, y en el medio del piso más bajo la ventana es semicircular con 4 paneles.
 		this.etapa = new Ventana[5][3];
 		Posicion posi;
-		for (int x = 0; x < 4; x++) {
-			for (int y = 0; y < 2; y++) {
+		for (int x = 0; x <= 4; x++) {
+			for (int y = 0; y <= 2; y++) {
 				posi = new Posicion(x, y);
 				if ((x == 2) && (y == 0)) {
 					this.etapa[x][y] = new VentanaSemicircular(posi, (this instanceof SeccionSuelo), dificultad); //el constructor de la clase VentanaSemicircular recibe también un booleano para saber si pertenece al suelo o al primer piso.
@@ -20,6 +20,10 @@ public class SeccionSuelo extends Seccion {
 				}
 			}
 		}
+	}
+	
+	public Ventana[][] getVentanas(){
+		return this.etapa;
 	}
 	
 	

@@ -1,4 +1,2 @@
--Terminar de resolver el tema de los objetos. IMPORTANTE.
--Corrrgir el error de los Estados que dan NullPointerException. IMPORTANTE
--Cambiar foreach por iterator, porque no se puede eliminar un elemento del arreglo mientras se recorre con el foreach, solo con Iterator.
-/** CON ITERATOR PUEDO ELIMINAR MIENTRAS RECORRO EL ARREGLO Y PUEDO ELIMINAR TODO EL ARREGLO MIENTRAS LO RECORRO (Usar un boolean aux)**/
+Corregir NULLPOINTEREXCEPTION.
+Agregar todos los Print correspondientes para el test.

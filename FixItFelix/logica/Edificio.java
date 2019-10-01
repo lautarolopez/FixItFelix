@@ -11,7 +11,7 @@ public class Edificio {
 		this.arregloSecciones[0] = a;
 		this.arregloSecciones[1] = b;
 		this.arregloSecciones[2] = c;
-		this.seccionActual = 0;
+		this.seccionActual = 0;	
 	}
 	
 	public void reiniciarEtapa(int dificultad) {

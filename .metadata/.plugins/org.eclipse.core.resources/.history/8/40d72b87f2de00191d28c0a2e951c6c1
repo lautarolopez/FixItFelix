@@ -1,6 +1,0 @@
-package logica;
-public class VentanaNormal extends Ventana {
-	
-	
-	public void generarNicelander(){};
-}

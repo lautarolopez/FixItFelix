@@ -26,4 +26,9 @@ public class SeccionMedio extends Seccion {
 		double a = Math.random();
 		return a < 0.20;
 	};
+	
+	public Ventana[][] getVentanas(){
+		return this.etapa;
+	};
+	
 }

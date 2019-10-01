@@ -14,7 +14,7 @@ public class Juego {
 		this.partidaActual = new Partida("prueba");
 	};
 	
-	public void turno(String dir, boolean martillazo) {
-		this.partidaActual.ciclo(dir, martillazo);
+	public void turno(String dir, int martillazos) {
+		this.partidaActual.ciclo(dir, martillazos);
 	}
 }

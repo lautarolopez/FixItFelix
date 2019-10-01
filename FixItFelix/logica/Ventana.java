@@ -1,9 +1,9 @@
 package logica;
-import java.util.HashMap;
+import java.util.*;
 public class Ventana {
 	private Posicion posVent;
 	private Obstaculo obst;
-	protected Estado[] salud;
+	protected ArrayList<Estado> salud;
 	protected HashMap<String, Boolean> colisiones; 
 	
 	public Ventana(Posicion posi){
@@ -40,30 +40,33 @@ public class Ventana {
 	
 	
 	public void reparar (){ //Cuando encuentra un panel que no está sano cambia su estado de Roto a Casi roto o de Casi roto a Sano.
-
+		
+		Iterator<Estado> iter = this.salud.iterator();
 		int x = 0;
-		while((this.salud[x] == Estado.SANO) && x < salud.length) {
+		Estado est = Estado.ROTO;
+		while ((iter.hasNext()) && (est == Estado.SANO)) {
+			est = iter.next();
 			x++;
 		}
-		switch (salud[x]) {
-			case ROTO:{
-				this.salud[x]= Estado.CASIROTO;
-				break;
-			}
-			case CASIROTO: {
-				this.salud[x]= Estado.SANO;
-				break;
-			}
-			case SANO: {
-				this.salud[x] = Estado.SANO;
-				break;
-			}
-		}
-
+		switch (est) {
+			case ROTO:
+				this.salud.set(x, Estado.CASIROTO);
+			break;
+			case CASIROTO: 
+				this.salud.set(x, Estado.SANO);
+			break;
+			case SANO:
+				this.salud.set(x, Estado.SANO);
+			break;
+		} 
 	}
-	
+		
 	public boolean generarNicelander() { //Las subclases que lo implementan deben sobreescribirlo.
 		return false;
+	}
+	
+	public Posicion getPos() {
+		return this.posVent;
 	}
 	
 	public void ponerLadrillo() {
@@ -96,5 +99,21 @@ public class Ventana {
 	
 	public void sacarNicelander() {
 		this.colisiones.replace("Nicelander", true, false);
+	}
+	
+	public boolean pajaro() {
+		return this.colisiones.get("Pajaro");
+	}
+	
+	public boolean ladrillo() {
+		return this.colisiones.get("Ladrillo");
+	}
+	
+	public boolean torta() {
+		return this.colisiones.get("Torta");
+	}
+	
+	public boolean nicelander() {
+		return this.colisiones.get("Nicelander");
 	}
 }

@@ -19,6 +19,10 @@ public class SeccionMasAlta extends Seccion{
 		}
 	}
 	
+	public Ventana[][] getVentanas(){
+		return this.etapa;
+	}
+	
 	public boolean generarPajaro() {
 		double a = Math.random();
 		return a < 0.20;

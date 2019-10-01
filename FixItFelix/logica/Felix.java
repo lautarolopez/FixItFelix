@@ -20,24 +20,22 @@ public class Felix {
 	}
 	
 	
-	public int repararVentana(Ventana[][] etapa, boolean martillazo, boolean ganeNivel) {
-		if (!etapa[this.posFelix.getX()][this.posFelix.getY()].arreglada()) { //Recupera la matriz de ventanas de la sección actual, y pregunta si el elemento en la ubicación de Félix necesita ser reparado.
-			if (martillazo) {
-				etapa[this.posFelix.getX()][this.posFelix.getY()].reparar();
-				if (ganeNivel) { //Si la ventana fue la última del nivel, la repara 
-					System.out.print("500 puntos!");
-					return 500;
-				} else {
-					System.out.print("100 puntos!");
-					return 100;
-				}
-			} else {
-				return 0;
+	public int repararVentana(Ventana[][] etapa, int martillazos, boolean ganeNivel) {
+		int puntaje = 0;
+		while (martillazos != 0){
+			if (!etapa[this.posFelix.getX()][this.posFelix.getY()].arreglada()) { //Recupera la matriz de ventanas de la sección actual, y pregunta si el elemento en la ubicación de Félix necesita ser reparado.
+					etapa[this.posFelix.getX()][this.posFelix.getY()].reparar();
+					if (ganeNivel) { //Si la ventana fue la última del nivel, la repara 
+						System.out.print("500 puntos!");
+						puntaje += 500;
+					} else {
+						System.out.print("100 puntos!");
+						puntaje += 100;
+					}
 			}
-		} else {
-			return 0;
+			martillazos--;
 		}
-		
+		return puntaje;
 	}
 	
 
@@ -69,44 +67,49 @@ public class Felix {
 
 	public void mover(String dir, Ventana[][] etapa) {
 		switch(dir) {
-		case "Arriba": {
+		case "Arriba":
 			if (this.posFelix.getY()+1 < 3) {  //Evalúo si al moverme hacia arriba no voy a caer afuera del tablero. De ser así no me muevo.
 				if (!etapa[this.posFelix.getX()][this.posFelix.getY()+1].tieneMacetero()) { //Evalúo que la ventana de arriba no tenga macetero. Si lo tiene no me muevo.
 					if (!etapa[this.posFelix.getX()][this.posFelix.getY()].tieneMoldura()) { //Evalúo que la ventana en la que estoy parado no tenga moldura, si la tiene no me muevo.
 						this.posFelix.moverAr();; //En el caso de poder moverme hacia arriba lo hago.
-						System.out.print("Se movió arriba!");
+						System.out.println("Se movió arriba!");
 					}
 				}
 			}
-		};
-		case "Abajo": {
+		break;
+		case "Abajo": 
 			if (this.posFelix.getY()-1 >= 0) { //Las mismas evaluaciones que para arriba, pero para abajo.
 				if (!etapa[this.posFelix.getX()][this.posFelix.getY()-1].tieneMoldura()) {
 					if (!etapa[this.posFelix.getX()][this.posFelix.getY()].tieneMacetero()) {
 						this.posFelix.moverAb();
-						System.out.print("Se movió abajo!");
+						System.out.println("Se movió abajo!");
 
 					}
 				}
 			}
-		};
-		case "Izquierda": {
+		break;
+		case "Izquierda": 
 			if (this.posFelix.getX()-1 >= 0) { //Evalúo si al moverme hacia la izquierda no voy a caer afuera del tablero. De ser así no me muevo.
 				if (etapa[this.posFelix.getX()-1][this.posFelix.getY()].estaAbierta()) { //Si la ventana de la izquierda es una ventana con hojas, tengo que preguntar si está abierta para moverme. Si es una ventana normal directamente me muevo.
 						this.posFelix.moverIzq();;
-						System.out.print("Se movió Izquierda!");
+						System.out.println("Se movió Izquierda!");
 				}
 			}
-		};
-		case "Derecha": {
+		break;
+		case "Derecha": 
 			if (this.posFelix.getX()+1 <= 4) { //Evalúo si al moverme hacia la izquierda no voy a caer afuera del tablero. De ser así no me muevo.
 				if (etapa[this.posFelix.getX()+1][this.posFelix.getY()].estaAbierta()) { //Si la ventana de la izquierda es una ventana con hojas, tengo que preguntar si está abierta para moverme. Si es una ventana normal directamente me muevo.
-						this.posFelix.moverIzq();;
-						System.out.print("Se movió Derecha!");
+						this.posFelix.moverDer();;
+						System.out.println("Se movió Derecha!");
 				}
 			}
-		};
-	}
+		break;
+		default : 
+			System.out.println("Dirección inválida.");
+		break;
+		}
+		System.out.println(this.posFelix.getX());
+		System.out.println(this.posFelix.getY()); 
 	}
 
 	

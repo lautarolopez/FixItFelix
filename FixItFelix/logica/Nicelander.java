@@ -5,6 +5,7 @@ public class Nicelander extends Objeto{
 	
 	public Nicelander(Posicion posi, Ventana[][] etapa) {
 		super(posi, etapa);
+		this.posObjeto = posi;
 		this.cicloDeVida = 2;
 		etapa[this.posObjeto.getX()][this.posObjeto.getY()].ponerNicelander();
 	}
