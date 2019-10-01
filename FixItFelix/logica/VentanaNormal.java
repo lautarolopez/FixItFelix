@@ -7,16 +7,20 @@ public class VentanaNormal extends Ventana {
 		double a;
 		for (Estado est : this.salud) {
 			a = Math.random();
-			if (a < (0.33) + (dificultad * 0.1)) {
+			if (a <= (0.33) + (dificultad * 0.1)) {
 				est = Estado.ROTO;
+				System.out.print(est.toString());
 			} else {
-				if (a < (0.66) + (dificultad * 0.1)) {
+				if (a <= (0.66) + (dificultad * 0.1)) {
 					est = Estado.CASIROTO;
+					System.out.print(est.toString());
 				} else {
 					est = Estado.SANO;
+					System.out.print(est.toString());
 				}
 			}
 		}
+		System.out.print("Se creo una ventana normal");
 	}
 	
 	

@@ -1,0 +1,49 @@
+package logica;
+import java.util.*;
+public class Test {
+
+	public static void main(String[] args) {
+		
+		ArrayList<String> arr = new ArrayList<String>();
+		arr.add("Uno");
+		arr.add("Uno");
+		arr.add("Uno");
+		arr.add("Cuatro");
+		arr.add("Uno");
+		arr.add("Seis");
+		arr.add("Uno");
+		arr.add("Uno");
+		Iterator <String> iter =  arr.iterator();
+		while (iter.hasNext()) {
+			String str = iter.next();
+			if (str.equals("Cuatro")) {
+				iter.remove();
+			}
+		}
+		
+		for (String str : arr) {
+			System.out.print(str);
+		}
+		
+		Iterator <String> iter2 = arr.iterator();
+		while (iter2.hasNext()) {
+			String str = iter.next();
+			if (str.equals("Cuatro")) {
+				arr.removeAll(arr);
+			}
+		}
+		System.out.print(arr);
+		
+		
+		/** Juego game = new Juego();
+		game.nuevoJuego();
+		game.turno("Arriba", true);
+		game.turno("Derecha", true);
+		game.turno("Abajo", true);
+		game.turno("Arriba", true);
+		game.turno("Izquierda", true);
+		game.turno("Arriba", true);
+		game.turno("Derecha", true); **/
+	}
+
+}

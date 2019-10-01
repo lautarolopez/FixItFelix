@@ -1,0 +1,35 @@
+package logica;
+import java.util.*;
+public class Test {
+
+	public static void main(String[] args) {
+		
+		ArrayList<String> arr = new ArrayList<String>();
+		arr.add("Uno");
+		arr.add("Uno");
+		arr.add("Tres");
+		arr.add("Uno");
+		arr.add("Uno");
+		arr.add("Uno");
+		arr.add("Uno");
+		
+		for (String str: arr) {
+			if (str.equals("Tres")) {
+				arr.remove(str);
+			}
+		}
+		
+		System.out.print(arr);
+		/**
+		Juego game = new Juego();
+		game.nuevoJuego();
+		game.turno("Arriba", true);
+		game.turno("Derecha", true);
+		game.turno("Abajo", true);
+		game.turno("Arriba", true);
+		game.turno("Izquierda", true);
+		game.turno("Arriba", true);
+		game.turno("Derecha", true); **/
+	} 
+
+}

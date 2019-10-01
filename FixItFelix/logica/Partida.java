@@ -1,5 +1,5 @@
 package logica;
-import java.util.ArrayList;
+import java.util.*;
 
 public class Partida {
 
@@ -28,19 +28,12 @@ public class Partida {
 		
 			//// BLOQUE DE ACCIONES
 			
-			/**Si Félix da un martillazo en este ciclo repara la ventana en la que se encuentra siempre y cuando
-			 * ésta tenga al menos un panel roto. Si el nivel termina el jugador obtiene 500 puntos pr arreglar
-			 * el panel, de lo contrario obtiene 100 puntos.**/
-			if (!this.tablero.getVentanas()[this.pj.getPosFelix().getX()][this.pj.getPosFelix().getY()].arreglada()) { //Recupera la matriz de ventanas de la sección actual, y pregunta si el elemento en la ubicación de Félix necesita ser reparado.
-				if (martillazo) {
-					this.tablero.getVentanas()[this.pj.getPosFelix().getX()][this.pj.getPosFelix().getY()].reparar();
-					if (this.tablero.nivelTerminado()) { //Si la ventana fue la última del nivel, la repara 
-						this.player.setPuntaje(500);
-					} else {
-						this.player.setPuntaje(100);
-					}
-				}
-			}
+			
+			
+			/**Suma puntos si Félix repara una ventana**/
+			this.player.setPuntaje(this.pj.repararVentana(this.tablero.getVentanas(), martillazo, this.tablero.nivelTerminado()));
+			
+			
 			
 			
 			/**Recorre los objetos de la partida, si alguno está en la posición de Félix, de acuerdo a qué objeto es
@@ -65,17 +58,6 @@ public class Partida {
 						}
 					}
 				}
-				if (dificultad != 1) { ///Si la dificultad es mayor a 1 los ladrillos se saltean posiciones, por eso hay que comparar que la posición de Félix no esté entre la ubicación actual del ladrillo y lo que se desplazó en este ciclo.
-					if (obj instanceof Ladrillo) {
-						if (obj.getPosicion().getX() == this.pj.getPosFelix().getX()) {
-							if((obj.getPosicion().getY() <= this.pj.getPosFelix().getY()) && (this.pj.getPosFelix().getY() <= (obj.getPosicion().getY()+dificultad))) {
-								this.pj.perderVida();
-								this.tablero = new Edificio(dificultad);
-								this.objetosPartida.removeAll(objetosPartida);
-							}
-							}
-					}
-				}
 			}
 			
 			
@@ -85,12 +67,8 @@ public class Partida {
 			/**Si el tablero decide generar un pájaro agrega un Objeto Pájaro a los elementos de la partida,
 			 * instanciándolo con una altura aleatoria y una dirección (si comienza a la izquierda o derecha) aleatoria. **/
 			if (tablero.generarPajaro()) {
-				int y = (int) (Math.random()*2);
-				double a = Math.random();
-				int x = 0;
-				if (a < 0.50) x = 4;
-				Posicion posi = new Posicion(x, y);
-				Objeto p = new Pajaro(posi);
+				Posicion posi = new Posicion(0, 0);
+				Objeto p = new Pajaro(posi, this.tablero.getVentanas());
 				this.objetosPartida.add(p);
 			}
 			
@@ -98,9 +76,8 @@ public class Partida {
 			/**Si Ralph decide generar un ladrillo agrega un nuevo Objeto Ladrillo al vector de objetos de la partida, 
 			 * instanciádolo con una posición aleatoria en x y siempre en la parte más alta de la sección. **/
 			if (boss.generarLadrillo(dificultad)) {
-				int x = (int) (Math.random()*4);
-				Posicion posi = new Posicion(x, 2);
-				Objeto l = new Ladrillo(posi);
+				Posicion posi = new Posicion(0, 0);
+				Objeto l = new Ladrillo(posi, this.tablero.getVentanas());
 				this.objetosPartida.add(l);
 			}
 			
@@ -109,68 +86,24 @@ public class Partida {
 			 * una actualización distinta. Además, si hay un Nicelander pregunta si hay que generar una torta. En tal caso
 			 * crea un nuevo Objeto Torta en la posición del Nicelander. **/
 			for (Objeto obj : this.objetosPartida) {
-				obj.actualizar(dificultad);
-				if (obj instanceof Nicelander) {
-					Nicelander aux = (Nicelander)obj;
-					if (aux.generarTorta()) {
-						Objeto t = new Torta(aux.getPosicion());
-						this.objetosPartida.add(t);
-					}
-				}
+				obj.actualizar(dificultad, this.tablero.getVentanas());
 			}
 			
-			/** Este método se encarga del control de movimiento de Félix. De acuerdo a la dirección en que se deba mover Félix
-			 * en este ciclo se hacen todas las comparaciones lógicas para saber si se puede mover en esa dirección. En caso de no haber
-			 * obstáculos que lo impidan Félix se mueve, de lo contrario se queda en su lugar durante este ciclo. **/
-			switch(dir) {
-				case "Arriba": {
-					if (this.pj.getPosFelix().getY()+1 < 3) {  //Evalúo si al moverme hacia arriba no voy a caer afuera del tablero. De ser así no me muevo.
-						if (!this.tablero.getVentanas()[this.pj.getPosFelix().getX()][this.pj.getPosFelix().getY()+1].tieneMacetero()) { //Evalúo que la ventana de arriba no tenga macetero. Si lo tiene no me muevo.
-							if (!this.tablero.getVentanas()[this.pj.getPosFelix().getX()][this.pj.getPosFelix().getY()].tieneMoldura()) { //Evalúo que la ventana en la que estoy parado no tenga moldura, si la tiene no me muevo.
-								this.pj.actualizarFelix(dir); //En el caso de poder moverme hacia arriba lo hago.
-							}
-						}
-					}
-				};
-				case "Abajo": {
-					if (this.pj.getPosFelix().getY()-1 >= 0) { //Las mismas evaluaciones que para arriba, pero para abajo.
-						if (!this.tablero.getVentanas()[this.pj.getPosFelix().getX()][this.pj.getPosFelix().getY()-1].tieneMoldura()) {
-							if (!this.tablero.getVentanas()[this.pj.getPosFelix().getX()][this.pj.getPosFelix().getY()].tieneMacetero()) {
-								this.pj.actualizarFelix(dir);
-							}
-						}
-					}
-				};
-				case "Izquierda": {
-					if (this.pj.getPosFelix().getX()-1 >= 0) { //Evalúo si al moverme hacia la izquierda no voy a caer afuera del tablero. De ser así no me muevo.
-						if ((this.tablero.getVentanas()[this.pj.getPosFelix().getX()-1][this.pj.getPosFelix().getY()] instanceof VentanaConHojas)) { //Si la ventana de la izquierda es una ventana con hojas, tengo que preguntar si está abierta para moverme. Si es una ventana normal directamente me muevo.
-							VentanaConHojas aux = (VentanaConHojas)this.tablero.getVentanas()[this.pj.getPosFelix().getX()-1][this.pj.getPosFelix().getY()]; 
-							if (aux.estaAbierta()) {
-								this.pj.actualizarFelix(dir);
-							}
-						} else {
-							this.pj.actualizarFelix(dir);
-						}
-					}
-				};
-				case "Derecha": {
-					if (this.pj.getPosFelix().getX()+1 < 5) { //Mismo caso que para la izquierda, pero para la derecha.
-						if ((this.tablero.getVentanas()[this.pj.getPosFelix().getX()+1][this.pj.getPosFelix().getY()] instanceof VentanaConHojas)) {
-							VentanaConHojas aux = (VentanaConHojas)this.tablero.getVentanas()[this.pj.getPosFelix().getX()+1][this.pj.getPosFelix().getY()]; 
-							if (aux.estaAbierta()) {
-								this.pj.actualizarFelix(dir);
-							}
-						} else {
-							this.pj.actualizarFelix(dir);
-						}
-					}
-				};
-			}
+			
+			
+			
+			/**MOVER Y TODAS LAS COMPARACIONES SE FUERON A UN MÉTODO DE FÉLIX. **/
+			this.pj.mover(dir, this.tablero.getVentanas());
+			
+			
+			
 			
 			/**Pregunta a cada elemento si debe destruirlo. De ser así lo elimina del arreglo de objetos de la partida. 
 			 * Cada Objeto sabe cuándo debe ser destruído. **/
-			for (Objeto obj : this.objetosPartida) {
-				if (obj.destruir()) this.objetosPartida.remove(obj);
+			Iterator<Objeto> iter = this.objetosPartida.iterator();
+			while (iter.hasNext()) {
+				Objeto obj = iter.next();
+				if (obj.destruir()) iter.remove();;
 			}
 			
 			

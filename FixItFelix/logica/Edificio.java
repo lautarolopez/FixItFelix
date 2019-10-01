@@ -7,7 +7,7 @@ public class Edificio {
 		Seccion a = new SeccionSuelo(dificultad);
 		Seccion b = new SeccionMedio(dificultad);
 		Seccion c = new SeccionMasAlta(dificultad);
-		this.arregloSecciones = new Seccion[2];
+		this.arregloSecciones = new Seccion[3];
 		this.arregloSecciones[0] = a;
 		this.arregloSecciones[1] = b;
 		this.arregloSecciones[2] = c;
@@ -58,5 +58,9 @@ public class Edificio {
 		if (this.seccionActual != 0) {
 			return this.arregloSecciones[this.seccionActual].generarPajaro();
 		} else return false;
+	}
+	
+	public Ventana getVentana(Posicion posi) {
+		return this.arregloSecciones[this.seccionActual].etapa[posi.getX()][posi.getY()];
 	}
 }

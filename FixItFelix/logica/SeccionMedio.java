@@ -13,7 +13,7 @@ public class SeccionMedio extends Seccion {
 				} else {
 					double r = Math.random();
 					if (r < 0.70) {
-						this.etapa[x][x] = new VentanaNormal(posi, dificultad);
+						this.etapa[x][y] = new VentanaNormal(posi, dificultad);
 					} else {
 						this.etapa[x][y] = new VentanaConHojas(posi);
 					}

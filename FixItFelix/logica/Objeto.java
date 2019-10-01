@@ -1,18 +1,13 @@
 package logica;
-public class Objeto {
+public abstract class Objeto {
 	protected Posicion posObjeto;
 	
-	public Objeto (Posicion posi) {
-		this.posObjeto = posi;
-	};
+	public Objeto (Posicion posi, Ventana[][] etapa){}
 	
-	public Posicion getPosicion() {
-		return this.posObjeto;
-	}
+	public abstract Posicion getPosicion();
 	
-	public boolean destruir() {
-		return false;
-	};
+	public abstract boolean destruir();
 	
-	public void actualizar (int dificultad) {}
+	public abstract void actualizar (int dificultad, Ventana[][] etapa);
+	
 }
