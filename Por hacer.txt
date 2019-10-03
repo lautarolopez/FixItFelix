@@ -1,2 +1,4 @@
 Corregir NULLPOINTEREXCEPTION.
 Agregar todos los Print correspondientes para el test.
+
+Ya está actualizado el UML, seguro para el orto pero están privados/publicos/protected todos los atributos de las clases.
