@@ -28,7 +28,7 @@ public class VentanaNormal extends Ventana {
 		boolean aux = false;
 		if (this.salud.get(0) == Estado.ROTO) {
 			double a = Math.random();
-			if (a < 0.30) aux = true;
+			if (a < 0.10) aux = true;
 		}
 		return aux;
 	};

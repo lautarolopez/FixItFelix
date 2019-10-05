@@ -1,24 +1,24 @@
 package logica;
-
+import java.util.*;
 public class Nicelander extends Objeto{
 	private int cicloDeVida;
 	
-	public Nicelander(Posicion posi, Ventana[][] etapa) {
+	public Nicelander(Posicion posi, ArrayList<ArrayList<Ventana>> etapa) {
 		super(posi, etapa);
 		this.posObjeto = posi;
 		this.cicloDeVida = 2;
-		etapa[this.posObjeto.getX()][this.posObjeto.getY()].ponerNicelander();
+		etapa.get(this.posObjeto.getX()).get(this.posObjeto.getY()).ponerNicelander();
 	}
 	
 	public boolean generarTorta() {
 		return this.cicloDeVida == 0;
 	}
 	
-	public void actualizar (int dificultad, Ventana[][] etapa) {
+	public void actualizar (int dificultad, ArrayList<ArrayList<Ventana>> etapa) {
 		if (this.cicloDeVida != 0) {
 			this.cicloDeVida--;
 		} else {
-			etapa[this.posObjeto.getX()][this.posObjeto.getY()].sacarNicelander();
+			etapa.get(this.posObjeto.getX()).get(this.posObjeto.getY()).sacarNicelander();
 		}
 	}
 	

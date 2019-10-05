@@ -33,12 +33,10 @@ public class Partida {
 			/**Suma puntos si Félix repara una ventana**/
 			this.player.setPuntaje(this.pj.repararVentana(this.tablero.getVentanas(), martillazos, this.tablero.nivelTerminado()));
 			
-			System.out.println("1------------------------");
 			
 			
 			this.gestionarColisiones();
 			
-			System.out.println("2------------------------");
 			
 			
 			////BLOQUE DE ACTUALIZACIONES
@@ -50,9 +48,9 @@ public class Partida {
 				Posicion posi = new Posicion(0, 0);
 				Objeto p = new Pajaro(posi, this.tablero.getVentanas());
 				this.objetosPartida.add(p);
+				System.out.println("Se creó un pájaro en " + p.getPosicion().toString());
 			}
 
-			System.out.println("3------------------------");
 
 			
 			/**Si Ralph decide generar un ladrillo agrega un nuevo Objeto Ladrillo al vector de objetos de la partida, 
@@ -61,9 +59,9 @@ public class Partida {
 				Posicion posi = new Posicion(0, 0);
 				Objeto l = new Ladrillo(posi, this.tablero.getVentanas());
 				this.objetosPartida.add(l);
+				System.out.println("Se creó un ladrillo en " + l.getPosicion().toString());
 			}
 
-			System.out.println("4------------------------");
 
 			
 			/**Actualiza todos los objetos del arreglo de Objetos de la partida, cada uno implementa 
@@ -73,14 +71,12 @@ public class Partida {
 				obj.actualizar(dificultad, this.tablero.getVentanas());
 			}
 			
-			System.out.println("5------------------------");
 			
 			
 			
 			/**MOVER Y TODAS LAS COMPARACIONES SE FUERON A UN MÉTODO DE FÉLIX. **/
 			this.pj.mover(dir, this.tablero.getVentanas());
 			
-			System.out.println("6------------------------");
 			
 			
 			
@@ -89,25 +85,25 @@ public class Partida {
 			Iterator<Objeto> iter = this.objetosPartida.iterator();
 			while (iter.hasNext()) {
 				Objeto obj = iter.next();
-				if (obj.destruir()) iter.remove();;
+				if (obj.destruir()) {
+					System.out.println("Se destruyó " + obj.toString() + " por terminar su ciclo de vida.");
+					iter.remove();
+				};
 			}
 			
+						
 			
-			System.out.println("7------------------------");
-			
-			
-			for (Ventana[] arrVent : this.tablero.getVentanas()) {
+			for (ArrayList<Ventana> arrVent : this.tablero.getVentanas()) {
 				for (Ventana vent : arrVent) {
 					if (vent.generarNicelander()) {
 						Objeto n = new Nicelander(vent.getPos(), this.tablero.getVentanas());
 						this.objetosPartida.add(n);
+						System.out.println("Se creó un Nicelander en " + n.getPosicion().toString());
 					}
 				}
 			}
 
 			
-			System.out.println("8------------------------");
-
 			
 			
 			/**Si se terminó el nivel se crea un nuevo tablero con mayor dificultad. Es importante
@@ -118,10 +114,9 @@ public class Partida {
 				this.tablero = new Edificio (dificultad);
 				this.pj.reset();
 				this.objetosPartida.removeAll(objetosPartida);
+				System.out.println("Terminaste el nivel " + dificultad + ", felicidades!");
 			}
 			
-			System.out.println("9------------------------");
-
 			
 			
 			/** Si termina la sección avanzamos a la próxima etapa.**/
@@ -129,13 +124,30 @@ public class Partida {
 				this.tablero.proximaEtapa();
 				this.pj.reset();
 				this.objetosPartida.removeAll(objetosPartida);
+				System.out.println("Siguiente etapa.");
 			}
 			
-			System.out.println("10------------------------");
 			
 		
 			this.tiempo--; //Decrementamos el tiempo para el próximo ciclo.
-			System.out.println("FINDECICLOFINDECICLOFINDECICLOFINDECICLOFINDECICLO");
+			System.out.println("Tiempo restante: " + tiempo);
+			System.out.println("Vidas restantes: " + pj.getVidas());
+			System.out.println("Nivel actual: " + dificultad);
+			switch (this.tablero.getSeccionActual()) {
+			case 0: {
+				System.out.println("Sección actual: Suelo");
+				break;
+			}
+			case 1:{
+				System.out.println("Sección actual: Media");
+				break;
+			}
+			case 2:{
+				System.out.println("Sección actual: Más alta");
+				break;
+			}
+			}
+			System.out.println("-------------------------FIN DE CICLO-----------------------");
 		
 		} else { //Si el tiempo o las vidas de Félix llegan a cero se termina el juego. Si la dificultad (que a su vez es el nivel) es mayor que diez el jugador ganó el juego.
 			if (this.dificultad <= 10) {
@@ -148,20 +160,33 @@ public class Partida {
 		
 	}
 	
+	public void pruebaMatriz() {
+		for (ArrayList<Ventana> arrVentana : this.tablero.getVentanas()) {
+			for (Ventana vent : arrVentana) {
+				System.out.print(vent.getPos().toString());			
+			}
+		System.out.println("");	
+		}
+	}
+	
+	
 	private void gestionarColisiones() {
-		if (this.tablero.getVentanas()[this.pj.getPosFelix().getX()][this.pj.getPosFelix().getY()].pajaro()) {
+		if (this.tablero.getVentanas().get(this.pj.getPosFelix().getX()).get(this.pj.getPosFelix().getY()).pajaro()) {
 			this.objetosPartida.removeAll(objetosPartida);
 			this.tablero.reiniciarEtapa(dificultad);
 			this.pj.reset();
+			System.out.println("Chocó con un pájaro y se reinició la etapa.");
 		} else {
-			if (this.tablero.getVentanas()[this.pj.getPosFelix().getX()][this.pj.getPosFelix().getY()].ladrillo()) {
+			if (this.tablero.getVentanas().get(this.pj.getPosFelix().getX()).get(this.pj.getPosFelix().getY()).ladrillo()) {
 				this.pj.perderVida();
 				this.tablero = new Edificio(dificultad);
 				this.objetosPartida.removeAll(objetosPartida);
 				this.pj.reset();
+				System.out.println("Chocó con un ladrillo y se reinicia el nivel.");
 			} else {
-				if (this.tablero.getVentanas()[this.pj.getPosFelix().getX()][this.pj.getPosFelix().getY()].ladrillo()){
+				if (this.tablero.getVentanas().get(this.pj.getPosFelix().getX()).get(this.pj.getPosFelix().getY()).ladrillo()){
 					this.pj.setInvulnerable();
+					System.out.println("Félix ahora es invulnerable!");
 				}
 			}
 		}

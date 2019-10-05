@@ -1,2 +1,3 @@
-Corregir NULLPOINTEREXCEPTION.
-Agregar todos los Print correspondientes para el test.
+Actualizar el UML.
+Documentación extra.
+Comentar correctamente el código.

@@ -1,18 +1,19 @@
 package logica;
+import java.util.*;
 public class Seccion {
 
-	protected Ventana[][] etapa;
+	protected ArrayList<ArrayList<Ventana>> etapa;
 	
 	public Seccion() {
 	};
 	
 	
-	public Ventana[][] getEtapa(){
+	public ArrayList<ArrayList<Ventana>> getEtapa(){
 		return this.etapa;
-	}
+	};
 	
 	public boolean etapaTerminada() { //Devuelve verdadero si todos los paneles de todas las ventanas de la sección están sanos.
-		for (Ventana[] arrVent : this.etapa) {
+		for (ArrayList<Ventana> arrVent : this.etapa) {
 			for (Ventana vent : arrVent) {
 				if (!vent.arreglada()) return false;;
 			}

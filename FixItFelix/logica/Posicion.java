@@ -44,6 +44,10 @@ public class Posicion {
 		} else return false;
 	}
 	
+	public String toString() {
+		return "[" + this.posX + "]" + "[" + this.posY + "]  ";
+	}
+	
 	
 
 }

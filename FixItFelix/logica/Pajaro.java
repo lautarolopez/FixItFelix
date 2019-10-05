@@ -1,9 +1,10 @@
 package logica;
+import java.util.*;
 public class Pajaro extends Objeto {
 	
 	private String direccion;
 	
-	public Pajaro (Posicion posi, Ventana[][] etapa) {
+	public Pajaro (Posicion posi, ArrayList<ArrayList<Ventana>> etapa) {
 		super(posi, etapa);
 		int y = (int) (Math.random()*2);
 		double a = Math.random();
@@ -12,7 +13,7 @@ public class Pajaro extends Objeto {
 		posi = new Posicion(x, y);
 		this.posObjeto = posi;
 		this.direccion = "Izq o Der";
-		etapa[this.posObjeto.getX()][this.posObjeto.getY()].ponerPajaro();
+		etapa.get(this.posObjeto.getX()).get(this.posObjeto.getY()).ponerPajaro();
 
 	}
 	
@@ -21,15 +22,15 @@ public class Pajaro extends Objeto {
 		return this.posObjeto;
 	}
 	
-	public void actualizar(int dificultad, Ventana[][] etapa) { //Se mueve de acuerdo a la dirección que lleva.
+	public void actualizar(int dificultad, ArrayList<ArrayList<Ventana>> etapa) { //Se mueve de acuerdo a la dirección que lleva.
 		if(this.direccion.equals("Izq")) {
 			this.posObjeto.moverIzq();
-			etapa[this.posObjeto.getX()+1][this.posObjeto.getY()].sacarPajaro();
-			etapa[this.posObjeto.getX()][this.posObjeto.getY()].ponerPajaro();
+			etapa.get(this.posObjeto.getX()+1).get(this.posObjeto.getY()).sacarPajaro();
+			etapa.get(this.posObjeto.getX()).get(this.posObjeto.getY()).ponerPajaro();
 		} else {
 			this.posObjeto.moverDer();
-			etapa[this.posObjeto.getX()-1][this.posObjeto.getY()].sacarPajaro();
-			etapa[this.posObjeto.getX()][this.posObjeto.getY()].ponerPajaro();
+			etapa.get(this.posObjeto.getX()-1).get(this.posObjeto.getY()).sacarPajaro();
+			etapa.get(this.posObjeto.getX()).get(this.posObjeto.getY()).ponerPajaro();
 		}
 	}
 	
