@@ -21,6 +21,9 @@ public class Felix {
 	}
 	
 	
+	/**Recibe la sección actual de ventanas y busca en la que está parado actualmente. Si ésta no está totalmente sana
+	 * repara un panel por cada martilazo, cuya cantidad recibe por parámtro. Además devuelve la cantidad de puntos que sumó con el 
+	 * total de reparaciones. **/
 	public int repararVentana(ArrayList<ArrayList<Ventana>> etapa, int martillazos, boolean ganeNivel) {
 		int puntaje = 0;
 		while (martillazos != 0){
@@ -46,7 +49,7 @@ public class Felix {
 
 
 
-	public void actualizarFelix (String dir) {	//Se mueve en la dirección recibida y actualiza el estado de invulnerabilidad.
+	public void actualizarFelix (String dir) {	//Actualiza el estado de invulnerabilidad.
 		if (this.invulnerable) this.timeLeftInv--;
 		if (this.timeLeftInv == 0) this.invulnerable = false;
 	}
@@ -65,7 +68,10 @@ public class Felix {
 		return vidas;
 	}
 
-
+	
+	/**De acuerdo a la dirección que recibe evalúa si puede moverse hacia esa dirección, teniendo en cuenta los obstáculos,
+	 * las ventanas abiertas y los límites del edificio. En el caso de encontrarse con alguna restricción simplemente
+	 * no se mueve. **/
 	public void mover(String dir, ArrayList<ArrayList<Ventana>> etapa) {
 		switch(dir) {
 		case "Arriba":

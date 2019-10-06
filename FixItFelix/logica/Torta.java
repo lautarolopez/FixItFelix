@@ -5,6 +5,7 @@ public class Torta extends Objeto{
 
 	public Torta(Posicion posi, ArrayList<ArrayList<Ventana>> etapa) {
 		super(posi, etapa);
+		this.posObjeto = posi;
 		this.cicloDeVida = 2;
 		etapa.get(this.posObjeto.getX()).get(this.posObjeto.getY()).ponerTorta();
 	}
@@ -22,5 +23,9 @@ public class Torta extends Objeto{
 	
 	public Posicion getPosicion() {
 		return this.posObjeto;
+	}
+	
+	public boolean generarTorta() {
+		return false;
 	}
 }

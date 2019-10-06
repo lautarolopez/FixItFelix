@@ -4,6 +4,7 @@ public class Edificio {
 	private ArrayList<Seccion> arregloSecciones;
 	private int seccionActual;
 	
+	/**Crea un nuevo edificio con una sección Suelo, una Media y una Más Alta. Además inicia con secciónActual Suelo. **/
 	public Edificio(int dificultad) {
 		Seccion a = new SeccionSuelo(dificultad);
 		Seccion b = new SeccionMedio(dificultad);

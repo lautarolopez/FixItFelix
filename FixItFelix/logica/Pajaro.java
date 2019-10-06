@@ -4,6 +4,9 @@ public class Pajaro extends Objeto {
 	
 	private String direccion;
 	
+	
+	/**Una nueva instancia de Pájaro le asigna aleatoriamente una dirección de donde empezar y una
+	 * altura. Además avisa a la ventana en la que aparece que está ahí. **/
 	public Pajaro (Posicion posi, ArrayList<ArrayList<Ventana>> etapa) {
 		super(posi, etapa);
 		int y = (int) (Math.random()*2);
@@ -22,19 +25,25 @@ public class Pajaro extends Objeto {
 		return this.posObjeto;
 	}
 	
+	/**El pájaro se mueve un lugar de acuerdo a la dirección que lleva. Además avisa a la ventana en la que estaba
+	 * que ya no se encuentra ahí, y a la ventana a la que llegó que ahora está en ese lugar.**/
 	public void actualizar(int dificultad, ArrayList<ArrayList<Ventana>> etapa) { //Se mueve de acuerdo a la dirección que lleva.
 		if(this.direccion.equals("Izq")) {
+			etapa.get(this.posObjeto.getX()).get(this.posObjeto.getY()).sacarPajaro();
 			this.posObjeto.moverIzq();
-			etapa.get(this.posObjeto.getX()+1).get(this.posObjeto.getY()).sacarPajaro();
-			etapa.get(this.posObjeto.getX()).get(this.posObjeto.getY()).ponerPajaro();
+			if (this.posObjeto.getX() >= 0) etapa.get(this.posObjeto.getX()).get(this.posObjeto.getY()).ponerPajaro();
 		} else {
+			etapa.get(this.posObjeto.getX()).get(this.posObjeto.getY()).sacarPajaro();
 			this.posObjeto.moverDer();
-			etapa.get(this.posObjeto.getX()-1).get(this.posObjeto.getY()).sacarPajaro();
-			etapa.get(this.posObjeto.getX()).get(this.posObjeto.getY()).ponerPajaro();
+			if (this.posObjeto.getX() < 5) etapa.get(this.posObjeto.getX()).get(this.posObjeto.getY()).ponerPajaro();
 		}
 	}
 	
 	public boolean destruir() { //Si cae fuera del tablero se destruye.
 		return ((this.posObjeto.getX() < 0) || (this.posObjeto.getX() > 4));
+	}
+	
+	public boolean generarTorta() {
+		return false;
 	}
 }

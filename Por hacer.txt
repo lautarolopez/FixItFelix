@@ -1,3 +1,2 @@
 Actualizar el UML.
 Documentación extra.
-Comentar correctamente el código.

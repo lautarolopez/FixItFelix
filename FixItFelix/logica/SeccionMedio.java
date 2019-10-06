@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class SeccionMedio extends Seccion {
 	
-	public SeccionMedio(int dificultad) { //Similar al constructor de la Seccion Suelo, pero avisa por booleano que es la Sección Medio.
+	public SeccionMedio(int dificultad) { //Similar al constructor de la Seccion Suelo, pero avisa por booleano a la VentanaSemicircular que es la Sección Medio.
 		this.etapa = new ArrayList<ArrayList<Ventana>>();
 		ArrayList<Ventana> auxVentanas1 = new ArrayList<Ventana>();
 		ArrayList<Ventana> auxVentanas2 = new ArrayList<Ventana>();

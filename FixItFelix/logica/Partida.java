@@ -21,8 +21,10 @@ public class Partida {
 		this.objetosPartida = new ArrayList<Objeto>();
 	}
 	
+	/**Cada ciclo representa una unidad de tiempo del juego, donde se hacen todas las comprobaciones y comparaciones
+	 * necesarias. **/
 	
-	public void ciclo(String dir, int martillazos) {
+	public boolean ciclo(String dir, int martillazos) {
 		
 		if (this.tiempo != 0 && this.pj.getVidas() !=0 && this.dificultad < 11) { ///Ejecuta el ciclo si todavía hay tiempo, si Félix todavía tiene vidas y si no terminamos los diez niveles.
 		
@@ -30,53 +32,77 @@ public class Partida {
 			
 			
 			
-			/**Suma puntos si Félix repara una ventana**/
+			/**Suma puntos si Félix repara una ventana. (Set puntaje aumenta el puntaje, no lo setea.)**/
 			this.player.setPuntaje(this.pj.repararVentana(this.tablero.getVentanas(), martillazos, this.tablero.nivelTerminado()));
 			
 			
-			
+			/**Método privado que analiza si hubo algún evento entre Félix y los objetos de la partida que afecte
+			 *  el estado de la partida. **/
 			this.gestionarColisiones();
 			
-			
-			
-			////BLOQUE DE ACTUALIZACIONES
-			
-			
-			/**Si el tablero decide generar un pájaro agrega un Objeto Pájaro a los elementos de la partida,
-			 * instanciándolo con una altura aleatoria y una dirección (si comienza a la izquierda o derecha) aleatoria. **/
+			/**Si el tablero decide generar un pájaro (es aleatorio) agrega un Objeto Pájaro a los elementos de la partida.**/
 			if (tablero.generarPajaro()) {
 				Posicion posi = new Posicion(0, 0);
 				Objeto p = new Pajaro(posi, this.tablero.getVentanas());
 				this.objetosPartida.add(p);
 				System.out.println("Se creó un pájaro en " + p.getPosicion().toString());
 			}
-
-
 			
-			/**Si Ralph decide generar un ladrillo agrega un nuevo Objeto Ladrillo al vector de objetos de la partida, 
-			 * instanciádolo con una posición aleatoria en x y siempre en la parte más alta de la sección. **/
+			
+			/**Si Ralph decide generar un ladrillo agrega un nuevo Objeto Ladrillo al vector de objetos de la partida. **/
 			if (boss.generarLadrillo(dificultad)) {
 				Posicion posi = new Posicion(0, 0);
 				Objeto l = new Ladrillo(posi, this.tablero.getVentanas());
 				this.objetosPartida.add(l);
 				System.out.println("Se creó un ladrillo en " + l.getPosicion().toString());
 			}
+			
+			////BLOQUE DE ACTUALIZACIONES
+			
+			
+			
+
+
+			
+			
 
 
 			
 			/**Actualiza todos los objetos del arreglo de Objetos de la partida, cada uno implementa 
-			 * una actualización distinta. Además, si hay un Nicelander pregunta si hay que generar una torta. En tal caso
-			 * crea un nuevo Objeto Torta en la posición del Nicelander. **/
+			 * una actualización distinta. Además consulta si debe generar alguna torta, solo los nicelanders
+			 * responderán verdadero si corresponde, entonces crea una nueva instancia de Objeto Torta y la agrega
+			 * a una lista auxiliar. Si se agregó efectivamente algún elemento a la lista auxiliar, ésta se agrega
+			 * a la lista de objetos de la partida.**/
+			ArrayList<Objeto> auxObj = new ArrayList<Objeto>();
 			for (Objeto obj : this.objetosPartida) {
 				obj.actualizar(dificultad, this.tablero.getVentanas());
+				if (obj.generarTorta()) {
+					Objeto t = new Torta(obj.getPosicion(), this.tablero.getVentanas());
+					auxObj.add(t);
+					System.out.println("Se creó una torta en " + t.getPosicion().toString());
+				}
 			}
+			if (!(auxObj.isEmpty())) this.objetosPartida.addAll(auxObj);
 			
 			
 			
 			
-			/**MOVER Y TODAS LAS COMPARACIONES SE FUERON A UN MÉTODO DE FÉLIX. **/
+			/**Mueve a Félix en la dirección que recibe en este turno. **/
 			this.pj.mover(dir, this.tablero.getVentanas());
 			
+			
+			
+			/** Consulta a todas las ventanas si debe generar un Nicelander. Cada ventana lo implementa a su manera. Si le retornan
+			 * verdadero crea una nueva instancia de Objeto Nicelander y lo agrega a la lista de elementos de la partida.  **/
+			for (ArrayList<Ventana> arrVent : this.tablero.getVentanas()) {
+				for (Ventana vent : arrVent) {
+					if (vent.generarNicelander()) {
+						Objeto n = new Nicelander(vent.getPos(), this.tablero.getVentanas());
+						this.objetosPartida.add(n);
+						System.out.println("Se creó un Nicelander en " + n.getPosicion().toString());
+					}
+				}
+			}
 			
 			
 			
@@ -92,16 +118,7 @@ public class Partida {
 			}
 			
 						
-			
-			for (ArrayList<Ventana> arrVent : this.tablero.getVentanas()) {
-				for (Ventana vent : arrVent) {
-					if (vent.generarNicelander()) {
-						Objeto n = new Nicelander(vent.getPos(), this.tablero.getVentanas());
-						this.objetosPartida.add(n);
-						System.out.println("Se creó un Nicelander en " + n.getPosicion().toString());
-					}
-				}
-			}
+
 
 			
 			
@@ -128,7 +145,8 @@ public class Partida {
 			}
 			
 			
-		
+			/** Este bloque brinda información del estado de la partida para verificar el correcto funcionamiento de todo el 
+			 * ecosistema del juego en curso. **/
 			this.tiempo--; //Decrementamos el tiempo para el próximo ciclo.
 			System.out.println("Tiempo restante: " + tiempo);
 			System.out.println("Vidas restantes: " + pj.getVidas());
@@ -148,28 +166,23 @@ public class Partida {
 			}
 			}
 			System.out.println("-------------------------FIN DE CICLO-----------------------");
+			return false;
 		
 		} else { //Si el tiempo o las vidas de Félix llegan a cero se termina el juego. Si la dificultad (que a su vez es el nivel) es mayor que diez el jugador ganó el juego.
 			if (this.dificultad <= 10) {
-				System.out.print("Game over!");
+				System.out.println("Game over!");
 			} else {
-				System.out.print("Ganaste cruck!");
+				System.out.println("Ganaste cruck!");
 			}
-			
+		return true;	
 		}
 		
 	}
 	
-	public void pruebaMatriz() {
-		for (ArrayList<Ventana> arrVentana : this.tablero.getVentanas()) {
-			for (Ventana vent : arrVentana) {
-				System.out.print(vent.getPos().toString());			
-			}
-		System.out.println("");	
-		}
-	}
-	
-	
+	/** Pregunta si Félix se encuentra con algún elemento de la lista, y de acuerdo al objeto realiza las acciones correspondientes.
+	 * Pájaro: reinicia la sección sin perder vidas.
+	 * Ladrillo: reinicia el nivel perdiendo una vida.
+	 * Torta: Vuelve invulnerable a Félix durante una determinada cantidad de ciclos. **/
 	private void gestionarColisiones() {
 		if (this.tablero.getVentanas().get(this.pj.getPosFelix().getX()).get(this.pj.getPosFelix().getY()).pajaro()) {
 			this.objetosPartida.removeAll(objetosPartida);
@@ -190,6 +203,10 @@ public class Partida {
 				}
 			}
 		}
+	}
+	
+	public Jugador getJugador() {
+		return this.player;
 	}
 	
 	

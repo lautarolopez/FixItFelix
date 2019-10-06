@@ -7,6 +7,8 @@ public abstract class Objeto {
 	
 	public abstract Posicion getPosicion();
 	
+	public abstract boolean generarTorta();
+	
 	public abstract boolean destruir();
 	
 	public abstract void actualizar (int dificultad, ArrayList<ArrayList<Ventana>> etapa);

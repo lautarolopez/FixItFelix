@@ -1,0 +1,36 @@
+package logica;
+import java.util.*;
+public class Juego {
+
+	private ArrayList<Jugador> topScores;
+	private Partida partidaActual;
+	
+	
+	public Juego() {
+		this.topScores = new ArrayList<Jugador>();
+	}
+	
+	
+	public void nuevoJuego(String nombre){
+		this.partidaActual = new Partida(nombre);
+	};
+	
+	public void turno(String dir, int martillazos) {
+		if (this.partidaActual.ciclo(dir, martillazos)) {
+			if (!(this.topScores.contains(this.partidaActual.getJugador()))) {
+				this.topScores.add(this.partidaActual.getJugador());
+				Collections.sort(this.topScores);
+				if (this.topScores.size() > 4) this.topScores.remove(4);
+		
+			}
+		}
+	}
+	
+	public void imprimirTopScores() {
+		System.out.println("------------Mejores puntajes------------");
+		for (Jugador jug : this.topScores) {
+			System.out.println(jug.toString());
+		}
+		System.out.println("----------------------------------------");
+	}
+}

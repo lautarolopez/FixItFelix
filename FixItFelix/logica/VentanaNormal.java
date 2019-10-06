@@ -2,6 +2,8 @@ package logica;
 import java.util.*;
 public class VentanaNormal extends Ventana {
 	
+	
+	/**Una nueva instancia de VentanaNormal incia aleatoriamente el estado de sus paneles. **/
 	public VentanaNormal (Posicion pos, int dificultad){
 		super(pos);
 		this.salud = new ArrayList<Estado>();

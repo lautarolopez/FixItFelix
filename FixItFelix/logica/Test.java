@@ -5,9 +5,9 @@ public class Test {
 	public static void main(String[] args) {
 		
 		
+		
 		Juego game = new Juego();
-		game.nuevoJuego();
-		game.pruebaMatriz();
+		game.nuevoJuego("TheDestroyer");
 		game.turno("Arriba", 4);
 		game.turno("Derecha", 4);
 		game.turno("Abajo", 4);
@@ -167,9 +167,8 @@ public class Test {
 		game.turno("Abajo", 4);
 		game.turno("Arriba", 4);
 		game.turno("Izquierda", 4);
-		
-	
-		
+		game.imprimirTopScores();
+			
 	} 
 
 }
