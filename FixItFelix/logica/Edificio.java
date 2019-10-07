@@ -62,7 +62,5 @@ public class Edificio {
 		} else return false;
 	}
 	
-	public Ventana getVentana(Posicion posi) {
-		return this.arregloSecciones.get(seccionActual).getEtapa().get(posi.getX()).get(posi.getY());
-	}
+
 }

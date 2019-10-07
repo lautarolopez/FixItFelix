@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"logica","c":"Obstaculo","l":"Obstaculo()","url":"%3Cinit%3E()"},{"p":"logica","c":"Obstaculo","l":"tieneMacetero()"},{"p":"logica","c":"Obstaculo","l":"tieneMoldura()"}]

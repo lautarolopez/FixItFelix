@@ -20,3 +20,4 @@ public class Obstaculo {
 		return mac;
 	};
 }
+	
