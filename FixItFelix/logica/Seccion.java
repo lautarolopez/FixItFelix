@@ -12,6 +12,8 @@ public class Seccion {
 		return this.etapa;
 	};
 	
+	/**@return boolean Devuelve verdadero si todos los paneles de todas las ventanas de la matriz
+	 * están SANOS. */
 	public boolean etapaTerminada() { //Devuelve verdadero si todos los paneles de todas las ventanas de la sección están sanos.
 		for (ArrayList<Ventana> arrVent : this.etapa) {
 			for (Ventana vent : arrVent) {
@@ -21,6 +23,7 @@ public class Seccion {
 		return true;
 	}
 	
+	//Solo lo implementan las secciones Media y MasAlta
 	public boolean generarPajaro() { //Las subclases que lo implementen lo sobreescriben.
 		return false;
 	}

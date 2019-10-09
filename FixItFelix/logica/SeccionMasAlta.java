@@ -4,6 +4,7 @@ import java.util.*;
 public class SeccionMasAlta extends Seccion{
 	
 
+	/**@param dificultad Dificultad o nivel actual */
 	public SeccionMasAlta(int dificultad) { //Genera aleatoriamente una matriz de ventanas normales o con hojas, con mayor probabilidad de normales. FALTA IMPLEMENTAR QUE LA PROBABILIDAD CAMBIE CON LA DIFICULTAD.
 		this.etapa = new ArrayList<ArrayList<Ventana>>();
 		ArrayList<Ventana> auxVentanas1 = new ArrayList<Ventana>();
@@ -32,7 +33,7 @@ public class SeccionMasAlta extends Seccion{
 		}
 	}
 	
-	
+	/**@return boolean Devuelve un valor aleatorio true o false */
 	public boolean generarPajaro() {
 		double a = Math.random();
 		return a < 0.40;

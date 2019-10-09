@@ -3,7 +3,9 @@ import java.util.*;
 public class VentanaNormal extends Ventana {
 	
 	
-	/**Una nueva instancia de VentanaNormal incia aleatoriamente el estado de sus paneles. **/
+	/**Una nueva instancia de VentanaNormal incia aleatoriamente el estado de sus paneles.
+	 * @param pos Posicion de la ventana
+	 * @param dificultad Dificultad o nivel actual **/
 	public VentanaNormal (Posicion pos, int dificultad){
 		super(pos);
 		this.salud = new ArrayList<Estado>();

@@ -2,6 +2,7 @@ package logica;
 import java.util.*;
 public class SeccionSuelo extends Seccion {
 
+	/**@param dificultad Dificultad o nivel actual */
 	public SeccionSuelo(int dificultad) { //Crea aletoriamente una matriz de ventanas aleatorias, y en el medio del piso más bajo la ventana es semicircular con 4 paneles.
 		this.etapa = new ArrayList<ArrayList<Ventana>>();
 		ArrayList<Ventana> auxVentanas1 = new ArrayList<Ventana>();

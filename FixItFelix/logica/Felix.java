@@ -23,7 +23,12 @@ public class Felix {
 	
 	/**Recibe la sección actual de ventanas y busca en la que está parado actualmente. Si ésta no está totalmente sana
 	 * repara un panel por cada martilazo, cuya cantidad recibe por parámtro. Además devuelve la cantidad de puntos que sumó con el 
-	 * total de reparaciones. **/
+	 * total de reparaciones. 
+	 * @param etapa La matriz de ventanas de la sección actual
+	 * @param martillazos La cantidad de martillazos que se deben dar en este ciclo
+	 * @param ganeNivel un valor booleano para saber si después de reparar la ventana gané el nivel
+	 * actual o no.
+	 * @retun int Cantidad de puntos conseguidos reparando las ventanas**/
 	public int repararVentana(ArrayList<ArrayList<Ventana>> etapa, int martillazos, boolean ganeNivel) {
 		int puntaje = 0;
 		while (martillazos != 0){
@@ -47,9 +52,7 @@ public class Felix {
 		return posFelix;
 	}
 
-
-
-	public void actualizarFelix (String dir) {	//Actualiza el estado de invulnerabilidad.
+	public void actualizarFelix () {	//Actualiza el estado de invulnerabilidad.
 		if (this.invulnerable) this.timeLeftInv--;
 		if (this.timeLeftInv == 0) this.invulnerable = false;
 	}
@@ -71,7 +74,9 @@ public class Felix {
 	
 	/**De acuerdo a la dirección que recibe evalúa si puede moverse hacia esa dirección, teniendo en cuenta los obstáculos,
 	 * las ventanas abiertas y los límites del edificio. En el caso de encontrarse con alguna restricción simplemente
-	 * no se mueve. **/
+	 * no se mueve.
+	 * @param dir Dirección en la que debe moverse Félix, con primera letra capital y sin punto
+	 * @param etapa Matriz de ventanas de la sección actual. **/
 	public void mover(String dir, ArrayList<ArrayList<Ventana>> etapa) {
 		switch(dir) {
 		case "Arriba":

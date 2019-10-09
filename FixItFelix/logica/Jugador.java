@@ -11,7 +11,8 @@ public class Jugador implements Comparable<Jugador> {
 	}
 	
 	
-	/**Recibe una cantidad de puntaje por una acción y la suma al puntaje del jugador. **/
+	/**Añade más puntos al puntaje del jugador
+	 * @param x Cantidad de puntos a añadir al puntaje **/
 	public void setPuntaje(int x) {
 		this.puntaje += x;
 	}

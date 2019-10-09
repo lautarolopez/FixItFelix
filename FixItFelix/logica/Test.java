@@ -1,11 +1,7 @@
 package logica;
-import java.util.*;
 public class Test {
 
-	public static void main(String[] args) {
-		
-		
-		
+	public static void main(String[] args) {		
 		Juego game = new Juego();
 		game.nuevoJuego("TheDestroyer");
 		game.turno("Arriba", 4);

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class SeccionMedio extends Seccion {
 	
+	/**@param dificultad Dificultad o nivel actual */
 	public SeccionMedio(int dificultad) { //Similar al constructor de la Seccion Suelo, pero avisa por booleano a la VentanaSemicircular que es la Sección Medio.
 		this.etapa = new ArrayList<ArrayList<Ventana>>();
 		ArrayList<Ventana> auxVentanas1 = new ArrayList<Ventana>();
@@ -37,6 +38,7 @@ public class SeccionMedio extends Seccion {
 		}
 	}
 	
+	/**@return boolean Valor aleatorio true o false */
 	public boolean generarPajaro() { //Devuelve aleatoriamente si generar un pájaro o no.
 		double a = Math.random();
 		return a < 0.30;

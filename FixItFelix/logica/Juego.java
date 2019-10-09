@@ -20,7 +20,9 @@ public class Juego {
 	 * verifica que el jugador no esté ya en la lista, para evitar duplicados si siguen mandando turnos a 
 	 * una partida terminada; si el arrego es vacío, para no comparar en un arreglo vacío; y luego si 
 	 * el puntaje es mayor al mínimo del arreglo, en ese caso se reemplaza uno por otro y se ordena
-	 * el arreglo.**/
+	 * el arreglo.
+	 * @param dir La dirección en la que debe moverse Félix durante este turno
+	 * @param martillazos La cantidad de martillazos que debe dar Félix durante este turno**/
 	public void turno(String dir, int martillazos) {
 		if (this.partidaActual.ciclo(dir, martillazos)) {
 			if (!(this.topScores.contains(this.partidaActual.getJugador()))) {

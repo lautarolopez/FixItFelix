@@ -22,7 +22,11 @@ public class Partida {
 	}
 	
 	/**Cada ciclo representa una unidad de tiempo del juego, donde se hacen todas las comprobaciones y comparaciones
-	 * necesarias. **/
+	 * necesarias.
+	 * @param dir Dirección en la que debe moverse Félix en este ciclo
+	 * @param martillazos Cantidad de martillazos que debe dar Félix en este ciclo
+	 * @return boolean verdadero si la partida terminó, por haber terminado 10 niveles, porque se
+	 * agotó el tiempo o porque Félix se quedó sin vidas  **/
 	
 	public boolean ciclo(String dir, int martillazos) {
 		
@@ -56,18 +60,15 @@ public class Partida {
 				this.objetosPartida.add(l);
 				System.out.println("Se creó un ladrillo en " + l.getPosicion().toString());
 			}
+			///Con respecto a los ladrillos, la interpretación del enunciado fue que Ralph lanzaba ladrillos
+			///de a uno por vez, aunque después jugando a la versión original vimos que lanza varios ladrillos
+			///simultáneamente. En tal caso solo agregaríamos un for (0 a dificultad) para que haga esta acción
+			///y se generen más ladrillos.
+			
+			
 			
 			////BLOQUE DE ACTUALIZACIONES
-			
-			
-			
-
-
-			
-			
-
-
-			
+	
 			/**Actualiza todos los objetos del arreglo de Objetos de la partida, cada uno implementa 
 			 * una actualización distinta. Además consulta si debe generar alguna torta, solo los nicelanders
 			 * responderán verdadero si corresponde, entonces crea una nueva instancia de Objeto Torta y la agrega
@@ -118,10 +119,9 @@ public class Partida {
 			}
 			
 						
-
-
-			
-			
+			// Actualiza el tiempo de invulnerabilidad de Félix
+			this.pj.actualizarFelix();
+					
 			
 			/**Si se terminó el nivel se crea un nuevo tablero con mayor dificultad. Es importante
 			 * verificar primero el nivel y luego la etapa porque si terminamos la última etapa el
@@ -145,6 +145,7 @@ public class Partida {
 			}
 			
 			
+			////BLOQUE DE INFORMACIÓN DE ESTADO ////
 			/** Este bloque brinda información del estado de la partida para verificar el correcto funcionamiento de todo el 
 			 * ecosistema del juego en curso. **/
 			this.tiempo--; //Decrementamos el tiempo para el próximo ciclo.

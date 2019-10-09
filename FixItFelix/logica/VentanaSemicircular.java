@@ -5,7 +5,9 @@ public class VentanaSemicircular extends Ventana {
 	
 	
 	/**Una nueva instancia de VentanaSemicircular incia aleatoriamente el estado de sus paneles. La cantidad de paneles
-	 * que tiene es de acuerdo a la sección a la que pertenece, indicado por un boolean que rebice por defecto. **/
+	 * que tiene es de acuerdo a la sección a la que pertenece, indicado por un boolean que rebice por defecto.
+	 * @param pos Posición de la ventana semicircular
+	 * @param p Verdadero si es la ventana de la sección media, falso si es la ventana de la sección suelo **/
 	public VentanaSemicircular (Posicion pos, boolean p, int dificultad) { //Recibe un boolean para saber si es una ventana de la seccion suelo o seccion medio, ya que en el primer caso tiene cuatro paneles y en el segundo 8. Luego genera aleatoriamente el estado de los paneles.
 		super(pos);
 		int x = 8;

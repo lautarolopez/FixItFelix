@@ -4,7 +4,9 @@ public class Ladrillo extends Objeto {
 	private Integer freq;
 	
 	/** Una nueva instancia de Ladrillo le asigna una posición aleatoria en x y le asigna la máxima altura.
-	 * Además incia la frecuencia de caída en 10, esto permite modificar la dificultad al actualizar. **/
+	 * Además incia la frecuencia de caída en 10, esto permite modificar la dificultad al actualizar. 
+	 * @param posi Posición distinta de null, que será sobreescrita por una posición aleatoria.
+	 * @param etapa Matriz de ventanas de la sección actual**/
 	public Ladrillo (Posicion posi, ArrayList<ArrayList<Ventana>> etapa) {
 		super(posi, etapa);
 		int x = (int) (Math.random()*4);
@@ -20,7 +22,9 @@ public class Ladrillo extends Objeto {
 	
 	
 	/** Actualiza la posición del ladrillo. avisándole a las respectivas ventanas de su movimiento. Se mueve
-	 * de acuerdo a la frecuencia de la instancia y la dificultad del nivel actual. **/
+	 * de acuerdo a la frecuencia de la instancia y la dificultad del nivel actual.
+	 * @param dificultad Dificultad o nivel actual
+	 * @etapa Matriz de ventanas de la sección actual **/
 	public void actualizar(int dificultad, ArrayList<ArrayList<Ventana>> etapa) {
 		this.freq -= dificultad;
 		if (this.freq == 0) {
@@ -34,7 +38,8 @@ public class Ladrillo extends Objeto {
 	}
 	
 	
-	/** Se destruye una vez que llega al suelo. **/
+	/** Se destruye una vez que llega al suelo. 
+	 * @return boolean Verdadero si el Ladrillo cayó fuera del tablero**/
 	public boolean destruir() { //Cuando cae fuera del tablero se destruye.
 		return this.getPosicion().getY() < 0;
 	}

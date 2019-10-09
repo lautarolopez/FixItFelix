@@ -3,6 +3,8 @@ import java.util.*;
 public class Torta extends Objeto{
 	private int cicloDeVida;
 
+	/**@param posi La posición en la que se va a instanciar la torta
+	 * @param etapa Matriz de ventanas de la sección actual*/
 	public Torta(Posicion posi, ArrayList<ArrayList<Ventana>> etapa) {
 		super(posi, etapa);
 		this.posObjeto = posi;
@@ -10,6 +12,9 @@ public class Torta extends Objeto{
 		etapa.get(this.posObjeto.getX()).get(this.posObjeto.getY()).ponerTorta();
 	}
 	
+	/**Actualiza el ciclo de vida de la torta.
+	 * @param dificultad Dificultad o nivel actual
+	 * @param etapa Matriz de ventanas de la sección actual */
 	public void actualizar(int dificultad, ArrayList<ArrayList<Ventana>> etapa) {
 		this.cicloDeVida--;
 		if (this.cicloDeVida == 0) {

@@ -10,7 +10,9 @@ public class Ralph {
 	}
 	
 	/** Ralph genear un ladrillo con cierta frecuencia, que está dada por la dificultad. En tal caso
-	 * retorna verdadero. **/
+	 * retorna verdadero.
+	 * @param dificultad Dificultad o nivel actual
+	 * @return boolean Verdadero si la frecuencia de Ralph indica que debe lanzar un ladrillo **/
 	public boolean generarLadrillo(int dificultad){ //Genera una cantidad de ladrillos si frecuencia está en cero, y actualiza frecuencia. Una vez generado un ladrillo aumenta la frecuencia de acuerdo a la dificultad.
 		this.frecuencia--;
 		if (frecuencia == 0) {
@@ -20,5 +22,6 @@ public class Ralph {
 		}
 		else return false;
 	};
+	
 
 }

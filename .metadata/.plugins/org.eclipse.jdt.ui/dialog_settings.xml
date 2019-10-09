@@ -93,4 +93,20 @@
 			</section>
 		</section>
 	</section>
+	<section name="FatJarPackageWizard">
+		<item key="FatJarPackageWizardPage.ANTSCRIPT_SAVE" value="false"/>
+		<item key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION" value="C:\Users\pavilion\Desktop\Fix It Felix!"/>
+		<item key="FatJarPackageWizardPage.LIBRARY_HANDLING" value="1"/>
+		<item key="FatJarPackageWizardPage.LAUNCH_CONFIGURATION_SELECTION_NAME" value="Test - FixItFelix"/>
+		<item key="FatJarPackageWizardPage.DESTINATION_PATH_SELECTION" value="FixItFelix\FixItFelix.jar"/>
+		<list key="FatJarPackageWizardPage.DESTINATION_NAMES_ID">
+			<item value="FixItFelix\FixItFelix.jar"/>
+			<item value="FixItFelix/logica/FixItFelix!.jar"/>
+			<item value="C:\Users\pavilion\Desktop\Fix It Felix!\FixItFelix!.jar"/>
+		</list>
+		<list key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION_HISTORY">
+			<item value="C:\Users\pavilion\Desktop\Fix It Felix!.xml"/>
+			<item value=".xml"/>
+		</list>
+	</section>
 </section>

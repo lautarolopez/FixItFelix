@@ -41,8 +41,7 @@ public class Ventana {
 	}
 	
 	
-	public void reparar (){ //Cuando encuentra un panel que no está sano cambia su estado de Roto a Casi roto o de Casi roto a Sano.
-		
+	public void reparar (){ //Cuando encuentra un panel que no está sano cambia su estado de Roto a Casi roto o de Casi roto a Sano.	
 		Iterator<Estado> iter = this.salud.iterator();
 		int x = 0;
 		Estado est = Estado.ROTO;
