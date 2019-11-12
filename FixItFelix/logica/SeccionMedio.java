@@ -21,18 +21,13 @@ public class SeccionMedio extends Seccion {
 		for (int x = 0; x < 4; x++) {
 			for (int y = 0; y < 2; y++) {
 				posi = new Posicion(x, y);
-				if ((x == 2) && (y == 0)) {
-					Ventana aux = new VentanaSemicircular(posi, !(this instanceof SeccionMedio), dificultad); //el constructor de la clase VentanaSemicircular recibe también un booleano para saber si pertenece al suelo o al primer piso.
+				double r = Math.random();
+				if (r < 0.70) {
+					Ventana aux = new VentanaNormal(posi, dificultad);
 					this.etapa.get(x).add(aux);
 				} else {
-					double r = Math.random();
-					if (r < 0.70) {
-						Ventana aux = new VentanaNormal(posi, dificultad);
-						this.etapa.get(x).add(aux);
-					} else {
-						Ventana aux = new VentanaConHojas(posi);
-						this.etapa.get(x).add(aux);
-					}
+					Ventana aux = new VentanaConHojas(posi);
+					this.etapa.get(x).add(aux);
 				}
 			}
 		}

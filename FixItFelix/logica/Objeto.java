@@ -5,7 +5,9 @@ public abstract class Objeto {
 	
 	public Objeto (Posicion posi, ArrayList<ArrayList<Ventana>> etapa){}
 	
-	public abstract Posicion getPosicion();
+	public Posicion getPosicion() {
+		return this.posObjeto;
+	}
 	
 	public abstract boolean generarTorta();
 	

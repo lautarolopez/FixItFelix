@@ -1,0 +1,62 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class ScratchSpace {
+
+    public static void main(String[] args) {
+        AnimatedPanel panel = new AnimatedPanel();
+
+        JFrame frame = new JFrame();
+        frame.setContentPane(panel);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+
+        panel.animate();
+    }
+
+
+    public static class AnimatedPanel extends JPanel {
+
+        private float progress = 0.0f; // a number between 0.0 and 1.0
+
+        public AnimatedPanel() {
+            setPreferredSize(new Dimension(800, 600));
+            setOpaque(true);
+        }
+
+        public void animate() {
+            final int animationTime = 1000;
+            int framesPerSecond = 30;
+            int delay = 1000 / framesPerSecond;
+            final long start = System.currentTimeMillis();
+            final Timer timer = new Timer(delay, null);
+            timer.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    final long now = System.currentTimeMillis();
+                    final long elapsed = now - start;
+                    progress = (float) elapsed / animationTime;
+                    repaint();
+                    if (elapsed >= animationTime) {
+                        timer.stop();
+                    }
+                }
+            });
+            timer.start();
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            Graphics2D g2d = (Graphics2D) g;
+            int width = getWidth();
+            int progressWidth = (int) (width * progress);
+            g2d.setColor(Color.BLUE);
+            g2d.fillRect(0, 0, progressWidth, getHeight());
+            g2d.setColor(Color.RED);
+            g2d.fillRect(progressWidth, 0, width-progressWidth, getHeight());
+        }
+    }
+}

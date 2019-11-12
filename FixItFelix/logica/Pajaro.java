@@ -23,9 +23,6 @@ public class Pajaro extends Objeto {
 	}
 	
 
-	public Posicion getPosicion() {
-		return this.posObjeto;
-	}
 	
 	/**El pájaro se mueve un lugar de acuerdo a la dirección que lleva. Además avisa a la ventana en la que estaba
 	 * que ya no se encuentra ahí, y a la ventana a la que llegó que ahora está en ese lugar.

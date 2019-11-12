@@ -18,4 +18,8 @@ public class VentanaConHojas extends Ventana {
 	public boolean estaAbierta() {
 		return this.abierta;
 	}
+	
+	public boolean esVentanaAbierta() {
+		return true;
+	}
 }

@@ -3,7 +3,6 @@ import java.util.*;
 public class Juego {
 
 	private ArrayList<Jugador> topScores;
-	private Partida partidaActual;
 	
 	
 	public Juego() {
@@ -12,7 +11,7 @@ public class Juego {
 	
 	
 	public void nuevoJuego(String nombre){
-		this.partidaActual = new Partida(nombre);
+		Partida.initInstance(nombre);
 	};
 	
 	
@@ -24,7 +23,7 @@ public class Juego {
 	 * @param dir La dirección en la que debe moverse Félix durante este turno
 	 * @param martillazos La cantidad de martillazos que debe dar Félix durante este turno**/
 	public void turno(String dir, int martillazos) {
-		if (this.partidaActual.ciclo(dir, martillazos)) {
+		/**if (this.partidaActual.ciclo(dir, martillazos)) {
 			if (!(this.topScores.contains(this.partidaActual.getJugador()))) {
 				if (!this.topScores.isEmpty()) {
 					if (this.partidaActual.getJugador().getPuntaje() > Collections.min(this.topScores).getPuntaje()) {
@@ -34,7 +33,7 @@ public class Juego {
 					}
 				} else this.topScores.add(this.partidaActual.getJugador());
 			}
-		}
+		}**/
 	}
 	
 	/**Imprime los cinco puntajes más altos. **/

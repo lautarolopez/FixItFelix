@@ -30,4 +30,13 @@ public class VentanaSemicircular extends Ventana {
 			}
 		}
 	}
+	
+	public boolean tieneMoldura() {
+		return false;
+	}
+	
+	public boolean tieneMacetero(){
+		return false;
+	}
+	
 }

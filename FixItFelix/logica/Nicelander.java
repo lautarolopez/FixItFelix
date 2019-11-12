@@ -42,7 +42,4 @@ public class Nicelander extends Objeto{
 		return this.cicloDeVida == 0;
 	}
 	
-	public Posicion getPosicion() {
-		return this.posObjeto;
-	}
 }

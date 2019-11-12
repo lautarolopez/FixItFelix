@@ -1,6 +1,6 @@
 package logica;
 import java.util.*;
-public class Ventana {
+public abstract class Ventana {
 	private Posicion posVent;
 	private Obstaculo obst;
 	protected ArrayList<Estado> salud;
@@ -28,6 +28,24 @@ public class Ventana {
 		return aux;
 	}
 	
+	public int cantidadRotos() {
+		int x = 0;
+		for (Estado est : this.salud) {
+			if (est == Estado.ROTO) {
+				x+=2;
+			} else {
+				if (est == Estado.CASIROTO) {
+					x++;
+				}
+			}
+		}
+		return x;
+	}
+	
+	public boolean esVentanaAbierta() {
+		return false;
+	}
+	
 	public boolean tieneMoldura() {
 		return this.obst.tieneMoldura();
 	}
@@ -37,18 +55,19 @@ public class Ventana {
 	}
 	
 	public boolean estaAbierta() {
-		return true;
+		return false;
 	}
 	
 	
 	public void reparar (){ //Cuando encuentra un panel que no está sano cambia su estado de Roto a Casi roto o de Casi roto a Sano.	
 		Iterator<Estado> iter = this.salud.iterator();
 		int x = 0;
-		Estado est = Estado.ROTO;
+		Estado est = iter.next();
 		while ((iter.hasNext()) && (est == Estado.SANO)) {
 			est = iter.next();
 			x++;
 		}
+		
 		switch (est) {
 			case ROTO:
 				this.salud.set(x, Estado.CASIROTO);

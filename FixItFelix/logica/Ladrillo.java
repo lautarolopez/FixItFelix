@@ -16,9 +16,6 @@ public class Ladrillo extends Objeto {
 		etapa.get(this.posObjeto.getX()).get(this.posObjeto.getY()).ponerLadrillo();
 	}
 	
-	public Posicion getPosicion() {
-		return this.posObjeto;
-	}
 	
 	
 	/** Actualiza la posición del ladrillo. avisándole a las respectivas ventanas de su movimiento. Se mueve

@@ -1,0 +1,103 @@
+package logica;
+import java.util.*;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import grafica.prueba;
+public class Partida extends JFrame{
+
+	private int tiempo;
+	private int dificultad;
+	private Felix pj;
+	private Ralph boss;
+	private Jugador player;
+	private Edificio tablero;
+	private ArrayList<Objeto> objetosPartida;
+	private JLabel img = new JLabel(new ImageIcon("D:\\Descargas\\fixitfelixcortado\\felix\\slice65_65.png"));
+	private JLabel edificio = new JLabel(new ImageIcon("D:\\Descargas\\fixitfelixcortado\\edificio\\edificio_150_seccion1.png"));
+	private JLabel edificio2 = new JLabel(new ImageIcon("D:\\Descargas\\fixitfelixcortado\\edificio\\edificio_150_seccion2.png"));
+	private JLabel edificio3 = new JLabel(new ImageIcon("D:\\Descargas\\fixitfelixcortado\\edificio\\edificio_150_seccion2.png")); 
+	private JLabel img2 = new JLabel(new ImageIcon("D:\\Descargas\\fixitfelixcortado\\ralph\\slice163_@.png"));
+	private ArrayList<ArrayList<JLabel>> ventanas = new ArrayList<ArrayList<JLabel>>();
+	private ArrayList<ArrayList<JLabel>> ventanasArriba = new ArrayList<ArrayList<JLabel>>();
+	private ArrayList<ArrayList<JLabel>> ventanasTope = new ArrayList<ArrayList<JLabel>>();
+	
+	public Partida(String nombre) {
+		this.tiempo = 120;
+		this.dificultad = 1;
+		this.pj = new Felix();
+		this.boss = new Ralph();
+		this.player = new Jugador(nombre);
+		this.tablero = new Edificio(this.dificultad);
+		this.objetosPartida = new ArrayList<Objeto>();
+		iniciarGUI();
+	}
+	
+	
+	private void iniciarGUI() {
+		this.addKeyListener(new MiAdapter());
+		img.setBounds(477, 630, 40, 60);
+		edificio.setBounds(352, 352, 320, 340);
+		edificio2.setBounds(352, 12, 320, 340);
+		edificio3.setBounds(352, -328, 325, 340);
+		img2.setBounds(462, 377, 100, 66);
+		add(img);
+		add(img2);
+		crearVentanas(392, 615, this.ventanas);
+		crearVentanas(392, 380, this.ventanasArriba);
+		add(edificio);
+		crearVentanas(392, 145, this.ventanasTope);
+		add(edificio2);
+		add(edificio3);
+		setSize(1024,720);
+		setLayout(null);
+		setVisible(true);
+		setLocationRelativeTo(null);
+		setResizable(false);
+		getContentPane().setBackground(Color.BLACK);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	/** Pregunta si Félix se encuentra con algún elemento de la lista, y de acuerdo al objeto realiza las acciones correspondientes.
+	 * Pájaro: reinicia la sección sin perder vidas.
+	 * Ladrillo: reinicia el nivel perdiendo una vida.
+	 * Torta: Vuelve invulnerable a Félix durante una determinada cantidad de ciclos. **/
+	private void gestionarColisiones() {
+		if (this.tablero.getVentanas().get(this.pj.getPosFelix().getX()).get(this.pj.getPosFelix().getY()).pajaro()) {
+			this.objetosPartida.removeAll(objetosPartida);
+			this.tablero.reiniciarEtapa(dificultad);
+			this.pj.reset();
+			System.out.println("Chocó con un pájaro y se reinició la etapa.");
+		} else {
+			if (this.tablero.getVentanas().get(this.pj.getPosFelix().getX()).get(this.pj.getPosFelix().getY()).ladrillo()) {
+				this.pj.perderVida();
+				this.tablero = new Edificio(dificultad);
+				this.objetosPartida.removeAll(objetosPartida);
+				this.pj.reset();
+				System.out.println("Chocó con un ladrillo y se reinicia el nivel.");
+			} else {
+				if (this.tablero.getVentanas().get(this.pj.getPosFelix().getX()).get(this.pj.getPosFelix().getY()).ladrillo()){
+					this.pj.setInvulnerable();
+					System.out.println("Félix ahora es invulnerable!");
+				}
+			}
+		}
+	}
+	
+	public Jugador getJugador() {
+		return this.player;
+	}
+	
+	
+	
+}

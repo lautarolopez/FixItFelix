@@ -6,9 +6,9 @@ public class Obstaculo {
 	/**Establece aleatoriamente con un booleano los obstáculos Moldura y Macetero  **/
 	public Obstaculo(){
 		double x = Math.random();
-		this.mold = x < 0.71;
-		x = Math.random();
-		this.mac = x > 0.71;
+		this.mold = x < 0.20;
+		double j = Math.random();
+		this.mac = j < 0.20;
 	};
 
 	
