@@ -1,6 +1,6 @@
 package logica;
 import java.util.*;
-import grafica.GUI;
+import grafica.*;
 public class Partida{
 
 	private static Partida INSTANCE;
@@ -11,7 +11,7 @@ public class Partida{
 	private Jugador player;
 	private Edificio tablero;
 	private ArrayList<Objeto> objetosPartida;
-	private GUI partidaGUI;
+	private PartidaGUI partidaGUI;
 	
 	
 	private Partida(String nombre) {
@@ -22,21 +22,28 @@ public class Partida{
 		this.boss = new Ralph();
 		this.player = new Jugador(nombre);
 		this.objetosPartida = new ArrayList<Objeto>();
-		this.partidaGUI = new GUI(this.tablero.getVentanas());
+		this.partidaGUI = new PartidaGUI(this.tablero.getVentanas());
 	}
 	
-	public static Partida initInstance (String nombre) {
+	public static Partida getInstance (String nombre) {
 		if (INSTANCE == null) {
 			INSTANCE = new Partida(nombre);
 			return INSTANCE;
 		} else {
-			System.out.println("Ya existe una instancia de partida.");
 			return INSTANCE;
 		}
 	}
 	
 	public static Partida getInstance() {
 		return INSTANCE;
+	}
+
+	public void visible() {
+		this.partidaGUI.visible();
+	}
+	
+	public void invisible(){
+		this.partidaGUI.invisible();
 	}
 	
 	

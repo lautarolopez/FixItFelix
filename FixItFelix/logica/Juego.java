@@ -1,18 +1,31 @@
 package logica;
+import grafica.*;
 import java.util.*;
 public class Juego {
-
+	
+	private static Juego INSTANCE;
 	private ArrayList<Jugador> topScores;
+	private PantallaPrincipalGUI pantallaPrinc;
 	
-	
-	public Juego() {
+	private Juego() {
 		this.topScores = new ArrayList<Jugador>();
+		this.pantallaPrinc = new PantallaPrincipalGUI();
 	}
 	
 	
-	public void nuevoJuego(String nombre){
-		Partida.initInstance(nombre);
+	public static void nuevoJuego(String nombre){
+		Partida.getInstance(nombre);
 	};
+	
+	
+	public static Juego getInstance (String nombre) {
+		if (INSTANCE == null) {
+			INSTANCE = new Juego();
+			return INSTANCE;
+		} else {
+			return INSTANCE;
+		}
+	}
 	
 	
 	/** Realiza un ciclo de la partida. Además, si la partida terminó agrega al jugador a la lista. Para esto
