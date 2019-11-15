@@ -18,6 +18,7 @@ public class EstadisticasGUI extends JFrame {
 	
 	public EstadisticasGUI(JFrame principal) {
 		aux=this;
+		this.setIconImage(new ImageIcon(PantallaPrincipalGUI.class.getResource("/img/Icono.png")).getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1080, 700);
 		contentPane = new JPanel();

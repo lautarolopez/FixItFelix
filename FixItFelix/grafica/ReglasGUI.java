@@ -24,6 +24,7 @@ public class ReglasGUI extends JFrame {
 	
 	public ReglasGUI(JFrame principal) {
 		aux=this;
+		this.setIconImage(new ImageIcon(PantallaPrincipalGUI.class.getResource("/img/Icono.png")).getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1080, 720);
 		contentPane = new JPanel();

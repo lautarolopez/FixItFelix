@@ -93,5 +93,6 @@ public class Top5GUI extends JFrame {
 		table.setBackground(Color.BLACK);
 		table.setBounds(170, 350, 700, 250);
 		contentPane.add(table);
+		this.setIconImage(new ImageIcon(PantallaPrincipalGUI.class.getResource("/img/Icono.png")).getImage());
 	}
 }

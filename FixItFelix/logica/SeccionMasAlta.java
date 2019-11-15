@@ -18,8 +18,8 @@ public class SeccionMasAlta extends Seccion{
 		this.etapa.add(auxVentanas4);
 		this.etapa.add(auxVentanas5);
 		Posicion posi;
-		for (int x = 0; x < 4; x++) {
-			for (int y = 0; y < 2; y++) {
+		for (int x = 0; x < 5; x++) {
+			for (int y = 0; y < 3; y++) {
 				posi = new Posicion(x, y);
 				double r = Math.random();
 				if (r < 0.70) {

@@ -1,0 +1,110 @@
+package grafica;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import java.awt.Color;
+import java.util.Timer;
+import java.util.TimerTask;
+import logica.*;
+
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import java.awt.Font;
+
+public class StatusGUI extends JLabel {
+	private JTextField txtPuntajeMaximo;
+	private JTextField txtPuntajeActual;
+	private JTextField txtTiempo;
+	private JTextField txtVidas;
+	private JTextField textPuntajeMax;
+	private JTextField textPuntajeAct;
+	private JTextField textTiemp;
+	private JTextField textVida;
+	private String mensaje;
+
+	
+	public StatusGUI() {
+		setBackground(Color.BLACK);
+		setLayout(null);
+		txtPuntajeMaximo = new JTextField();
+		txtPuntajeMaximo.setEditable(false);
+		txtPuntajeMaximo.setFont(new Font("Arial Black", Font.BOLD, 15));
+		txtPuntajeMaximo.setForeground(Color.WHITE);
+		txtPuntajeMaximo.setBackground(Color.BLACK);
+		txtPuntajeMaximo.setText("PUNTAJE MAXIMO");
+		txtPuntajeMaximo.setBounds(26, 9, 165, 20);
+		add(txtPuntajeMaximo);
+		txtPuntajeMaximo.setColumns(10);
+		txtPuntajeActual = new JTextField();
+		txtPuntajeActual.setEditable(false);
+		txtPuntajeActual.setBorder(null);
+		txtPuntajeActual.setFont(new Font("Arial Black", Font.BOLD, 15));
+		txtPuntajeActual.setForeground(Color.WHITE);
+		txtPuntajeActual.setBackground(Color.BLACK);
+		txtPuntajeActual.setText("PUNTAJE ACTUAL");
+		txtPuntajeActual.setBounds(201, 9, 165, 20);
+		add(txtPuntajeActual);
+		txtPuntajeActual.setColumns(10);
+		
+		txtTiempo = new JTextField();
+		txtTiempo.setEditable(false);
+		txtTiempo.setFont(new Font("Arial Black", Font.BOLD, 15));
+		txtTiempo.setForeground(Color.WHITE);
+		txtTiempo.setBackground(Color.BLACK);
+		txtTiempo.setText("TIEMPO");
+		txtTiempo.setBounds(854, 9, 90, 20);
+		add(txtTiempo);
+		txtTiempo.setColumns(10);
+		
+		txtVidas = new JTextField();
+		txtVidas.setEditable(false);
+		txtVidas.setForeground(Color.WHITE);
+		txtVidas.setFont(new Font("Arial Black", Font.BOLD, 15));
+		txtVidas.setBackground(Color.BLACK);
+		txtVidas.setText("VIDAS");
+		txtVidas.setBounds(685, 9, 96, 20);
+		add(txtVidas);
+		txtVidas.setColumns(10);
+		
+		textPuntajeMax = new JTextField();
+		textPuntajeMax.setEditable(false);
+		textPuntajeMax.setBounds(26, 42, 172, 27);
+		add(textPuntajeMax);
+		textPuntajeMax.setColumns(10);
+		
+		textPuntajeAct = new JTextField();
+		textPuntajeAct.setEditable(false);
+		textPuntajeAct.setBounds(211, 40, 151, 27);
+		add(textPuntajeAct);
+		textPuntajeAct.setColumns(10);
+		
+		textTiemp = new JTextField();
+		textTiemp.setEditable(false);
+		textTiemp.setBounds(685, 45, 66, 20);
+		add(textTiemp);
+		textTiemp.setColumns(10);
+		
+		textVida = new JTextField();
+		textVida.setEditable(false);
+		textVida.setBounds(854, 45, 96, 20);
+		add(textVida);
+		textVida.setColumns(10);
+		textPuntajeAct.setText("0");
+		textVida.setText("0");
+	}
+	public void actualizarBarraDeEstado() {
+		Timer timer = new Timer();
+		TimerTask task = new TimerTask() {
+		 	public void run(){
+
+		 		
+				mensaje = String.valueOf(Partida.getInstance().getJugador().getPuntaje());
+				textPuntajeAct.setText(mensaje);
+				
+				mensaje = String.valueOf(Partida.getInstance().getVidas());	
+				textVida.setText(mensaje);
+		 	}
+		};
+		timer.schedule(task, 10, 1);
+}
+}

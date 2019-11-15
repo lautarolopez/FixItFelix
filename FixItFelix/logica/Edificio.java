@@ -64,6 +64,9 @@ public class Edificio {
 		return this.arregloSecciones.get(seccionActual).getEtapa();
 	}
 	
+	public ArrayList<ArrayList<Ventana>> getVentanas(int secc){
+		return this.arregloSecciones.get(secc).getEtapa();
+	}	
 	/**@return int La sección actual en la que nos encontramos, pudiendo ser 0, 1 o 2 para 
 	 * Suelo, Media o MásAlta */
 	public int getSeccionActual() {
@@ -76,6 +79,7 @@ public class Edificio {
 			return this.arregloSecciones.get(seccionActual).generarPajaro();
 		} else return false;
 	}
+	
 	
 
 }

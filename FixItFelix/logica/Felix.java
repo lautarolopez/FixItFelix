@@ -29,11 +29,11 @@ public class Felix {
 	 * @param ganeNivel un valor booleano para saber si después de reparar la ventana gané el nivel
 	 * actual o no.
 	 * @retun int Cantidad de puntos conseguidos reparando las ventanas**/
-	public int repararVentana(ArrayList<ArrayList<Ventana>> etapa, boolean ganeNivel) {
+	public int repararVentana(ArrayList<ArrayList<Ventana>> etapa) {
 		int puntaje = 0;
 		if (!etapa.get(this.posFelix.getX()).get(this.posFelix.getY()).arreglada()) { //Recupera la matriz de ventanas de la sección actual, y pregunta si el elemento en la ubicación de Félix necesita ser reparado.
 				etapa.get(this.posFelix.getX()).get(this.posFelix.getY()).reparar();
-				if (ganeNivel) { //Si la ventana fue la última del nivel, la repara 
+				if (Partida.getInstance().ganeNivel()) { //Si la ventana fue la última del nivel, la repara 
 					System.out.println("500 puntos!");
 					puntaje += 500;
 				} else {
@@ -127,7 +127,7 @@ public class Felix {
 				}
 			}
 		}
-		return seMovio;
+ 		return seMovio;
 	}
 	
 }

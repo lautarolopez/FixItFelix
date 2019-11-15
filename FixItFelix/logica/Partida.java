@@ -1,5 +1,8 @@
 package logica;
 import java.util.*;
+
+import javax.swing.JLabel;
+
 import grafica.*;
 public class Partida{
 
@@ -16,13 +19,12 @@ public class Partida{
 	
 	private Partida(String nombre) {
 		this.tablero = new Edificio(this.dificultad);
-		this.tiempo = 120;
+		this.tiempo = 900;
 		this.dificultad = 1;
 		this.pj = new Felix();
 		this.boss = new Ralph();
 		this.player = new Jugador(nombre);
 		this.objetosPartida = new ArrayList<Objeto>();
-		this.partidaGUI = new PartidaGUI(this.tablero.getVentanas());
 	}
 	
 	public static Partida getInstance (String nombre) {
@@ -32,6 +34,10 @@ public class Partida{
 		} else {
 			return INSTANCE;
 		}
+	}
+	
+	public void inciarGrafica() {
+		this.partidaGUI = new PartidaGUI(this.tablero.getVentanas(0), this.tablero.getVentanas(1), this.tablero.getVentanas(2));
 	}
 	
 	public static Partida getInstance() {
@@ -46,6 +52,9 @@ public class Partida{
 		this.partidaGUI.invisible();
 	}
 	
+	public int getVidas() {
+		return this.pj.getVidas();
+	}
 	
 	public boolean puedoSubir() {
 		return this.pj.movArriba(this.tablero.getVentanas());
@@ -64,13 +73,21 @@ public class Partida{
 	}
 	
 	public boolean repararVentana() {
-		int x = this.pj.repararVentana(this.tablero.getVentanas(), this.tablero.nivelTerminado());
+		int x = this.pj.repararVentana(this.tablero.getVentanas());
 		this.player.setPuntaje(x);
 		if (x != 0) {
 			return true;
 		} else {
 			return false;
 		}
+	}
+	
+	public void siguienteNivel() {
+		this.tablero = new Edificio(dificultad+1);
+		partidaGUI.invisible();
+		this.partidaGUI = new PartidaGUI(tablero.getVentanas(0), tablero.getVentanas(1), tablero.getVentanas(2));
+		this.partidaGUI.visible();
+		this.pj.reset();
 	}
 	
 	
@@ -107,6 +124,64 @@ public class Partida{
 	public ArrayList<ArrayList<Ventana>>  getVentanas() {
 		return this.tablero.getVentanas();
 	}
+	
+	public ArrayList<ArrayList<Ventana>>  getVentanas(int secc) {
+		return this.tablero.getVentanas(secc);
+	}
+	
+	public boolean ganeNivel() {
+		return this.tablero.nivelTerminado();
+	}
+	
+	public boolean seccionTerminada() {
+		if (this.tablero.seccionTerminada()){
+			this.tablero.proximaEtapa();
+			this.pj.reset();
+			return true;
+		} else return false;
+	}
+	
+	public int getSeccionActual() {
+		return this.tablero.getSeccionActual();
+	}
+	
+	public int getDificultad() {
+		return this.dificultad;
+	}
+	
+	public int getTiempo() {
+		if (tiempo != 0)
+			tiempo--;
+		return tiempo;
+	}
+
+	
+	public void actualizar() {
+		Timer timer = new Timer();
+		TimerTask task = new TimerTask() {
+		 	public void run(){
+		 		
+		 		
+		 		
+		 		/** 
+		 		 * preguntarle a ralph si tira ladrillos
+		 		 * if ralph.generarLadrillos then GUI animar ralph y ladrillos
+		 		 * 
+		 		 * 
+		 		 * crear pajaritos y nicelanders y tortas y toda esa wea
+		 		 * gestionar colisiones???????????' 
+		 		 * **/
+		 	}
+		};
+		timer.schedule(task, 10, 1);
+}
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }

@@ -15,8 +15,12 @@ public class Juego {
 	
 	public static void nuevoJuego(String nombre){
 		Partida.getInstance(nombre);
+		Partida.getInstance().inciarGrafica();
 	};
 	
+	public int getDificultad() {
+		return pantallaPrinc.getDificultad();
+	}
 	
 	public static Juego getInstance (String nombre) {
 		if (INSTANCE == null) {
@@ -25,6 +29,10 @@ public class Juego {
 		} else {
 			return INSTANCE;
 		}
+	}
+	
+	public static Juego getInstance() {
+		return INSTANCE;
 	}
 	
 	

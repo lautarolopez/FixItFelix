@@ -1359,3 +1359,1018 @@ user global configuration and to define the default location to store repositori
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+!SESSION 2019-11-12 18:34:25.857 -----------------------------------------------
+eclipse.buildId=4.11.0.I20190307-0500
+java.version=1.8.0_221
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_AR
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.egit.core 1 0 2019-11-12 18:34:40.498
+!MESSAGE Using Apache MINA sshd as ssh client.
+
+!ENTRY org.eclipse.egit.ui 2 0 2019-11-12 18:35:17.044
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\pavilion'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.jdt.debug 2 0 2019-11-12 21:07:45.194
+!MESSAGE Unable to find location of java.lang.Thread.setName() in debuggee JVM, for type java.lang.Thread
+
+!ENTRY org.eclipse.jdt.debug 2 0 2019-11-12 21:11:15.896
+!MESSAGE Unable to find location of java.lang.Thread.setName() in debuggee JVM, for type java.lang.Thread
+
+!ENTRY org.eclipse.jdt.debug 2 0 2019-11-12 22:04:01.934
+!MESSAGE Unable to find location of java.lang.Thread.setName() in debuggee JVM, for type java.lang.Thread
+
+!ENTRY org.eclipse.jdt.debug 2 0 2019-11-12 22:09:03.292
+!MESSAGE Unable to find location of java.lang.Thread.setName() in debuggee JVM, for type java.lang.Thread
+
+!ENTRY org.eclipse.ui 4 0 2019-11-12 22:16:55.206
+!MESSAGE Unhandled event loop exception
+!STACK 0
+org.eclipse.swt.SWTException: Widget is disposed
+	at org.eclipse.swt.SWT.error(SWT.java:4699)
+	at org.eclipse.swt.SWT.error(SWT.java:4614)
+	at org.eclipse.swt.SWT.error(SWT.java:4585)
+	at org.eclipse.swt.widgets.Widget.error(Widget.java:451)
+	at org.eclipse.swt.widgets.Widget.checkWidget(Widget.java:350)
+	at org.eclipse.swt.widgets.Composite.getChildren(Composite.java:469)
+	at org.eclipse.epp.internal.mpc.ui.wizards.MarketplaceDropAdapter.lambda$0(MarketplaceDropAdapter.java:136)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:185)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:3919)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3550)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1173)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1062)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:644)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:566)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:150)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:155)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:137)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:107)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:400)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:661)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:597)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1476)
+
+!ENTRY org.eclipse.ui 4 0 2019-11-12 22:16:55.206
+!MESSAGE Unhandled event loop exception
+!STACK 0
+org.eclipse.swt.SWTException: Widget is disposed
+	at org.eclipse.swt.SWT.error(SWT.java:4699)
+	at org.eclipse.swt.SWT.error(SWT.java:4614)
+	at org.eclipse.swt.SWT.error(SWT.java:4585)
+	at org.eclipse.swt.widgets.Widget.error(Widget.java:451)
+	at org.eclipse.swt.widgets.Widget.checkWidget(Widget.java:350)
+	at org.eclipse.swt.widgets.Composite.getChildren(Composite.java:469)
+	at org.eclipse.epp.internal.mpc.ui.wizards.MarketplaceDropAdapter.lambda$0(MarketplaceDropAdapter.java:136)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:185)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:3919)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3550)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1173)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1062)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:644)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:566)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:150)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:155)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:137)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:107)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:400)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:661)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:597)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1476)
+!SESSION 2019-11-13 21:25:49.867 -----------------------------------------------
+eclipse.buildId=4.11.0.I20190307-0500
+java.version=1.8.0_221
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_AR
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.egit.core 1 0 2019-11-13 21:26:02.584
+!MESSAGE Using Apache MINA sshd as ssh client.
+
+!ENTRY org.eclipse.egit.ui 2 0 2019-11-13 21:26:42.689
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\pavilion'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.jdt.debug 2 0 2019-11-13 21:33:07.279
+!MESSAGE Unable to find location of java.lang.Thread.setName() in debuggee JVM, for type java.lang.Thread
+
+!ENTRY org.eclipse.jdt.debug 2 0 2019-11-13 21:36:47.676
+!MESSAGE Unable to find location of java.lang.Thread.setName() in debuggee JVM, for type java.lang.Thread
+
+!ENTRY org.eclipse.jdt.debug 2 0 2019-11-13 21:42:20.240
+!MESSAGE Unable to find location of java.lang.Thread.setName() in debuggee JVM, for type java.lang.Thread
+
+!ENTRY org.eclipse.jdt.debug 2 0 2019-11-13 22:30:32.581
+!MESSAGE Unable to find location of java.lang.Thread.setName() in debuggee JVM, for type java.lang.Thread
+
+!ENTRY org.eclipse.jdt.debug 2 0 2019-11-13 22:31:46.151
+!MESSAGE Unable to find location of java.lang.Thread.setName() in debuggee JVM, for type java.lang.Thread
+!SESSION 2019-11-14 11:15:31.868 -----------------------------------------------
+eclipse.buildId=4.11.0.I20190307-0500
+java.version=1.8.0_221
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_AR
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.egit.core 1 0 2019-11-14 11:17:26.581
+!MESSAGE Using Apache MINA sshd as ssh client.
+
+!ENTRY org.eclipse.egit.ui 2 0 2019-11-14 11:18:25.457
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\pavilion'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+!SESSION 2019-11-14 14:20:59.282 -----------------------------------------------
+eclipse.buildId=4.11.0.I20190307-0500
+java.version=1.8.0_221
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_AR
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.egit.core 1 0 2019-11-14 14:21:20.458
+!MESSAGE Using Apache MINA sshd as ssh client.
+
+!ENTRY org.eclipse.egit.ui 2 0 2019-11-14 14:22:04.331
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\pavilion'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.jdt.core 4 4 2019-11-14 14:44:54.958
+!MESSAGE Exception occurred during compilation unit conversion:
+----------------------------------- SOURCE BEGIN -------------------------------------
+package logica;
+import java.util.*;
+
+import javax.swing.JLabel;
+
+import grafica.*;
+public class Partida{
+
+	private static Partida INSTANCE;
+	private int tiempo;
+	private int dificultad;
+	private Felix pj;
+	private Ralph boss;
+	private Jugador player;
+	private Edificio tablero;
+	private ArrayList<Objeto> objetosPartida;
+	private PartidaGUI partidaGUI;
+	
+	
+	private Partida(String nombre) {
+		this.tablero = new Edificio(this.dificultad);
+		this.tiempo = 120;
+		this.dificultad = 1;
+		this.pj = new Felix();
+		this.boss = new Ralph();
+		this.player = new Jugador(nombre);
+		this.objetosPartida = new ArrayList<Objeto>();
+		this.partidaGUI = new PartidaGUI(this.tablero.getVentanas(0), this.tablero.getVentanas(1), this.tablero.getVentanas(2));
+	}
+	
+	public static Partida getInstance (String nombre) {
+		if (INSTANCE == null) {
+			INSTANCE = new Partida(nombre);
+			return INSTANCE;
+		} else {
+			return INSTANCE;
+		}
+	}
+	
+	public static Partida getInstance() {
+		return INSTANCE;
+	}
+
+	public void visible() {
+		this.partidaGUI.visible();
+	}
+	
+	public void invisible(){
+		this.partidaGUI.invisible();
+	}
+	
+	
+	public boolean puedoSubir() {
+		return this.pj.movArriba(this.tablero.getVentanas());
+	}
+	
+	public boolean puedoBajar() {
+		return this.pj.movAbajo(this.tablero.getVentanas());
+	}
+	
+	public boolean puedoAvanzar() {
+		return this.pj.movDerecha(this.tablero.getVentanas());
+	}
+	
+	public boolean puedoRetroceder() {
+		return this.pj.movIzquierda(this.tablero.getVentanas());
+	}
+	
+	public boolean repararVentana() {
+		int x = this.pj.repararVentana(this.tablero.getVentanas());
+		this.player.setPuntaje(x);
+		if (x != 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public void siguienteNivel() {
+		this.tablero = new Edificio(dificultad+1);
+		partidaGUI.invisible();
+		this.partidaGUI = new PartidaGUI(tablero.getVentanas(0), tablero.getVentanas(1), tablero.getVentanas(2));
+		this.partidaGUI.visible();
+		this.pj.reset();
+	}
+	
+	
+	/** Pregunta si Félix se encuentra con algún elemento de la lista, y de acuerdo al objeto realiza las acciones correspondientes.
+	 * Pájaro: reinicia la sección sin perder vidas.
+	 * Ladrillo: reinicia el nivel perdiendo una vida.
+	 * Torta: Vuelve invulnerable a Félix durante una determinada cantidad de ciclos. **/
+	private void gestionarColisiones() {
+		if (this.tablero.getVentanas().get(this.pj.getPosFelix().getX()).get(this.pj.getPosFelix().getY()).pajaro()) {
+			this.objetosPartida.removeAll(objetosPartida);
+			this.tablero.reiniciarEtapa(dificultad);
+			this.pj.reset();
+			System.out.println("Chocó con un pájaro y se reinició la etapa.");
+		} else {
+			if (this.tablero.getVentanas().get(this.pj.getPosFelix().getX()).get(this.pj.getPosFelix().getY()).ladrillo()) {
+				this.pj.perderVida();
+				this.tablero = new Edificio(dificultad);
+				this.objetosPartida.removeAll(objetosPartida);
+				this.pj.reset();
+				System.out.println("Chocó con un ladrillo y se reinicia el nivel.");
+			} else {
+				if (this.tablero.getVentanas().get(this.pj.getPosFelix().getX()).get(this.pj.getPosFelix().getY()).ladrillo()){
+					this.pj.setInvulnerable();
+					System.out.println("Félix ahora es invulnerable!");
+				}
+			}
+		}
+	}
+	
+	public Jugador getJugador() {
+		return this.player;
+	}
+	
+	public ArrayList<ArrayList<Ventana>>  getVentanas() {
+		return this.tablero.getVentanas();
+	}
+	
+	public ArrayList<ArrayList<Ventana>>  getVentanas(int secc) {
+		return this.tablero.getVentanas(secc);
+	}
+	
+	public boolean ganeNivel() {
+		return this.tablero.nivelTerminado();
+	}
+	
+	public boolean seccionTerminada() {
+		if (this.tablero.seccionTerminada()){
+			this.tablero.proximaEtapa();
+			this.pj.reset();
+			return true;
+		} else return false;
+	}
+	
+	public int getSeccionActual() {
+		return this.tablero.getSeccionActual();
+	}
+	
+	public void pausa()
+	
+	
+	public void actualizar() {
+		Timer timer = new Timer();
+		TimerTask task = new TimerTask() {
+		 	public void run(){
+		 		/** 
+		 		 * preguntarle a ralph si tira ladrillos
+		 		 * crear pajaritos y nicelanders y tortas y toda esa wea
+		 		 * gestionar colisiones???????????' 
+		 		 * **/
+		 	}
+		};
+		timer.schedule(task, 10, 1);
+}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
+
+----------------------------------- SOURCE END -------------------------------------
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:2949)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:636)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:204)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3036)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1393)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:367)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:202)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:268)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1145)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:736)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:802)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1322)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:92)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2019-11-14 14:44:54.962
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:2949)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:636)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:204)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3036)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1393)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:367)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:202)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:268)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1145)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:736)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:802)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1322)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:92)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.ui 4 0 2019-11-14 14:44:54.968
+!MESSAGE Error in JDT Core during reconcile
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:2949)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:636)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:204)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3036)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1393)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:367)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:202)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:268)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1145)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:736)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:802)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1322)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:92)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.core 4 4 2019-11-14 15:07:36.908
+!MESSAGE Exception occurred during compilation unit conversion:
+----------------------------------- SOURCE BEGIN -------------------------------------
+package logica;
+import java.util.*;
+
+import javax.swing.JLabel;
+
+import grafica.*;
+public class Partida{
+
+	private static Partida INSTANCE;
+	private int tiempo;
+	private int dificultad;
+	private Felix pj;
+	private Ralph boss;
+	private Jugador player;
+	private Edificio tablero;
+	private ArrayList<Objeto> objetosPartida;
+	private PartidaGUI partidaGUI;
+	
+	
+	private Partida(String nombre) {
+		this.tablero = new Edificio(this.dificultad);
+		this.tiempo = 120;
+		this.dificultad = 1;
+		this.pj = new Felix();
+		this.boss = new Ralph();
+		this.player = new Jugador(nombre);
+		this.objetosPartida = new ArrayList<Objeto>();
+		this.partidaGUI = new PartidaGUI(this.tablero.getVentanas(0), this.tablero.getVentanas(1), this.tablero.getVentanas(2));
+	}
+	
+	public static Partida getInstance (String nombre) {
+		if (INSTANCE == null) {
+			INSTANCE = new Partida(nombre);
+			return INSTANCE;
+		} else {
+			return INSTANCE;
+		}
+	}
+	
+	public static Partida getInstance() {
+		return INSTANCE;
+	}
+
+	public void visible() {
+		this.partidaGUI.visible();
+	}
+	
+	public void invisible(){
+		this.partidaGUI.invisible();
+	}
+	
+	
+	public boolean puedoSubir() {
+		return this.pj.movArriba(this.tablero.getVentanas());
+	}
+	
+	public boolean puedoBajar() {
+		return this.pj.movAbajo(this.tablero.getVentanas());
+	}
+	
+	public boolean puedoAvanzar() {
+		return this.pj.movDerecha(this.tablero.getVentanas());
+	}
+	
+	public boolean puedoRetroceder() {
+		return this.pj.movIzquierda(this.tablero.getVentanas());
+	}
+	
+	public boolean repararVentana() {
+		int x = this.pj.repararVentana(this.tablero.getVentanas());
+		this.player.setPuntaje(x);
+		if (x != 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public void siguienteNivel() {
+		this.tablero = new Edificio(dificultad+1);
+		partidaGUI.invisible();
+		this.partidaGUI = new PartidaGUI(tablero.getVentanas(0), tablero.getVentanas(1), tablero.getVentanas(2));
+		this.partidaGUI.visible();
+		this.pj.reset();
+	}
+	
+	
+	/** Pregunta si Félix se encuentra con algún elemento de la lista, y de acuerdo al objeto realiza las acciones correspondientes.
+	 * Pájaro: reinicia la sección sin perder vidas.
+	 * Ladrillo: reinicia el nivel perdiendo una vida.
+	 * Torta: Vuelve invulnerable a Félix durante una determinada cantidad de ciclos. **/
+	private void gestionarColisiones() {
+		if (this.tablero.getVentanas().get(this.pj.getPosFelix().getX()).get(this.pj.getPosFelix().getY()).pajaro()) {
+			this.objetosPartida.removeAll(objetosPartida);
+			this.tablero.reiniciarEtapa(dificultad);
+			this.pj.reset();
+			System.out.println("Chocó con un pájaro y se reinició la etapa.");
+		} else {
+			if (this.tablero.getVentanas().get(this.pj.getPosFelix().getX()).get(this.pj.getPosFelix().getY()).ladrillo()) {
+				this.pj.perderVida();
+				this.tablero = new Edificio(dificultad);
+				this.objetosPartida.removeAll(objetosPartida);
+				this.pj.reset();
+				System.out.println("Chocó con un ladrillo y se reinicia el nivel.");
+			} else {
+				if (this.tablero.getVentanas().get(this.pj.getPosFelix().getX()).get(this.pj.getPosFelix().getY()).ladrillo()){
+					this.pj.setInvulnerable();
+					System.out.println("Félix ahora es invulnerable!");
+				}
+			}
+		}
+	}
+	
+	public Jugador getJugador() {
+		return this.player;
+	}
+	
+	public ArrayList<ArrayList<Ventana>>  getVentanas() {
+		return this.tablero.getVentanas();
+	}
+	
+	public ArrayList<ArrayList<Ventana>>  getVentanas(int secc) {
+		return this.tablero.getVentanas(secc);
+	}
+	
+	public boolean ganeNivel() {
+		return this.tablero.nivelTerminado();
+	}
+	
+	public boolean seccionTerminada() {
+		if (this.tablero.seccionTerminada()){
+			this.tablero.proximaEtapa();
+			this.pj.reset();
+			return true;
+		} else return false;
+	}
+	
+	public int getSeccionActual() {
+		return this.tablero.getSeccionActual();
+	}
+	
+	public int getDificultad()
+	
+
+	
+	public void actualizar() {
+		Timer timer = new Timer();
+		TimerTask task = new TimerTask() {
+		 	public void run(){
+		 		
+		 		
+		 		
+		 		/** 
+		 		 * preguntarle a ralph si tira ladrillos
+		 		 * if ralph.generarLadrillos then GUI animar ralph y ladrillos
+		 		 * 
+		 		 * 
+		 		 * crear pajaritos y nicelanders y tortas y toda esa wea
+		 		 * gestionar colisiones???????????' 
+		 		 * **/
+		 	}
+		};
+		timer.schedule(task, 10, 1);
+}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
+
+----------------------------------- SOURCE END -------------------------------------
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:2949)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:636)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:204)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3036)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1393)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:367)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:202)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:268)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1145)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:736)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:802)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1322)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:92)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2019-11-14 15:07:36.911
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:2949)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:636)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:204)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3036)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1393)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:367)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:202)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:268)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1145)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:736)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:802)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1322)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:92)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.ui 4 0 2019-11-14 15:07:36.915
+!MESSAGE Error in JDT Core during reconcile
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:2949)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:636)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:204)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3036)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1393)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:367)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:202)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:268)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1145)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:736)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:802)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1322)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:92)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+!SESSION 2019-11-14 18:26:08.964 -----------------------------------------------
+eclipse.buildId=4.11.0.I20190307-0500
+java.version=1.8.0_221
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_AR
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.egit.core 1 0 2019-11-14 18:27:05.675
+!MESSAGE Using Apache MINA sshd as ssh client.
+
+!ENTRY org.eclipse.egit.ui 2 0 2019-11-14 18:27:44.230
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\pavilion'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.jdt.debug 2 0 2019-11-14 18:35:14.415
+!MESSAGE Unable to find location of java.lang.Thread.setName() in debuggee JVM, for type java.lang.Thread
+
+!ENTRY org.eclipse.jdt.debug 2 0 2019-11-14 18:35:57.956
+!MESSAGE Unable to find location of java.lang.Thread.setName() in debuggee JVM, for type java.lang.Thread
+!SESSION 2019-11-14 19:33:34.527 -----------------------------------------------
+eclipse.buildId=4.11.0.I20190307-0500
+java.version=1.8.0_221
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_AR
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.egit.core 1 0 2019-11-14 19:39:23.237
+!MESSAGE Using Apache MINA sshd as ssh client.
+
+!ENTRY org.eclipse.egit.ui 2 0 2019-11-14 19:40:22.614
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\pavilion'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.jdt.core 4 4 2019-11-14 20:05:38.838
+!MESSAGE Exception occurred during compilation unit conversion:
+----------------------------------- SOURCE BEGIN -------------------------------------
+package logica;
+import java.util.*;
+
+import javax.swing.JLabel;
+
+import grafica.*;
+public class Partida{
+
+	private static Partida INSTANCE;
+	private int tiempo;
+	private int dificultad;
+	private Felix pj;
+	private Ralph boss;
+	private Jugador player;
+	private Edificio tablero;
+	private ArrayList<Objeto> objetosPartida;
+	private PartidaGUI partidaGUI;
+	
+	
+	private Partida(String nombre) {
+		this.tablero = new Edificio(this.dificultad);
+		this.tiempo = 900;
+		this.dificultad = 1;
+		this.pj = new Felix();
+		this.boss = new Ralph();
+		this.player = new Jugador(nombre);
+		this.objetosPartida = new ArrayList<Objeto>();
+	}
+	
+	public static Partida getInstance (String nombre) {
+		if (INSTANCE == null) {
+			INSTANCE = new Partida(nombre);
+			return INSTANCE;
+		} else {
+			return INSTANCE;
+		}
+	}
+	
+	public void inciarGrafica() {
+		this.partidaGUI = new PartidaGUI(this.tablero.getVentanas(0), this.tablero.getVentanas(1), this.tablero.getVentanas(2));
+	}
+	
+	public static Partida getInstance() {
+		return INSTANCE;
+	}
+
+	public void visible() {
+		this.partidaGUI.visible();
+	}
+	
+	public void invisible(){
+		this.partidaGUI.invisible();
+	}
+	
+	public int getVidas() {
+		return this.pj.getVidas();
+	}
+	
+	public boolean puedoSubir() {
+		return this.pj.movArriba(this.tablero.getVentanas());
+	}
+	
+	public boolean puedoBajar() {
+		return this.pj.movAbajo(this.tablero.getVentanas());
+	}
+	
+	public boolean puedoAvanzar() {
+		return this.pj.movDerecha(this.tablero.getVentanas());
+	}
+	
+	public boolean puedoRetroceder() {
+		return this.pj.movIzquierda(this.tablero.getVentanas());
+	}
+	
+	public boolean repararVentana() {
+		int x = this.pj.repararVentana(this.tablero.getVentanas());
+		this.player.setPuntaje(x);
+		if (x != 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public void siguienteNivel() {
+		this.tablero = new Edificio(dificultad+1);
+		partidaGUI.invisible();
+		this.partidaGUI = new PartidaGUI(tablero.getVentanas(0), tablero.getVentanas(1), tablero.getVentanas(2));
+		this.partidaGUI.visible();
+		this.pj.reset();
+	}
+	
+	
+	/** Pregunta si Félix se encuentra con algún elemento de la lista, y de acuerdo al objeto realiza las acciones correspondientes.
+	 * Pájaro: reinicia la sección sin perder vidas.
+	 * Ladrillo: reinicia el nivel perdiendo una vida.
+	 * Torta: Vuelve invulnerable a Félix durante una determinada cantidad de ciclos. **/
+	private void gestionarColisiones() {
+		if (this.tablero.getVentanas().get(this.pj.getPosFelix().getX()).get(this.pj.getPosFelix().getY()).pajaro()) {
+			this.objetosPartida.removeAll(objetosPartida);
+			this.tablero.reiniciarEtapa(dificultad);
+			this.pj.reset();
+			System.out.println("Chocó con un pájaro y se reinició la etapa.");
+		} else {
+			if (this.tablero.getVentanas().get(this.pj.getPosFelix().getX()).get(this.pj.getPosFelix().getY()).ladrillo()) {
+				this.pj.perderVida();
+				this.tablero = new Edificio(dificultad);
+				this.objetosPartida.removeAll(objetosPartida);
+				this.pj.reset();
+				System.out.println("Chocó con un ladrillo y se reinicia el nivel.");
+			} else {
+				if (this.tablero.getVentanas().get(this.pj.getPosFelix().getX()).get(this.pj.getPosFelix().getY()).ladrillo()){
+					this.pj.setInvulnerable();
+					System.out.println("Félix ahora es invulnerable!");
+				}
+			}
+		}
+	}
+	
+	public Jugador getJugador() {
+		return this.player;
+	}
+	
+	public ArrayList<ArrayList<Ventana>>  getVentanas() {
+		return this.tablero.getVentanas();
+	}
+	
+	public ArrayList<ArrayList<Ventana>>  getVentanas(int secc) {
+		return this.tablero.getVentanas(secc);
+	}
+	
+	public boolean ganeNivel() {
+		return this.tablero.nivelTerminado();
+	}
+	
+	public boolean seccionTerminada() {
+		if (this.tablero.seccionTerminada()){
+			this.tablero.proximaEtapa();
+			this.pj.reset();
+			return true;
+		} else return false;
+	}
+	
+	public int getSeccionActual() {
+		return this.tablero.getSeccionActual();
+	}
+	
+	public int getDificultad() {
+		return this.dificultad;
+	}
+	
+	public int getTiempo()
+
+	
+	public void actualizar() {
+		Timer timer = new Timer();
+		TimerTask task = new TimerTask() {
+		 	public void run(){
+		 		
+		 		
+		 		
+		 		/** 
+		 		 * preguntarle a ralph si tira ladrillos
+		 		 * if ralph.generarLadrillos then GUI animar ralph y ladrillos
+		 		 * 
+		 		 * 
+		 		 * crear pajaritos y nicelanders y tortas y toda esa wea
+		 		 * gestionar colisiones???????????' 
+		 		 * **/
+		 	}
+		};
+		timer.schedule(task, 10, 1);
+}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
+
+----------------------------------- SOURCE END -------------------------------------
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:2949)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:636)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:204)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3036)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1393)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:367)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:202)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:268)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1145)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:736)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:802)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1322)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:92)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2019-11-14 20:05:38.842
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:2949)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:636)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:204)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3036)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1393)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:367)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:202)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:268)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1145)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:736)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:802)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1322)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:92)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.ui 4 0 2019-11-14 20:05:38.846
+!MESSAGE Error in JDT Core during reconcile
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:2949)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:636)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:204)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3036)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1393)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:367)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:202)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:268)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1145)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:736)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:802)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1322)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:92)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.debug 2 0 2019-11-14 20:51:40.542
+!MESSAGE Unable to find location of java.lang.Thread.setName() in debuggee JVM, for type java.lang.Thread

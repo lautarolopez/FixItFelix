@@ -28,9 +28,12 @@ public class ConfiguracionGUI extends JFrame {
 	private JPanel contentPane;
 	private JFrame aux;
 	private JTextField txtSeleccioneLaDificultad;
+	JSlider slider = new JSlider();
+
 
 	public ConfiguracionGUI(JFrame principal) {
 		aux=this;
+		this.setIconImage(new ImageIcon(PantallaPrincipalGUI.class.getResource("/img/Icono.png")).getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1080, 720);
 		contentPane = new JPanel();
@@ -40,7 +43,6 @@ public class ConfiguracionGUI extends JFrame {
 		contentPane.setLayout(null);
 		this.setLocationRelativeTo(null);
 		
-		JSlider slider = new JSlider();
 		slider.setValue(1);
 		slider.setBackground(Color.BLACK);
 		slider.setForeground(Color.RED);
@@ -82,5 +84,9 @@ public class ConfiguracionGUI extends JFrame {
 		contentPane.add(txtSeleccioneLaDificultad);
 		txtSeleccioneLaDificultad.setColumns(10);
 		
+	}
+	
+	public int getDificultad() {
+		return slider.getValue();
 	}
 }

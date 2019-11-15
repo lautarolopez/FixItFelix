@@ -8,38 +8,44 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.*;
+import java.util.Timer;
+import java.util.TimerTask;
 public class PartidaGUI extends JFrame{
 	
 	private JLayeredPane organizadorDeCapas = new JLayeredPane();
 	private JLabel felix = new JLabel(new ImageIcon("img\\felix\\slice65_65.png"));
 	private JLabel edificio_seccion_1 = new JLabel(new ImageIcon("img\\edificio\\edificio_150_seccion1.png"));
 	private JLabel edificio_seccion_2 = new JLabel(new ImageIcon("img\\edificio\\edificio_150_seccion2.png"));
-	private JLabel edificio_seccion_3 = new JLabel(new ImageIcon("img\\edificio\\edificio_150_seccion2.png")); 
+	private JLabel edificio_seccion_3 = new JLabel(new ImageIcon("img\\edificio\\edificio_150_seccion3.png")); 
 	private JLabel ralph = new JLabel(new ImageIcon("img\\ralph\\slice163_@.png"));
 	private ArrayList<ArrayList<JLabel>> ventanas_seccion_1 = new ArrayList<ArrayList<JLabel>>();
 	private ArrayList<ArrayList<JLabel>> ventanas_seccion_2 = new ArrayList<ArrayList<JLabel>>();
 	private ArrayList<ArrayList<JLabel>> ventanas_seccion_3 = new ArrayList<ArrayList<JLabel>>();
 	private ArrayList<JLabel> obstaculos = new ArrayList<JLabel>();
 	private Posicion posicionCoordenada = new Posicion(2,0);
+	private StatusGUI barraDeEstado = new StatusGUI();
 	
 	
 	
 	
-	public PartidaGUI(ArrayList<ArrayList<Ventana>> ventanasLogica) {	
+	public PartidaGUI(ArrayList<ArrayList<Ventana>> ventanasLogica1, ArrayList<ArrayList<Ventana>> ventanasLogica2, ArrayList<ArrayList<Ventana>> ventanasLogica3) {	
+		setSize(1024,720);
 		felix.setBounds(477, 630, 40, 60);
-		edificio_seccion_1.setBounds(352, 352, 320, 340);
-		edificio_seccion_2.setBounds(352, 12, 320, 340);
-		edificio_seccion_3.setBounds(352, -328, 325, 340);
-		ralph.setBounds(462, 377, 100, 66);
+		edificio_seccion_1.setBounds(352, 445, 320, 249);
+		edificio_seccion_2.setBounds(352, 207, 320, 249);
+		edificio_seccion_3.setBounds(350, -100, 325, 306);
+		ralph.setBounds(462, 360, 100, 85);
 		organizadorDeCapas.add(felix, new Integer(3));
 		organizadorDeCapas.add(ralph, new Integer(3));
-		crearVentanas_Suelo(392, 615, this.ventanas_seccion_1, ventanasLogica);
-		crearObstaculos(ventanasLogica);
-		crearVentanas(392, 380, this.ventanas_seccion_2, ventanasLogica);
+		crearVentanas_Suelo(392, 615, this.ventanas_seccion_1, ventanasLogica1);
+		crearObstaculos(ventanasLogica1, ventanas_seccion_1);
+		crearVentanas(392, 380, this.ventanas_seccion_2, ventanasLogica2);
 		organizadorDeCapas.add(edificio_seccion_1, new Integer(0));
-		crearVentanas(392, 145, this.ventanas_seccion_3, ventanasLogica);
+		crearVentanas(392, 145, this.ventanas_seccion_3, ventanasLogica3);
 		organizadorDeCapas.add(edificio_seccion_2, new Integer(0));
 		organizadorDeCapas.add(edificio_seccion_3, new Integer(0));
+		barraDeEstado.setBounds(0, 0, 1024, 100);
+		organizadorDeCapas.add(barraDeEstado, new Integer(5));
 		organizadorDeCapas.setBounds(0, 0, 1024, 720);
 		add(organizadorDeCapas);
 		setSize(1024,720);
@@ -49,6 +55,8 @@ public class PartidaGUI extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setBackground(Color.BLACK);
 		addKeyListener(new MiAdapter());
+		this.setIconImage(new ImageIcon(PantallaPrincipalGUI.class.getResource("/img/Icono.png")).getImage());
+		animarRalph();
 	}
 	
 	
@@ -75,13 +83,38 @@ public class PartidaGUI extends JFrame{
 						movIzquierda();
 				break;
 				case KeyEvent.VK_SPACE:
-					if (Partida.getInstance().repararVentana()) {
-						arreglarVentana();
-					}
+					animarMartillazoFelix();
+					procesarArreglar();
 				break;
 			}
 		}
 	}
+	
+	
+	
+	public void procesarArreglar() {
+		int x = Partida.getInstance().getSeccionActual();
+		if (Partida.getInstance().repararVentana()) {
+			if (x == 0) {
+				arreglarVentana(ventanas_seccion_1, true);
+			} else {
+				if (x == 1) {
+					arreglarVentana(ventanas_seccion_2, false);
+				} else {
+					arreglarVentana(ventanas_seccion_3, false);
+				}
+			}
+		}	   	   
+		if (Partida.getInstance().ganeNivel()) {
+			Partida.getInstance().siguienteNivel();
+		} else {
+			if (Partida.getInstance().seccionTerminada()) {
+				siguienteSeccion();
+			}
+		}
+	}
+	
+
 	
 	public void visible() {
 		setVisible(true);
@@ -91,76 +124,100 @@ public class PartidaGUI extends JFrame{
 		setVisible(false);
 	}
 	
-	public void arreglarVentana() {
-		if (posicionCoordenada.getX() != 2) {
-			ventanas_seccion_1.get(posicionCoordenada.getX()).get(posicionCoordenada.getY()).setIcon(elegirImagen(posicionCoordenada.getX(), posicionCoordenada.getY(), Partida.getInstance().getVentanas()));
-			ventanas_seccion_1.get(posicionCoordenada.getX()).get(posicionCoordenada.getY()).repaint();		
-		} else {
-			if (posicionCoordenada.getY() != 2) {
-				boolean aux = true;
-				if (posicionCoordenada.getY() == 1) aux = false;
-				ventanas_seccion_1.get(posicionCoordenada.getX()).get(posicionCoordenada.getY()).setIcon(elegirImagenSemicircular(posicionCoordenada.getX(), posicionCoordenada.getY(), Partida.getInstance().getVentanas(), aux));
-				ventanas_seccion_1.get(posicionCoordenada.getX()).get(posicionCoordenada.getY()).repaint();
+	public void arreglarVentana(ArrayList<ArrayList<JLabel>> ventanasGrafica, boolean tieneSemicirc) {
+		if (tieneSemicirc) {
+			if (posicionCoordenada.getX() != 2) {
+				ventanasGrafica.get(posicionCoordenada.getX()).get(posicionCoordenada.getY()).setIcon(elegirImagen(posicionCoordenada.getX(), posicionCoordenada.getY(), Partida.getInstance().getVentanas()));
+				ventanasGrafica.get(posicionCoordenada.getX()).get(posicionCoordenada.getY()).repaint();		
 			} else {
-				ventanas_seccion_1.get(posicionCoordenada.getX()).get(posicionCoordenada.getY()).setIcon(elegirImagen(posicionCoordenada.getX(), posicionCoordenada.getY(), Partida.getInstance().getVentanas()));
-				ventanas_seccion_1.get(posicionCoordenada.getX()).get(posicionCoordenada.getY()).repaint();		
+				if (posicionCoordenada.getY() != 2) {
+					boolean aux = true;
+					if (posicionCoordenada.getY() == 1) aux = false;
+					ventanasGrafica.get(posicionCoordenada.getX()).get(posicionCoordenada.getY()).setIcon(elegirImagenSemicircular(posicionCoordenada.getX(), posicionCoordenada.getY(), Partida.getInstance().getVentanas(), aux));
+					ventanasGrafica.get(posicionCoordenada.getX()).get(posicionCoordenada.getY()).repaint();
+				} else {
+					ventanasGrafica.get(posicionCoordenada.getX()).get(posicionCoordenada.getY()).setIcon(elegirImagen(posicionCoordenada.getX(), posicionCoordenada.getY(), Partida.getInstance().getVentanas()));
+					ventanasGrafica.get(posicionCoordenada.getX()).get(posicionCoordenada.getY()).repaint();		
+				}
 			}
+		} else {
+			ventanasGrafica.get(posicionCoordenada.getX()).get(posicionCoordenada.getY()).setIcon(elegirImagen(posicionCoordenada.getX(), posicionCoordenada.getY(), Partida.getInstance().getVentanas()));
+			ventanasGrafica.get(posicionCoordenada.getX()).get(posicionCoordenada.getY()).repaint();
 		}
 	}
 	
 	public void movArriba() {
-		if ((felix.getX() == 477) && (felix.getY() == 630)) {
-			felix.setLocation(felix.getX(), felix.getY()-95);
-			felix.repaint();
-			posicionCoordenada.moverAr();
-		} else {
-			if ((felix.getX() == 477) && (felix.getY()-85 == 450)) {
-				felix.setLocation(felix.getX(), felix.getY()-85);
+		if (Partida.getInstance().getSeccionActual() == 0) {
+			if ((felix.getX() == 477) && (felix.getY() == 630)) {
+				felix.setLocation(felix.getX(), felix.getY()-95);
 				felix.repaint();
 				posicionCoordenada.moverAr();
 			} else {
-				if (felix.getY()-80 >= 400) {
-					felix.setLocation(felix.getX(), felix.getY()-80);
+				if ((felix.getX() == 477) && (felix.getY()-85 == 450)) {
+					felix.setLocation(felix.getX(), felix.getY()-85);
 					felix.repaint();
 					posicionCoordenada.moverAr();
+				} else {
+					if (felix.getY()-80 >= 400) {
+						felix.setLocation(felix.getX(), felix.getY()-80);
+						felix.repaint();
+						posicionCoordenada.moverAr();
+					}
 				}
 			}
+		} else {
+			if (felix.getY()-80 >= 400) {
+				felix.setLocation(felix.getX(), felix.getY()-80);
+				felix.repaint();
+				posicionCoordenada.moverAr();
+			}
+			
 		}
 	}
 	
 	public void movAbajo() {
-		if ((felix.getX() == 477) && (felix.getY() == 535)) {
-			felix.setLocation(felix.getX(), felix.getY()+95);
-			felix.repaint();
-			posicionCoordenada.moverAb();
-		} else {
-			if ((felix.getX() == 477) && (felix.getY()+85 == 535)) {
-				felix.setLocation(felix.getX(), felix.getY()+85);
+		if (Partida.getInstance().getSeccionActual() == 0) {
+			if ((felix.getX() == 477) && (felix.getY() == 535)) {
+				felix.setLocation(felix.getX(), felix.getY()+95);
 				felix.repaint();
 				posicionCoordenada.moverAb();
 			} else {
-				if (felix.getY()+80 <= 640) {
-					felix.setLocation(felix.getX(), felix.getY()+80);
+				if ((felix.getX() == 477) && (felix.getY()+85 == 535)) {
+					felix.setLocation(felix.getX(), felix.getY()+85);
 					felix.repaint();
 					posicionCoordenada.moverAb();
+				} else {
+					if (felix.getY()+80 <= 640) {
+						felix.setLocation(felix.getX(), felix.getY()+80);
+						felix.repaint();
+						posicionCoordenada.moverAb();
+					}
 				}
+			}
+		} else {
+			if (felix.getY()+80 <= 640) {
+				felix.setLocation(felix.getX(), felix.getY()+80);
+				felix.repaint();
+				posicionCoordenada.moverAb();
 			}
 		}
 	}
 	
 	public void movIzquierda() {
-		if ((felix.getX() == 477) && (felix.getY() == 630)) {
-			felix.setLocation(felix.getX(),felix.getY()-20);
-		} else {
-			if ((felix.getX()-50 == 477) && (felix.getY()+20 == 630)) {
-				felix.setLocation(felix.getX(), felix.getY()+20);
+		if (Partida.getInstance().getSeccionActual() == 0) {
+			if ((felix.getX() == 477) && (felix.getY() == 630)) {
+				felix.setLocation(felix.getX(),felix.getY()-20);
+			} else {
+				if ((felix.getX()-50 == 477) && (felix.getY()+20 == 630)) {
+					felix.setLocation(felix.getX(), felix.getY()+20);
+				}
 			}
-		}
-		if ((felix.getX() == 477) && (felix.getY() == 535)) {
-			felix.setLocation(felix.getX(),felix.getY()-5);
-		} else {
-			if ((felix.getX()-50 == 477) && (felix.getY()+5 == 535)) {
-				felix.setLocation(felix.getX(), felix.getY()+5);
+			if ((felix.getX() == 477) && (felix.getY() == 535)) {
+				felix.setLocation(felix.getX(),felix.getY()-5);
+			} else {
+				if ((felix.getX()-50 == 477) && (felix.getY()+5 == 535)) {
+					felix.setLocation(felix.getX(), felix.getY()+5);
+				}
 			}
 		}
 		if (felix.getX()-50 > 372  ) {
@@ -172,18 +229,20 @@ public class PartidaGUI extends JFrame{
 	
 	
 	public void movDerecha() {
-		if ((felix.getX() == 477) && (felix.getY() == 630)) {
-			felix.setLocation(felix.getX(), felix.getY()-20);
-		} else {
-			if ((felix.getX()+50 == 477) && (felix.getY()+20 == 630)) {
-				felix.setLocation(felix.getX(), felix.getY()+20);
+		if(Partida.getInstance().getSeccionActual() == 0) {
+			if ((felix.getX() == 477) && (felix.getY() == 630)) {
+				felix.setLocation(felix.getX(), felix.getY()-20);
+			} else {
+				if ((felix.getX()+50 == 477) && (felix.getY()+20 == 630)) {
+					felix.setLocation(felix.getX(), felix.getY()+20);
+				}
 			}
-		}
-		if ((felix.getX() == 477) && (felix.getY() == 535)) {
-			felix.setLocation(felix.getX(), felix.getY()-5);
-		} else {
-			if ((felix.getX()+50 == 477) && (felix.getY()+5 == 535)) {
-				felix.setLocation(felix.getX(), felix.getY()+5);
+			if ((felix.getX() == 477) && (felix.getY() == 535)) {
+				felix.setLocation(felix.getX(), felix.getY()-5);
+			} else {
+				if ((felix.getX()+50 == 477) && (felix.getY()+5 == 535)) {
+					felix.setLocation(felix.getX(), felix.getY()+5);
+				}
 			}
 		}
 		if (felix.getX()+50 < 602) {
@@ -267,10 +326,24 @@ public class PartidaGUI extends JFrame{
 			aux1 = new ArrayList<JLabel>();	
 				int YAux = paramY; //615;
 				for (int y = 0; y < 3; y++) {
-					JLabel AuxLabel = new JLabel(elegirImagen(x, y, ventanasLogica));
-					AuxLabel.setBounds(XAux, YAux, 40, 60);
-					aux1.add(AuxLabel);
-					organizadorDeCapas.add(AuxLabel, new Integer(2));
+					if (ventanasLogica.get(x).get(y).esVentanaAbierta()) {
+						if (ventanasLogica.get(x).get(y).estaAbierta()) {
+							JLabel AuxLabel = new JLabel(new ImageIcon("img\\ventanas_y_panel\\slice106_@.png"));
+							AuxLabel.setBounds(XAux, YAux, 40, 60);
+							aux1.add(AuxLabel);
+							organizadorDeCapas.add(AuxLabel, new Integer(1));
+						} else {
+							JLabel AuxLabel = new JLabel(new ImageIcon("img\\ventanas_y_panel\\slice105_@.png"));
+							AuxLabel.setBounds(XAux, YAux, 40, 60);
+							aux1.add(AuxLabel);
+							organizadorDeCapas.add(AuxLabel, new Integer(1));
+						}
+					} else {
+						JLabel AuxLabel = new JLabel(elegirImagen(x, y, ventanasLogica));
+						AuxLabel.setBounds(XAux, YAux, 40, 60);
+						aux1.add(AuxLabel);
+						organizadorDeCapas.add(AuxLabel, new Integer(1));				
+					}
 					YAux-= 80;
 				}
 			ventanas.add(aux1);
@@ -362,11 +435,11 @@ public class PartidaGUI extends JFrame{
 	}
 	
 	
-	private void crearObstaculos(ArrayList<ArrayList<Ventana>> ventanasLogica) {
+	private void crearObstaculos(ArrayList<ArrayList<Ventana>> ventanasLogica, ArrayList<ArrayList<JLabel>> ventanasGrafica) {
 		for (ArrayList<Ventana> arr : ventanasLogica) {
 			for (Ventana vent : arr) {
-				int x = ventanas_seccion_1.get(vent.getPos().getX()).get(vent.getPos().getY()).getX()+5;
-				int y = ventanas_seccion_1.get(vent.getPos().getX()).get(vent.getPos().getY()).getY()+44;
+				int x = ventanasGrafica.get(vent.getPos().getX()).get(vent.getPos().getY()).getX()+5;
+				int y = ventanasGrafica.get(vent.getPos().getX()).get(vent.getPos().getY()).getY()+44;
 				if(vent.tieneMacetero()) {
 					JLabel aux = new JLabel(new ImageIcon("img\\obstaculos\\macetero.png"));
 					aux.setBounds(x, y, 29, 16);			
@@ -386,6 +459,165 @@ public class PartidaGUI extends JFrame{
 		
 	
 	
+	public void animarRalph() {
+		Timer timer = new Timer();
+		TimerTask task = new TimerTask() {
+			int tiempoParaLadrillos = Partida.getInstance().getDificultad()*100;
+			boolean izq = true;
+			int cont = 0;
+		 	@Override
+		 	public void run(){
+		 		if (tiempoParaLadrillos < 1500) { /// A medida que aumente la dificultad va a llegar más rápido a 1
+		 			if (izq) {
+			 			if (cont < 10) {
+			 				ralph.setIcon(new ImageIcon("img/ralph/slice221_@_izq.png"));
+			 			} else {
+			 				ralph.setIcon(new ImageIcon("img/ralph/slice228_@_izq.png"));
+			 			}
+			 			if (cont == 20) cont= -1;
+			 			ralph.setLocation(ralph.getX()-1, ralph.getY());
+			 			ralph.repaint();
+			 		} else {
+			 			if (cont < 10) {
+			 				ralph.setIcon(new ImageIcon("img/ralph/slice221_@.png"));
+			 			} else {
+			 				ralph.setIcon(new ImageIcon("img/ralph/slice228_@.png"));
+			 			}
+			 			if (cont == 20) cont= -1;
+			 			ralph.setLocation(ralph.getX()+1, ralph.getY());
+			 			ralph.repaint();
+			 		}
+			 		if (ralph.getX() == 352) {
+			 			izq = false;
+			 		} else {
+			 			if (ralph.getX() == 570) {
+			 				izq = true;
+			 			}
+			 		}
+			 		cont++;
+			 		tiempoParaLadrillos++;
+		 		} else {
+		 			tiempoParaLadrillos = Partida.getInstance().getDificultad();
+		 			animarTirarLadrillos(izq);
+		 		}
+		 	};
+		};
+		timer.schedule(task, 10, 10);
+	}
 	
+	
+	public void animarTirarLadrillos(boolean izq) {
+		int cont = 0;
+		for (int i = 0; i < 1000000; i++) {
+		 		if (cont < 62500) {
+		 			ralph.setIcon(new ImageIcon("img/ralph/slice167_@.png"));
+		 			ralph.repaint();
+		 		} else {
+		 				ralph.setIcon(new ImageIcon("img/ralph/slice168_@.png"));
+		 				ralph.repaint();
+		 		}
+		 		if (cont == 125000) {
+		 			cont = 0;
+		 		}
+		 		cont++;
+		  }
+	
+	}
+	
+	public void animarMartillazoFelix() {
+		Timer timer = new Timer();
+		TimerTask task = new TimerTask() {
+			int cont = 0;
+		 	@Override
+		 	public void run(){
+		 		if (!((cont % 2) == 0)) {
+		 			felix.setIcon(new ImageIcon("img/felix/slice76_76.png"));
+		 			felix.repaint();
+		 		} else {
+		 			felix.setIcon(new ImageIcon("img\\\\felix\\\\slice65_65.png"));
+		 			felix.repaint();
+		 		}
+		 		if (cont == 4) {
+		 			timer.cancel();
+		 		}
+		 		cont++;
+		 	};
+		};
+		timer.schedule(task, 10, 100);
+	}
+	
+	public void siguienteSeccion() {
+			Timer timer = new Timer();
+			TimerTask task = new TimerTask() {
+			 	public void run(){
+			 		edificio_seccion_1.setLocation(edificio_seccion_1.getX(), edificio_seccion_1.getY()+1);
+			 		edificio_seccion_1.repaint();
+			 		edificio_seccion_2.setLocation(edificio_seccion_2.getX(), edificio_seccion_2.getY()+1);
+			 		edificio_seccion_2.repaint();
+			 		edificio_seccion_3.setLocation(edificio_seccion_3.getX(), edificio_seccion_3.getY()+1);
+			 		edificio_seccion_3.repaint();
+			 		for(ArrayList<JLabel> arr : ventanas_seccion_1) {
+			 			for (JLabel vent : arr) {
+			 				vent.setLocation(vent.getX(), vent.getY()+1);
+			 				vent.repaint();
+			 			}
+			 		}
+			 		for(ArrayList<JLabel> arr : ventanas_seccion_2) {
+			 			for (JLabel vent : arr) {
+			 				vent.setLocation(vent.getX(), vent.getY()+1);
+			 				vent.repaint();
+			 			}
+			 		}
+			 		for(ArrayList<JLabel> arr : ventanas_seccion_3) {
+			 			for (JLabel vent : arr) {
+			 				vent.setLocation(vent.getX(), vent.getY()+1);
+			 				vent.repaint();
+			 			}
+			 		}
+			 		felix.setLocation(477, 610);
+			 		posicionCoordenada = new Posicion (2,0);
+			 		for (JLabel obs : obstaculos) {
+			 			obs.setLocation(obs.getX(), obs.getY()+1); 
+			 		}
+			 		felix.repaint();
+			 		ralph.setLocation(462, 360);
+			 		ralph.repaint();
+			 		if(Partida.getInstance().getSeccionActual() == 1) {
+				 		if(edificio_seccion_2.getY() == 442) {
+					 		crearObstaculos(Partida.getInstance().getVentanas(), ventanas_seccion_2);
+				 			eliminarTerminado();
+				 			timer.cancel();
+				 		}
+			 		} else {
+			 			if(edificio_seccion_3.getY() == 370) {
+					 		crearObstaculos(Partida.getInstance().getVentanas(), ventanas_seccion_3);
+				 			eliminarTerminado();
+				 			timer.cancel();
+				 		}
+			 		}
+			 	}
+			};
+			timer.schedule(task, 10, 1);
+	}
+	
+	public void eliminarTerminado() {
+		if (Partida.getInstance().getSeccionActual() == 1) {
+			remove(edificio_seccion_1);
+			for(ArrayList<JLabel> arr : ventanas_seccion_1) {
+	 			for (JLabel vent : arr) {
+	 				remove(vent);
+	 			}
+	 		}
+		} else {
+			remove(edificio_seccion_2);
+			for(ArrayList<JLabel> arr : ventanas_seccion_2) {
+	 			for (JLabel vent : arr) {
+	 				remove(vent);
+	 			}
+	 		}
+		}
+		revalidate();
+		repaint();
+	}
 		
-	} 
+} 

@@ -25,6 +25,10 @@ public class PantallaPrincipalGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JFrame aux;
+	private EstadisticasGUI estadisticas = new EstadisticasGUI(this);
+	private ConfiguracionGUI configuracion = new ConfiguracionGUI(this);
+
+
 	/**
 	 * Create the frame.
 	 */
@@ -34,7 +38,6 @@ public class PantallaPrincipalGUI extends JFrame {
 		Top5GUI top5 = new Top5GUI(this);
 		ConfiguracionGUI configuracion = new ConfiguracionGUI(this);
 		ReglasGUI reglas = new ReglasGUI(this);
-		EstadisticasGUI estadisticas = new EstadisticasGUI(this);
 		setBackground(Color.BLUE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1080, 720);
@@ -133,7 +136,13 @@ public class PantallaPrincipalGUI extends JFrame {
 		label.setIcon(new ImageIcon(PantallaPrincipalGUI.class.getResource("/img/pantallaprincipal/Screenshot_1.png")));
 		label.setBounds(193, 596, 715, 50);
 		panel.add(label);
+		this.setIconImage(new ImageIcon(PantallaPrincipalGUI.class.getResource("/img/Icono.png")).getImage());
 		this.setVisible(true);
 	}
+	
+	public int getDificultad() {
+		return configuracion.getDificultad();
 	}
+
+}
 
