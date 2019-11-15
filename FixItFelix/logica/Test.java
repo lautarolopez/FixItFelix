@@ -2,9 +2,7 @@ package logica;
 public class Test {
 
 	public static void main(String[] args) {	
-		Juego.getInstance("TheDestroyer");
-		Juego.nuevoJuego("TheDestroyer");
-
+		Juego.getInstance();
 	} 
 
 }

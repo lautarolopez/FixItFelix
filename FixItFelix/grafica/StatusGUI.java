@@ -56,8 +56,9 @@ public class StatusGUI extends JPanel {
 		textPuntajeMax.setForeground(Color.WHITE);
 		textPuntajeMax.setBackground(Color.BLACK);
 		textPuntajeMax.setFocusable(false);
-		
 		textPuntajeMax.setEditable(false);
+		mensaje = String.valueOf(Juego.getInstance().getHighScore());
+		textPuntajeMax.setText(mensaje);
 		textPuntajeMax.setBounds(97, 44, 155, 20);
 		add(textPuntajeMax);
 		textPuntajeMax.setColumns(10);

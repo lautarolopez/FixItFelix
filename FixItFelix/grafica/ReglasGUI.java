@@ -48,6 +48,7 @@ public class ReglasGUI extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		txtReglas = new JTextField();
+		txtReglas.setEditable(false);
 		txtReglas.setBorder(null);
 		txtReglas.setForeground(Color.RED);
 		txtReglas.setFont(new Font("Arial Black", Font.BOLD, 32));
@@ -58,6 +59,7 @@ public class ReglasGUI extends JFrame {
 		txtReglas.setColumns(10);
 		
 		txtRalphEsEl = new JTextArea();
+		txtRalphEsEl.setEditable(false);
 		txtRalphEsEl.setBackground(Color.BLACK);
 		txtRalphEsEl.setForeground(Color.RED);
 		txtRalphEsEl.setFont(new Font("Arial Black", Font.BOLD, 16));

@@ -54,6 +54,7 @@ public class EstadisticasGUI extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		txtEstadisticas = new JTextField();
+		txtEstadisticas.setEditable(false);
 		txtEstadisticas.setBackground(Color.BLACK);
 		txtEstadisticas.setForeground(Color.RED);
 		txtEstadisticas.setFont(new Font("Arial Black", Font.BOLD, 40));
@@ -75,7 +76,7 @@ public class EstadisticasGUI extends JFrame {
 			}
 		) {
 			boolean[] columnEditables = new boolean[] {
-				false, true
+				false, false
 			};
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
@@ -83,6 +84,7 @@ public class EstadisticasGUI extends JFrame {
 		});
 		table.getColumnModel().getColumn(0).setResizable(false);
 		table.getColumnModel().getColumn(0).setPreferredWidth(280);
+		table.getColumnModel().getColumn(1).setResizable(false);
 		table.setForeground(Color.RED);
 		table.setFont(new Font("Arial Black", Font.BOLD, 16));
 		table.setBackground(Color.BLACK);

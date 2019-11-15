@@ -89,4 +89,8 @@ public class ConfiguracionGUI extends JFrame {
 	public int getDificultad() {
 		return slider.getValue();
 	}
+	
+	public void aumentarDificultad() {
+		slider.setValue(slider.getValue()+1);
+	}
 }

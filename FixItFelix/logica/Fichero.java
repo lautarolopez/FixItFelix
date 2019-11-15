@@ -26,7 +26,7 @@ public class Fichero{
 			try { /**
 			        *SI SALTA AL TRY BUSCA LOS DATOS ALMACENADOS DE DATA
 			        */
-				FileReader entrada= new FileReader("src/data.txt"); 
+				FileReader entrada= new FileReader("data.txt"); 
 				BufferedReader mibuffer= new BufferedReader(entrada);
 			    int pos=0;
 			    linea=mibuffer.readLine();
@@ -48,7 +48,7 @@ public class Fichero{
 			                       *SI SALTA AL CATCH CREA UN DATA.TXT
 				                  */
 				try {           
-	 				FileWriter salida= new FileWriter("src/data.txt");
+	 				FileWriter salida= new FileWriter("data.txt");
 					BufferedWriter mibuffer= new BufferedWriter(salida);
 					linea= "puesto1" +":"+ puntos[0] + "\n" + "puesto2" +":"+ puntos[1] + "\n" + "puesto3" +":"+ puntos[2] + "\n" + "puesto4" +":"+ puntos[3] + "\n" + "puesto5" +":"+ puntos[4] + "\n";
 				    mibuffer.write(linea);
@@ -62,7 +62,7 @@ public class Fichero{
 		public void escribir(String [] nombres, int[] puntos) {
 			try {
 				String linea;
-				FileWriter salida= new FileWriter("src/data.txt");
+				FileWriter salida= new FileWriter("data.txt");
 				BufferedWriter mibuffer= new BufferedWriter(salida);
 				linea= nombres[0] +":"+ puntos[0] + "\n" + nombres[1] +":"+ puntos[1] + "\n" + nombres[2] +":"+ puntos[2] + "\n" + nombres[3] +":"+ puntos[3] + "\n" + nombres[4] +":"+ puntos[4] + "\n";
 			    mibuffer.write(linea);
@@ -73,14 +73,14 @@ public class Fichero{
 		}
 		
 		public void leerEstadisticas () {
-			for (int i=0;i<5;i++) {
+			for (int i=0;i<2;i++) {
 		    	stats[i]=0;
 		    }
 			String linea;
 			try { /**
 			        *SI SALTA AL TRY BUSCA LOS DATOS ALMACENADOS DE ESTADISTICAS
 			        */
-				FileReader entrada= new FileReader("src/estadisticas.txt"); 
+				FileReader entrada= new FileReader("estadisticas.txt"); 
 				BufferedReader mibuffer= new BufferedReader(entrada);
 			    int pos=0;
 			    int j=0;
@@ -109,8 +109,9 @@ public class Fichero{
 			                       *SI SALTA AL CATCH CREA UN ESTADISTICAS.TXT
 				                  */
 				try {           
-	 				FileWriter salida= new FileWriter("src/estadisticas.txt");
+	 				FileWriter salida= new FileWriter("estadisticas.txt");
 					BufferedWriter mibuffer= new BufferedWriter(salida);
+					stats[0]=1;
 					linea= stats[0] +":"+ stats[1] + ";" + stats[2];
 				    mibuffer.write(linea);
 				    mibuffer.close();
@@ -121,7 +122,7 @@ public class Fichero{
 			public void escribirEstadisticas (int [] stats) {
 				try {
 					String linea;
-					FileWriter salida= new FileWriter("src/estadisticas.txt");
+					FileWriter salida= new FileWriter("estadisticas.txt");
 					BufferedWriter mibuffer= new BufferedWriter(salida);
 					linea= stats[0] +":"+ stats[1] + ";" + stats[2];
 					mibuffer.write(linea);
@@ -129,5 +130,12 @@ public class Fichero{
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+			}
+			
+			public void aumentarCont(int x, Fichero f) {
+				f.leerEstadisticas();
+				int[]aux=f.getStats();
+				aux[x]++;
+				f.escribirEstadisticas(aux);
 			}
 }

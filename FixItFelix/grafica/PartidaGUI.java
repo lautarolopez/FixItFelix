@@ -24,6 +24,7 @@ public class PartidaGUI extends JFrame{
 	private ArrayList<JLabel> obstaculos = new ArrayList<JLabel>();
 	private Posicion posicionCoordenada = new Posicion(2,0);
 	private StatusGUI barraDeEstado = new StatusGUI();
+	boolean congelar = false;
 	
 	
 	
@@ -56,15 +57,19 @@ public class PartidaGUI extends JFrame{
 		getContentPane().setBackground(Color.BLACK);
 		addKeyListener(new MiAdapter());
 		this.setIconImage(new ImageIcon(PantallaPrincipalGUI.class.getResource("/img/Icono.png")).getImage());
-		animarRalph();
+		AnimacionesRalph animRalph = new AnimacionesRalph();
+		animRalph.animarRalph();
 	}
+	
+	
+	
+	
 	
 	
 	public class MiAdapter extends KeyAdapter{
 		@Override
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
-			System.out.println(key);
 			switch (key) {
 				case KeyEvent.VK_UP:
 					if (Partida.getInstance().puedoSubir())
@@ -89,6 +94,7 @@ public class PartidaGUI extends JFrame{
 			}
 		}
 	}
+	
 	
 	
 	
@@ -456,73 +462,11 @@ public class PartidaGUI extends JFrame{
 		}
 	}
 	
+	
 		
 	
 	
-	public void animarRalph() {
-		Timer timer = new Timer();
-		TimerTask task = new TimerTask() {
-			int tiempoParaLadrillos = Partida.getInstance().getDificultad()*100;
-			boolean izq = true;
-			int cont = 0;
-		 	@Override
-		 	public void run(){
-		 		if (tiempoParaLadrillos < 1500) { /// A medida que aumente la dificultad va a llegar más rápido a 1
-		 			if (izq) {
-			 			if (cont < 10) {
-			 				ralph.setIcon(new ImageIcon("img/ralph/slice221_@_izq.png"));
-			 			} else {
-			 				ralph.setIcon(new ImageIcon("img/ralph/slice228_@_izq.png"));
-			 			}
-			 			if (cont == 20) cont= -1;
-			 			ralph.setLocation(ralph.getX()-1, ralph.getY());
-			 			ralph.repaint();
-			 		} else {
-			 			if (cont < 10) {
-			 				ralph.setIcon(new ImageIcon("img/ralph/slice221_@.png"));
-			 			} else {
-			 				ralph.setIcon(new ImageIcon("img/ralph/slice228_@.png"));
-			 			}
-			 			if (cont == 20) cont= -1;
-			 			ralph.setLocation(ralph.getX()+1, ralph.getY());
-			 			ralph.repaint();
-			 		}
-			 		if (ralph.getX() == 352) {
-			 			izq = false;
-			 		} else {
-			 			if (ralph.getX() == 570) {
-			 				izq = true;
-			 			}
-			 		}
-			 		cont++;
-			 		tiempoParaLadrillos++;
-		 		} else {
-		 			tiempoParaLadrillos = Partida.getInstance().getDificultad();
-		 			animarTirarLadrillos(izq);
-		 		}
-		 	};
-		};
-		timer.schedule(task, 10, 10);
-	}
-	
-	
-	public void animarTirarLadrillos(boolean izq) {
-		int cont = 0;
-		for (int i = 0; i < 1000000; i++) {
-		 		if (cont < 62500) {
-		 			ralph.setIcon(new ImageIcon("img/ralph/slice167_@.png"));
-		 			ralph.repaint();
-		 		} else {
-		 				ralph.setIcon(new ImageIcon("img/ralph/slice168_@.png"));
-		 				ralph.repaint();
-		 		}
-		 		if (cont == 125000) {
-		 			cont = 0;
-		 		}
-		 		cont++;
-		  }
-	
-	}
+
 	
 	public void animarMartillazoFelix() {
 		Timer timer = new Timer();
@@ -547,15 +491,25 @@ public class PartidaGUI extends JFrame{
 	}
 	
 	public void siguienteSeccion() {
+		congelar = true;
 			Timer timer = new Timer();
 			TimerTask task = new TimerTask() {
+				int cont = 0;
 			 	public void run(){
+			 		ralph.setLocation(ralph.getX(), ralph.getY()+1);
 			 		edificio_seccion_1.setLocation(edificio_seccion_1.getX(), edificio_seccion_1.getY()+1);
 			 		edificio_seccion_1.repaint();
 			 		edificio_seccion_2.setLocation(edificio_seccion_2.getX(), edificio_seccion_2.getY()+1);
 			 		edificio_seccion_2.repaint();
 			 		edificio_seccion_3.setLocation(edificio_seccion_3.getX(), edificio_seccion_3.getY()+1);
 			 		edificio_seccion_3.repaint();
+			 		if ((cont % 100) == 0) {
+			 			ralph.setIcon(new ImageIcon("img/ralph/slice174_@.png"));
+			 			ralph.repaint();
+			 		} else {
+			 			ralph.setIcon(new ImageIcon("img/ralph/slice175_@.png"));
+			 			ralph.repaint();
+			 		}
 			 		for(ArrayList<JLabel> arr : ventanas_seccion_1) {
 			 			for (JLabel vent : arr) {
 			 				vent.setLocation(vent.getX(), vent.getY()+1);
@@ -586,15 +540,18 @@ public class PartidaGUI extends JFrame{
 				 		if(edificio_seccion_2.getY() == 442) {
 					 		crearObstaculos(Partida.getInstance().getVentanas(), ventanas_seccion_2);
 				 			eliminarTerminado();
+				 			congelar = false;
 				 			timer.cancel();
 				 		}
 			 		} else {
 			 			if(edificio_seccion_3.getY() == 370) {
 					 		crearObstaculos(Partida.getInstance().getVentanas(), ventanas_seccion_3);
 				 			eliminarTerminado();
+				 			congelar = false;
 				 			timer.cancel();
 				 		}
 			 		}
+			 		cont++;
 			 	}
 			};
 			timer.schedule(task, 10, 1);
@@ -619,5 +576,150 @@ public class PartidaGUI extends JFrame{
 		revalidate();
 		repaint();
 	}
+	
+	public class AnimacionesRalph extends Thread{
 		
+		public void animarRalph() {
+			Timer timer = new Timer();
+			TimerTask task = new TimerTask() {
+				int tiempoParaLadrillos = Juego.getInstance().getDificultad()*100;
+				boolean izq = true;
+				int cont = 0;
+				@Override
+			 	public void run(){
+					if (!congelar) {
+				 		if (tiempoParaLadrillos < 300) { /// A medida que aumente la dificultad va a llegar más rápido a 1
+				 			if (izq) {
+					 			if (cont < 10) {
+					 				ralph.setIcon(new ImageIcon("img/ralph/slice221_@_izq.png"));
+					 			} else {
+					 				ralph.setIcon(new ImageIcon("img/ralph/slice228_@_izq.png"));
+					 			}
+					 			if (cont == 20) cont= -1;
+					 			ralph.setLocation(ralph.getX()-1, ralph.getY());
+					 			ralph.repaint();
+					 		} else {
+					 			if (cont < 10) {
+					 				ralph.setIcon(new ImageIcon("img/ralph/slice221_@.png"));
+					 			} else {
+					 				ralph.setIcon(new ImageIcon("img/ralph/slice228_@.png"));
+					 			}
+					 			if (cont == 20) cont= -1;
+					 			ralph.setLocation(ralph.getX()+1, ralph.getY());
+					 			ralph.repaint();
+					 		}
+					 		if (ralph.getX() == 352) {
+					 			izq = false;
+					 		} else {
+					 			if (ralph.getX() == 570) {
+					 				izq = true;
+					 			}
+					 		}
+					 		cont++;
+					 		tiempoParaLadrillos++;
+				 		} else {
+				 			tiempoParaLadrillos = Juego.getInstance().getDificultad();
+				 			animarTirarLadrillos(izq);
+				 		}
+					}
+				 	};
+				};
+				timer.schedule(task, 10, 10);
+		}
+		
+		
+		public void animarTirarLadrillos(boolean izq) {
+			int alternarLadrillos = 1;
+			int cont = 0;
+			for (int i = 0; i < 1000000; i++) {
+				if (!congelar) {
+					if (cont == 0) {
+						animarLadrillos(alternarLadrillos);
+			 			if (alternarLadrillos == 1) {
+			 				alternarLadrillos = 2;
+			 			} else {
+			 				alternarLadrillos = 1;
+			 			}
+					}
+				 	if (cont < 125000) {
+				 			ralph.setIcon(new ImageIcon("img/ralph/slice167_@.png"));
+				 			ralph.repaint();
+				 	} else {
+				 			ralph.setIcon(new ImageIcon("img/ralph/slice168_@.png"));
+				 			ralph.repaint();
+				 	}
+				 	if (cont == 250000) {
+				 		cont = -1;
+				 	}
+				 	cont++;
+				}
+			}
+		}
+		
+		
+		
+		public void animarLadrillos(int alternarLadrillos) {
+			JLabel ladrillo;
+			if ((alternarLadrillos % 2) == 0) {
+				ladrillo = new JLabel(new ImageIcon("img/rocas/slice10_10.png"));
+				ladrillo.setBounds(ralph.getX(), ralph.getY()+89, 20, 13);
+				organizadorDeCapas.add(ladrillo, new Integer(3));		
+		 		organizadorDeCapas.repaint();
+			} else {
+				ladrillo = new JLabel(new ImageIcon("img/rocas/slice11_11.png"));
+				ladrillo.setBounds(ralph.getX()+100, ralph.getY()+89, 20, 13);
+				organizadorDeCapas.add(ladrillo, new Integer(3));
+				organizadorDeCapas.repaint();
+			}
+			Timer timer = new Timer();
+			TimerTask task = new TimerTask() {
+				boolean ladEliminado = false;
+			 	@Override
+			 	public void run(){
+			 		if (ladrillo.getY() < 720) {
+			 			ladrillo.setLocation(ladrillo.getX(), ladrillo.getY()+1);
+			 			ladrillo.repaint();
+			 		} else {
+			 			ladEliminado = true;
+			 		}
+			 		if (!congelar) {
+				 		if (tocaAFelix(ladrillo.getX(), ladrillo.getY(), ladrillo.getWidth(), ladrillo.getHeight())) {
+				 			organizadorDeCapas.remove(ladrillo);
+				 			timer.cancel(); 
+				 			congelar = true;
+				 			Partida.getInstance().perdiUnaVida();  
+				 		}
+			 		}
+			 		if (ladEliminado) {
+			 			organizadorDeCapas.remove(ladrillo);
+			 			revalidate();
+			 			repaint();
+			 			timer.cancel();
+			 		}
+			 	};
+			};
+			timer.schedule(task, 10, 1);
+		}	
+	}
+	
+	
+	
+	
+	public boolean tocaAFelix(int x, int y, int width, int height) {
+		boolean aux = false;
+		if (((y-height) >= felix.getY()) && ((y-height) <= felix.getY())){
+			if ((x >= felix.getX()) && (x <= (felix.getX() + felix.getWidth()))){
+				aux = true;
+			}
+			if (((x+width) >= felix.getX()) && ((x+width) <= (felix.getX() + felix.getWidth()))) {
+				aux = true;
+			}
+		}
+		return aux;
+	}
 } 
+
+
+
+
+	

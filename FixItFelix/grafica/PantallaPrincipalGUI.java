@@ -39,8 +39,6 @@ public class PantallaPrincipalGUI extends JFrame {
 	public PantallaPrincipalGUI() {
 		aux=this;
 		Fichero arch = new Fichero();
-		arch.leerEstadisticas();
-		int[] cantVecesJugar = arch.getStats();
 		this.setResizable(false);
 		setBackground(Color.BLUE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -62,9 +60,9 @@ public class PantallaPrincipalGUI extends JFrame {
 		btnQuieroJugar.setFont(new Font("Arial Black", Font.BOLD, 20));
 		btnQuieroJugar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cantVecesJugar[1]++;
-				arch.escribirEstadisticas(cantVecesJugar);
-				Partida.getInstance().visible();
+				arch.aumentarCont(1, arch);
+				Partida.nuevaPartida();
+				Partida.getInstance().iniciarGrafica();
 				aux.setVisible(false);
 			}
 		});
@@ -147,6 +145,14 @@ public class PantallaPrincipalGUI extends JFrame {
 	
 	public int getDificultad() {
 		return configuracion.getDificultad();
+	}
+	
+	public void aumentarDificultad() {
+		this.configuracion.aumentarDificultad();
+	}
+	
+	public void visible() {
+		aux.setVisible(true);
 	}
 
 }

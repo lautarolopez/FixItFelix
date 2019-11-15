@@ -34,10 +34,8 @@ public class Felix {
 		if (!etapa.get(this.posFelix.getX()).get(this.posFelix.getY()).arreglada()) { //Recupera la matriz de ventanas de la sección actual, y pregunta si el elemento en la ubicación de Félix necesita ser reparado.
 				etapa.get(this.posFelix.getX()).get(this.posFelix.getY()).reparar();
 				if (Partida.getInstance().ganeNivel()) { //Si la ventana fue la última del nivel, la repara 
-					System.out.println("500 puntos!");
 					puntaje += 500;
 				} else {
-					System.out.println("100 puntos!");
 					puntaje += 100;
 				}
 			}
@@ -80,7 +78,6 @@ public class Felix {
 			if (!etapa.get(this.posFelix.getX()).get(this.posFelix.getY()+1).tieneMacetero()) { //Evalúo que la ventana de arriba no tenga macetero. Si lo tiene no me muevo.
 				if (!etapa.get(this.posFelix.getX()).get(this.posFelix.getY()).tieneMoldura()) { //Evalúo que la ventana en la que estoy parado no tenga moldura, si la tiene no me muevo.
 					this.posFelix.moverAr();; //En el caso de poder moverme hacia arriba lo hago.
-					System.out.println("Se movió arriba!");
 					seMovio = true;
 				}
 			}
@@ -94,7 +91,6 @@ public class Felix {
 			if (!etapa.get(this.posFelix.getX()).get(this.posFelix.getY()-1).tieneMoldura()) {
 				if (!etapa.get(this.posFelix.getX()).get(this.posFelix.getY()).tieneMacetero()) {
 					this.posFelix.moverAb();
-					System.out.println("Se movió abajo!");
 					seMovio = true;
 				}
 			}
@@ -108,7 +104,6 @@ public class Felix {
 			if (!etapa.get(this.posFelix.getX()-1).get(this.posFelix.getY()).estaAbierta()) { //Si la ventana de la izquierda es una ventana con hojas, tengo que preguntar si está abierta para moverme. Si es una ventana normal directamente me muevo.
 				if (!etapa.get(this.posFelix.getX()).get(this.posFelix.getY()).estaAbierta()) {
 					this.posFelix.moverIzq();;
-					System.out.println("Se movió Izquierda!");
 					seMovio = true;
 				}
 			}
@@ -122,7 +117,6 @@ public class Felix {
 			if (!etapa.get(this.posFelix.getX()+1).get(this.posFelix.getY()).estaAbierta()) { //Si la ventana de la izquierda es una ventana con hojas, tengo que preguntar si está abierta para moverme. Si es una ventana normal directamente me muevo.
 				if (!etapa.get(this.posFelix.getX()).get(this.posFelix.getY()).estaAbierta()) {
 					this.posFelix.moverDer();;
-					System.out.println("Se movió Derecha!");
 					seMovio = true;
 				}
 			}

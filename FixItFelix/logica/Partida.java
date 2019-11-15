@@ -8,7 +8,6 @@ public class Partida{
 
 	private static Partida INSTANCE;
 	private int tiempo;
-	private int dificultad;
 	private Felix pj;
 	private Ralph boss;
 	private Jugador player;
@@ -17,32 +16,34 @@ public class Partida{
 	private PartidaGUI partidaGUI;
 	
 	
-	private Partida(String nombre) {
-		this.tablero = new Edificio(this.dificultad);
+	private Partida() {
+		this.tablero = new Edificio(Juego.getInstance().getDificultad());
 		this.tiempo = 900;
-		this.dificultad = 1;
 		this.pj = new Felix();
 		this.boss = new Ralph();
-		this.player = new Jugador(nombre);
+		this.player = new Jugador("");
 		this.objetosPartida = new ArrayList<Objeto>();
 	}
 	
-	public static Partida getInstance (String nombre) {
+	public static Partida getInstance () {
 		if (INSTANCE == null) {
-			INSTANCE = new Partida(nombre);
+			INSTANCE = new Partida();
 			return INSTANCE;
 		} else {
 			return INSTANCE;
 		}
 	}
 	
-	public void inciarGrafica() {
-		this.partidaGUI = new PartidaGUI(this.tablero.getVentanas(0), this.tablero.getVentanas(1), this.tablero.getVentanas(2));
-	}
-	
-	public static Partida getInstance() {
+	public static Partida nuevaPartida() {
+		INSTANCE = new Partida();
 		return INSTANCE;
 	}
+	
+	public void iniciarGrafica() {
+	this.partidaGUI = new PartidaGUI(this.tablero.getVentanas(0), this.tablero.getVentanas(1), this.tablero.getVentanas(2));
+	}
+	
+
 
 	public void visible() {
 		this.partidaGUI.visible();
@@ -83,12 +84,37 @@ public class Partida{
 	}
 	
 	public void siguienteNivel() {
-		this.tablero = new Edificio(dificultad+1);
+		this.tablero = new Edificio(Juego.getInstance().proximoNivel());
 		partidaGUI.invisible();
 		this.partidaGUI = new PartidaGUI(tablero.getVentanas(0), tablero.getVentanas(1), tablero.getVentanas(2));
 		this.partidaGUI.visible();
 		this.pj.reset();
 	}
+	
+	public void perdiUnaVida() {
+		if (this.pj.getVidas()-1 != 0) {
+			this.tablero = new Edificio(Juego.getInstance().getDificultad());
+	   		this.partidaGUI.invisible();
+			this.partidaGUI = new PartidaGUI(tablero.getVentanas(0), tablero.getVentanas(1), tablero.getVentanas(2));
+			this.partidaGUI.visible();
+			this.pj.perderVida();
+			this.pj.reset();
+			this.getJugador().penalizacion();
+		} else {
+			this.partidaGUI.invisible();
+			if (Juego.getInstance().puntajeMaximo(this.player.getPuntaje())) {
+				NuevoPuntajeGUI nuevoMaxScore = new NuevoPuntajeGUI();
+				nuevoMaxScore.setVisible(true);
+			} else { 
+				Juego.getInstance().irAlMenu();
+				this.partidaGUI.invisible();
+
+			}
+		}
+		
+	}
+	
+	
 	
 	
 	/** Pregunta si Félix se encuentra con algún elemento de la lista, y de acuerdo al objeto realiza las acciones correspondientes.
@@ -98,13 +124,13 @@ public class Partida{
 	private void gestionarColisiones() {
 		if (this.tablero.getVentanas().get(this.pj.getPosFelix().getX()).get(this.pj.getPosFelix().getY()).pajaro()) {
 			this.objetosPartida.removeAll(objetosPartida);
-			this.tablero.reiniciarEtapa(dificultad);
+			this.tablero.reiniciarEtapa(Juego.getInstance().getDificultad());
 			this.pj.reset();
 			System.out.println("Chocó con un pájaro y se reinició la etapa.");
 		} else {
 			if (this.tablero.getVentanas().get(this.pj.getPosFelix().getX()).get(this.pj.getPosFelix().getY()).ladrillo()) {
 				this.pj.perderVida();
-				this.tablero = new Edificio(dificultad);
+				this.tablero = new Edificio(Juego.getInstance().getDificultad());
 				this.objetosPartida.removeAll(objetosPartida);
 				this.pj.reset();
 				System.out.println("Chocó con un ladrillo y se reinicia el nivel.");
@@ -145,9 +171,7 @@ public class Partida{
 		return this.tablero.getSeccionActual();
 	}
 	
-	public int getDificultad() {
-		return this.dificultad;
-	}
+
 	
 	public int getTiempo() {
 		if (tiempo != 0)
@@ -155,31 +179,7 @@ public class Partida{
 		return tiempo;
 	}
 
-	
-	public void actualizar() {
-		Timer timer = new Timer();
-		TimerTask task = new TimerTask() {
-		 	public void run(){
-		 		
-		 		
-		 		
-		 		/** 
-		 		 * preguntarle a ralph si tira ladrillos
-		 		 * if ralph.generarLadrillos then GUI animar ralph y ladrillos
-		 		 * 
-		 		 * 
-		 		 * crear pajaritos y nicelanders y tortas y toda esa wea
-		 		 * gestionar colisiones???????????' 
-		 		 * **/
-		 	}
-		};
-		timer.schedule(task, 10, 1);
-}
-	
-	
-	
-	
-	
+		
 	
 	
 	

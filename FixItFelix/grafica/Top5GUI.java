@@ -49,6 +49,7 @@ public class Top5GUI extends JFrame {
 		this.setLocationRelativeTo(null);
 		
 		txtTop = new JTextField();
+		txtTop.setEditable(false);
 		txtTop.setBorder(null);
 		txtTop.setHorizontalAlignment(SwingConstants.CENTER);
 		txtTop.setBackground(Color.BLACK);
@@ -98,7 +99,16 @@ public class Top5GUI extends JFrame {
 			new String[] {
 				"New column", "New column"
 			}
-		));
+		) {
+			boolean[] columnEditables = new boolean[] {
+				false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		table.getColumnModel().getColumn(0).setResizable(false);
+		table.getColumnModel().getColumn(1).setResizable(false);
 		table.setBackground(Color.BLACK);
 		table.setBounds(170, 351, 700, 249);
 		contentPane.add(table);

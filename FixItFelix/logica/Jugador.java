@@ -29,7 +29,15 @@ public class Jugador implements Comparable<Jugador> {
 		return jugador2.getPuntaje()-this.getPuntaje();
 	}
 	
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	
 	public String toString() {
 		return "Nombre: " + nombre + ". Puntaje: " + puntaje + ".";
+	}
+	
+	public void penalizacion() {
+		this.puntaje /= 2; 
 	}
 }

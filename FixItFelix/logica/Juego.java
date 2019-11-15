@@ -9,27 +9,20 @@ public class Juego {
 	private Fichero arch;
 	
 	private Juego() {
-		this.topScores = new ArrayList<Jugador>();
-		this.pantallaPrinc = new PantallaPrincipalGUI();
-		int [] actualizarStatsJuego = new int[3];
 		Fichero arch = new Fichero();
-		arch.leerEstadisticas();
-		actualizarStatsJuego = arch.getStats();
-		actualizarStatsJuego[0]++;
-		arch.escribirEstadisticas(actualizarStatsJuego);
+		cargarTopScores();
+		this.pantallaPrinc = new PantallaPrincipalGUI();
+		arch.aumentarCont(0, arch);	
 	}
 	
 	
-	public static void nuevoJuego(String nombre){
-		Partida.getInstance(nombre);
-		Partida.getInstance().inciarGrafica();
-	};
+	
 	
 	public int getDificultad() {
 		return pantallaPrinc.getDificultad();
 	}
 	
-	public static Juego getInstance (String nombre) {
+	public static Juego getInstance () {
 		if (INSTANCE == null) {
 			INSTANCE = new Juego();
 			return INSTANCE;
@@ -38,8 +31,10 @@ public class Juego {
 		}
 	}
 	
-	public static Juego getInstance() {
-		return INSTANCE;
+
+	public int proximoNivel() {
+		this.pantallaPrinc.aumentarDificultad();
+		return this.pantallaPrinc.getDificultad();
 	}
 	
 	
@@ -50,16 +45,16 @@ public class Juego {
 	 * el arreglo.
 	 * @param dir La dirección en la que debe moverse Félix durante este turno
 	 * @param martillazos La cantidad de martillazos que debe dar Félix durante este turno**/
-	public void turno(String dir, int martillazos) {
+	public void guardarEnTopScores(String nombre) {
+		Fichero arch = new Fichero();
+		Partida.getInstance().getJugador().setNombre(nombre);
 		String [] auxNombres = new String[5];
 			int [] auxScores = new int[5];
 			int [] auxStats = new int[3];
 			if (!(this.topScores.contains(Partida.getInstance().getJugador()))) {
 				if (!this.topScores.isEmpty()) {
 					if (Partida.getInstance().getJugador().getPuntaje() > Collections.min(this.topScores).getPuntaje()) {
-						auxStats = arch.getStats();
-						auxStats[2]++;
-						arch.escribirEstadisticas(auxStats);
+						arch.aumentarCont(2, arch);
 						this.topScores.add(Partida.getInstance().getJugador());
 						this.topScores.remove(Collections.min(this.topScores));
 						Collections.sort(this.topScores);
@@ -69,16 +64,41 @@ public class Juego {
 						}
 						arch.escribir(auxNombres, auxScores);
 					}
-				} else this.topScores.add(Partida.getInstance().getJugador());
+				} else {
+					this.topScores.add(Partida.getInstance().getJugador());
+					auxNombres[0]=this.topScores.get(0).getNombre();
+					auxScores[0]=this.topScores.get(0).getPuntaje();
+					for(int i=1; i<5; i++) {
+						auxNombres[i]=this.topScores.get(i).getNombre();
+						auxScores[i]=this.topScores.get(i).getPuntaje();
+					}
 			}
+		}
 	}
 	
-	/**Imprime los cinco puntajes más altos. **/
-	public void imprimirTopScores() {
-		System.out.println("------------Mejores puntajes------------");
-		for (Jugador jug : this.topScores) {
-			System.out.println(jug.toString());
-		}
-		System.out.println("----------------------------------------");
+	public boolean puntajeMaximo(int puntaje) {
+		return (puntaje > Collections.min(this.topScores).getPuntaje());
 	}
+	
+	public int getHighScore() {
+		return this.topScores.get(0).getPuntaje();
+	}
+	
+	private void cargarTopScores() {
+		Fichero arch = new Fichero();
+		arch.leer();
+		ArrayList<Jugador> jug = new ArrayList<Jugador>();
+		Jugador aux;
+		for (int i=0; i<5; i++) {
+			aux = new Jugador(arch.getNombres()[i]);
+			aux.setPuntaje(arch.getPuntos()[i]);		
+			jug.add(aux);
+		}
+		this.topScores=jug;
+	}
+	
+	public void irAlMenu() {
+		this.pantallaPrinc.visible();
+	}
+	
 }
