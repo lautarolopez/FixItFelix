@@ -1,5 +1,4 @@
 package grafica;
-
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -11,6 +10,9 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import logica.Fichero;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Font;
@@ -23,7 +25,8 @@ import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.LineBorder;
-
+import java.awt.Component;
+import java.awt.Dimension;
 public class Top5GUI extends JFrame {
 
 	private JPanel contentPane;
@@ -34,6 +37,8 @@ public class Top5GUI extends JFrame {
 
 
 	public Top5GUI(JFrame principal) {
+		Fichero datos = new Fichero();
+		datos.leer();
 		aux=this;
 		setBounds(100, 100, 1080, 720);
 		contentPane = new JPanel();
@@ -76,23 +81,28 @@ public class Top5GUI extends JFrame {
 		
 		table = new JTable();
 		table.setShowGrid(false);
-		table.setBorder(new LineBorder(Color.RED, 10));
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		table.setFont(new Font("Arial Black", Font.BOLD, 24));
+		table.setForeground(Color.RED);
+		table.setBorder(null);
+		table.setRowHeight(50);
 		table.setRowSelectionAllowed(false);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
+				{datos.getNombres()[0], datos.getPuntos()[0]},
+				{datos.getNombres()[1], datos.getPuntos()[1]},
+				{datos.getNombres()[2], datos.getPuntos()[2]},
+				{datos.getNombres()[3], datos.getPuntos()[3]},
+				{datos.getNombres()[4], datos.getPuntos()[4]},
 			},
 			new String[] {
 				"New column", "New column"
 			}
 		));
 		table.setBackground(Color.BLACK);
-		table.setBounds(170, 350, 700, 250);
+		table.setBounds(170, 351, 700, 249);
 		contentPane.add(table);
-		this.setIconImage(new ImageIcon(PantallaPrincipalGUI.class.getResource("/img/Icono.png")).getImage());
 	}
+		
 }
+

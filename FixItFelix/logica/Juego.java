@@ -6,10 +6,17 @@ public class Juego {
 	private static Juego INSTANCE;
 	private ArrayList<Jugador> topScores;
 	private PantallaPrincipalGUI pantallaPrinc;
+	private Fichero arch;
 	
 	private Juego() {
 		this.topScores = new ArrayList<Jugador>();
 		this.pantallaPrinc = new PantallaPrincipalGUI();
+		int [] actualizarStatsJuego = new int[3];
+		Fichero arch = new Fichero();
+		arch.leerEstadisticas();
+		actualizarStatsJuego = arch.getStats();
+		actualizarStatsJuego[0]++;
+		arch.escribirEstadisticas(actualizarStatsJuego);
 	}
 	
 	
@@ -44,17 +51,26 @@ public class Juego {
 	 * @param dir La dirección en la que debe moverse Félix durante este turno
 	 * @param martillazos La cantidad de martillazos que debe dar Félix durante este turno**/
 	public void turno(String dir, int martillazos) {
-		/**if (this.partidaActual.ciclo(dir, martillazos)) {
-			if (!(this.topScores.contains(this.partidaActual.getJugador()))) {
+		String [] auxNombres = new String[5];
+			int [] auxScores = new int[5];
+			int [] auxStats = new int[3];
+			if (!(this.topScores.contains(Partida.getInstance().getJugador()))) {
 				if (!this.topScores.isEmpty()) {
-					if (this.partidaActual.getJugador().getPuntaje() > Collections.min(this.topScores).getPuntaje()) {
-						this.topScores.add(this.partidaActual.getJugador());
+					if (Partida.getInstance().getJugador().getPuntaje() > Collections.min(this.topScores).getPuntaje()) {
+						auxStats = arch.getStats();
+						auxStats[2]++;
+						arch.escribirEstadisticas(auxStats);
+						this.topScores.add(Partida.getInstance().getJugador());
 						this.topScores.remove(Collections.min(this.topScores));
 						Collections.sort(this.topScores);
+						for(int i=0; i<5; i++) {
+							auxNombres[i]=this.topScores.get(i).getNombre();
+							auxScores[i]=this.topScores.get(i).getPuntaje();
+						}
+						arch.escribir(auxNombres, auxScores);
 					}
-				} else this.topScores.add(this.partidaActual.getJugador());
+				} else this.topScores.add(Partida.getInstance().getJugador());
 			}
-		}**/
 	}
 	
 	/**Imprime los cinco puntajes más altos. **/

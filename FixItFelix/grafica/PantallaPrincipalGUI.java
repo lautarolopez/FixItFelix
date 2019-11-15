@@ -25,8 +25,12 @@ public class PantallaPrincipalGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JFrame aux;
-	private EstadisticasGUI estadisticas = new EstadisticasGUI(this);
 	private ConfiguracionGUI configuracion = new ConfiguracionGUI(this);
+	private EstadisticasGUI estadisticas = new EstadisticasGUI(this);
+	private Top5GUI top5 = new Top5GUI(this);
+	private ReglasGUI reglas = new ReglasGUI(this);
+
+
 
 
 	/**
@@ -34,10 +38,10 @@ public class PantallaPrincipalGUI extends JFrame {
 	 */
 	public PantallaPrincipalGUI() {
 		aux=this;
+		Fichero arch = new Fichero();
+		arch.leerEstadisticas();
+		int[] cantVecesJugar = arch.getStats();
 		this.setResizable(false);
-		Top5GUI top5 = new Top5GUI(this);
-		ConfiguracionGUI configuracion = new ConfiguracionGUI(this);
-		ReglasGUI reglas = new ReglasGUI(this);
 		setBackground(Color.BLUE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1080, 720);
@@ -58,6 +62,8 @@ public class PantallaPrincipalGUI extends JFrame {
 		btnQuieroJugar.setFont(new Font("Arial Black", Font.BOLD, 20));
 		btnQuieroJugar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				cantVecesJugar[1]++;
+				arch.escribirEstadisticas(cantVecesJugar);
 				Partida.getInstance().visible();
 				aux.setVisible(false);
 			}
@@ -136,7 +142,6 @@ public class PantallaPrincipalGUI extends JFrame {
 		label.setIcon(new ImageIcon(PantallaPrincipalGUI.class.getResource("/img/pantallaprincipal/Screenshot_1.png")));
 		label.setBounds(193, 596, 715, 50);
 		panel.add(label);
-		this.setIconImage(new ImageIcon(PantallaPrincipalGUI.class.getResource("/img/Icono.png")).getImage());
 		this.setVisible(true);
 	}
 	
