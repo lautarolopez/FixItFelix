@@ -59,6 +59,7 @@ public class PartidaGUI extends JFrame{
 		this.setIconImage(new ImageIcon(PantallaPrincipalGUI.class.getResource("/img/Icono.png")).getImage());
 		AnimacionesRalph animRalph = new AnimacionesRalph();
 		animRalph.animarRalph();
+		setVisible(true);
 	}
 	
 	
@@ -462,8 +463,7 @@ public class PartidaGUI extends JFrame{
 		}
 	}
 	
-	
-		
+
 	
 	
 
@@ -685,6 +685,7 @@ public class PartidaGUI extends JFrame{
 			 		if (!congelar) {
 				 		if (tocaAFelix(ladrillo.getX(), ladrillo.getY(), ladrillo.getWidth(), ladrillo.getHeight())) {
 				 			organizadorDeCapas.remove(ladrillo);
+				 			organizadorDeCapas.repaint();
 				 			timer.cancel(); 
 				 			congelar = true;
 				 			Partida.getInstance().perdiUnaVida();  
@@ -703,18 +704,27 @@ public class PartidaGUI extends JFrame{
 	}
 	
 	
-	
-	
 	public boolean tocaAFelix(int x, int y, int width, int height) {
 		boolean aux = false;
-		if (((y-height) >= felix.getY()) && ((y-height) <= felix.getY())){
-			if ((x >= felix.getX()) && (x <= (felix.getX() + felix.getWidth()))){
+		
+		if (((y+height) <= (felix.getY() + felix.getHeight())) && ((y + height) >= felix.getY())){
+			if((x >= felix.getX()) && (x <= (felix.getX() + felix.getWidth()))) {
 				aux = true;
 			}
-			if (((x+width) >= felix.getX()) && ((x+width) <= (felix.getX() + felix.getWidth()))) {
+			if(((x+width) >= felix.getX()) && ((x+width) <= (felix.getX() + felix.getWidth()))) {
 				aux = true;
 			}
 		}
+		if (((y) <= (felix.getY() + felix.getHeight())) && ((y) >= felix.getY())){
+			if((x >= felix.getX()) && (x <= (felix.getX() + felix.getWidth()))) {
+				aux = true;
+			}
+			if(((x+width) >= felix.getX()) && ((x+width) <= (felix.getX() + felix.getWidth()))) {
+				aux = true;
+			}
+		}
+		
+		
 		return aux;
 	}
 } 

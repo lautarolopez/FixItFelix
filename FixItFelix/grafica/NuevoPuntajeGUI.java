@@ -112,15 +112,16 @@ public class NuevoPuntajeGUI extends JFrame {
 						txtNombreInvalidoIngrese.setText("NOMBRE INVALIDO, INGRESE OTRO QUE NO CONTENGA ESPACIOS");
 					}else
 						if(textField.getText().length()>20) {
-							textField.getText().substring(0, 20); //Si el nombre supera los 20 caracteres, creopea los primeros 20
+							textField.getText().substring(0, 20); //Si el nombre supera los 20 caracteres, trunca los primeros 20
 							}
 						aux.setVisible(false); //El nombre es valido, ir al menu
 						Juego.getInstance().guardarEnTopScores(textField.getText());
 						Juego.getInstance().irAlMenu();
 					
-				}else
+				}else {
 					txtNombreInvalidoIngrese.setText("NOMBRE INVALIDO, INGRESE OTRO QUE SEA MAYOR A DOS CARACTERES");
 					txtNombreInvalidoIngrese.setVisible(true);
+				}
 			}
 		});
 	

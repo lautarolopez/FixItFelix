@@ -26,8 +26,8 @@ public class PantallaPrincipalGUI extends JFrame {
 	private JPanel contentPane;
 	private JFrame aux;
 	private ConfiguracionGUI configuracion = new ConfiguracionGUI(this);
-	private EstadisticasGUI estadisticas = new EstadisticasGUI(this);
-	private Top5GUI top5 = new Top5GUI(this);
+	//private EstadisticasGUI estadisticas = new EstadisticasGUI(this);
+	//private Top5GUI top5 = new Top5GUI(this);
 	private ReglasGUI reglas = new ReglasGUI(this);
 
 
@@ -94,6 +94,7 @@ public class PantallaPrincipalGUI extends JFrame {
 		btnTop.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				aux.setVisible(false);
+				Top5GUI top5 = new Top5GUI(aux);
 				top5.setVisible(true);
 			}
 		});
@@ -109,7 +110,8 @@ public class PantallaPrincipalGUI extends JFrame {
 		btnEstadisticas.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				aux.setVisible(false);
-				estadisticas.setVisible(true);
+				EstadisticasGUI est = new EstadisticasGUI(aux);
+				est.setVisible(true);
 			}
 		});
 		btnEstadisticas.setForeground(Color.RED);

@@ -67,7 +67,7 @@ public class Top5GUI extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				if(e.getSource().equals(btnNewButton)) {
 					principal.setVisible(true);
-					aux.setVisible(false);
+					aux.dispose();
 				}
 			}
 		});

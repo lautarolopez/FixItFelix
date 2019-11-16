@@ -72,8 +72,12 @@ public class Juego {
 						auxNombres[i]=this.topScores.get(i).getNombre();
 						auxScores[i]=this.topScores.get(i).getPuntaje();
 					}
+					arch.escribir(auxNombres, auxScores);
 			}
 		}
+			for(Jugador juge : this.topScores) {
+				System.out.println(juge.getNombre() + ":" + juge.getPuntaje());
+			}
 	}
 	
 	public boolean puntajeMaximo(int puntaje) {

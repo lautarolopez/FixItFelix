@@ -1,7 +1,7 @@
 package logica;
 import java.util.*;
-
-import javax.swing.JLabel;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import grafica.*;
 public class Partida{
