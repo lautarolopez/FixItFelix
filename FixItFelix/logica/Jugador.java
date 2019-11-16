@@ -26,7 +26,7 @@ public class Jugador implements Comparable<Jugador> {
 	}
 	
 	public int compareTo(Jugador jugador2) {
-		return jugador2.getPuntaje()-this.getPuntaje();
+		return this.getPuntaje()-jugador2.getPuntaje();
 	}
 	
 	public void setNombre(String nombre) {
@@ -41,3 +41,4 @@ public class Jugador implements Comparable<Jugador> {
 		this.puntaje /= 2; 
 	}
 }
+   

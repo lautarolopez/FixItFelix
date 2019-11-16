@@ -38,46 +38,27 @@ public class Juego {
 	}
 	
 	
-	/** Realiza un ciclo de la partida. Además, si la partida terminó agrega al jugador a la lista. Para esto
-	 * verifica que el jugador no esté ya en la lista, para evitar duplicados si siguen mandando turnos a 
-	 * una partida terminada; si el arrego es vacío, para no comparar en un arreglo vacío; y luego si 
-	 * el puntaje es mayor al mínimo del arreglo, en ese caso se reemplaza uno por otro y se ordena
-	 * el arreglo.
-	 * @param dir La dirección en la que debe moverse Félix durante este turno
-	 * @param martillazos La cantidad de martillazos que debe dar Félix durante este turno**/
 	public void guardarEnTopScores(String nombre) {
 		Fichero arch = new Fichero();
 		Partida.getInstance().getJugador().setNombre(nombre);
 		String [] auxNombres = new String[5];
 			int [] auxScores = new int[5];
-			int [] auxStats = new int[3];
 			if (!(this.topScores.contains(Partida.getInstance().getJugador()))) {
-				if (!this.topScores.isEmpty()) {
-					if (Partida.getInstance().getJugador().getPuntaje() > Collections.min(this.topScores).getPuntaje()) {
+					if (Partida.getInstance().getJugador().getPuntaje() > Collections.min
+						(this.topScores).getPuntaje()) {
 						arch.aumentarCont(2, arch);
-						this.topScores.add(Partida.getInstance().getJugador());
+						this.topScores.add(5,Partida.getInstance().getJugador());
+						//Uso comparador porque SORT siempre ordena de MENOR A MAYOR, esto INVIERTE el orden de sort.
+						Comparator<Jugador> comparador = Collections.reverseOrder();
+						Collections.sort(this.topScores, comparador);
 						this.topScores.remove(Collections.min(this.topScores));
-						Collections.sort(this.topScores);
 						for(int i=0; i<5; i++) {
 							auxNombres[i]=this.topScores.get(i).getNombre();
 							auxScores[i]=this.topScores.get(i).getPuntaje();
 						}
 						arch.escribir(auxNombres, auxScores);
 					}
-				} else {
-					this.topScores.add(Partida.getInstance().getJugador());
-					auxNombres[0]=this.topScores.get(0).getNombre();
-					auxScores[0]=this.topScores.get(0).getPuntaje();
-					for(int i=1; i<5; i++) {
-						auxNombres[i]=this.topScores.get(i).getNombre();
-						auxScores[i]=this.topScores.get(i).getPuntaje();
-					}
-					arch.escribir(auxNombres, auxScores);
-			}
 		}
-			for(Jugador juge : this.topScores) {
-				System.out.println(juge.getNombre() + ":" + juge.getPuntaje());
-			}
 	}
 	
 	public boolean puntajeMaximo(int puntaje) {

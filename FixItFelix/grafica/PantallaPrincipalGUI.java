@@ -26,8 +26,8 @@ public class PantallaPrincipalGUI extends JFrame {
 	private JPanel contentPane;
 	private JFrame aux;
 	private ConfiguracionGUI configuracion = new ConfiguracionGUI(this);
-	//private EstadisticasGUI estadisticas = new EstadisticasGUI(this);
-	//private Top5GUI top5 = new Top5GUI(this);
+	private EstadisticasGUI estadisticas = new EstadisticasGUI(this);
+	private Top5GUI top5 = new Top5GUI(this);
 	private ReglasGUI reglas = new ReglasGUI(this);
 
 

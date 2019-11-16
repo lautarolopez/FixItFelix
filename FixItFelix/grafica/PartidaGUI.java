@@ -588,7 +588,7 @@ public class PartidaGUI extends JFrame{
 				@Override
 			 	public void run(){
 					if (!congelar) {
-				 		if (tiempoParaLadrillos < 300) { /// A medida que aumente la dificultad va a llegar más rápido a 1
+				 		if (tiempoParaLadrillos < 1500) { /// A medida que aumente la dificultad el contador va a comenzar con un número más grande, por lo que ralph va a tirar ladrillos más seguido.
 				 			if (izq) {
 					 			if (cont < 10) {
 					 				ralph.setIcon(new ImageIcon("img/ralph/slice221_@_izq.png"));

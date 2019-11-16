@@ -26,10 +26,10 @@ public class Fichero{
 			try { /**
 			        *SI SALTA AL TRY BUSCA LOS DATOS ALMACENADOS DE DATA
 			        */
-				FileReader entrada= new FileReader("data.txt"); 
-				BufferedReader mibuffer= new BufferedReader(entrada);
+				FileReader in= new FileReader("data.txt"); 
+				BufferedReader buffer= new BufferedReader(in);
 			    int pos=0;
-			    linea=mibuffer.readLine();
+			    linea=buffer.readLine();
 			    while(linea!=null){
 			    	
 					for(int i=0;i<linea.length();i++) {
@@ -40,19 +40,19 @@ public class Fichero{
 						   }
 						}
 					pos++;
-					linea=mibuffer.readLine();
+					linea=buffer.readLine();
 			    }
-			    mibuffer.close();
+			    buffer.close();
 			}
 			catch(IOException e){ /**
 			                       *SI SALTA AL CATCH CREA UN DATA.TXT
 				                  */
 				try {           
-	 				FileWriter salida= new FileWriter("data.txt");
-					BufferedWriter mibuffer= new BufferedWriter(salida);
+	 				FileWriter out= new FileWriter("data.txt");
+					BufferedWriter buffer= new BufferedWriter(out);
 					linea= "puesto1" +":"+ puntos[0] + "\n" + "puesto2" +":"+ puntos[1] + "\n" + "puesto3" +":"+ puntos[2] + "\n" + "puesto4" +":"+ puntos[3] + "\n" + "puesto5" +":"+ puntos[4] + "\n";
-				    mibuffer.write(linea);
-				    mibuffer.close();
+				    buffer.write(linea);
+				    buffer.close();
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
@@ -62,11 +62,11 @@ public class Fichero{
 		public void escribir(String [] nombres, int[] puntos) {
 			try {
 				String linea;
-				FileWriter salida= new FileWriter("data.txt");
-				BufferedWriter mibuffer= new BufferedWriter(salida);
+				FileWriter out= new FileWriter("data.txt");
+				BufferedWriter buffer= new BufferedWriter(out);
 				linea= nombres[0] +":"+ puntos[0] + "\n" + nombres[1] +":"+ puntos[1] + "\n" + nombres[2] +":"+ puntos[2] + "\n" + nombres[3] +":"+ puntos[3] + "\n" + nombres[4] +":"+ puntos[4] + "\n";
-			    mibuffer.write(linea);
-			    mibuffer.close();
+				buffer.write(linea);
+			    buffer.close();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -80,12 +80,12 @@ public class Fichero{
 			try { /**
 			        *SI SALTA AL TRY BUSCA LOS DATOS ALMACENADOS DE ESTADISTICAS
 			        */
-				FileReader entrada= new FileReader("estadisticas.txt"); 
-				BufferedReader mibuffer= new BufferedReader(entrada);
+				FileReader in= new FileReader("estadisticas.txt"); 
+				BufferedReader buffer= new BufferedReader(in);
 			    int pos=0;
 			    int j=0;
 			    String g;
-			    linea=mibuffer.readLine();
+			    linea=buffer.readLine();
 			    if (linea!=null){
 					for(int i=0;i<linea.length();i++) {
 						   if(linea.charAt(i)==':') {
@@ -103,18 +103,17 @@ public class Fichero{
 						   }
 						}
 			    }
-			    mibuffer.close();
+			    buffer.close();
 			}
 			catch(IOException e){ /**
 			                       *SI SALTA AL CATCH CREA UN ESTADISTICAS.TXT
 				                  */
 				try {           
-	 				FileWriter salida= new FileWriter("estadisticas.txt");
-					BufferedWriter mibuffer= new BufferedWriter(salida);
-					stats[0]=1;
+	 				FileWriter out= new FileWriter("estadisticas.txt");
+					BufferedWriter buffer= new BufferedWriter(out);
 					linea= stats[0] +":"+ stats[1] + ";" + stats[2];
-				    mibuffer.write(linea);
-				    mibuffer.close();
+				    buffer.write(linea);
+				    buffer.close();
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
@@ -122,11 +121,11 @@ public class Fichero{
 			public void escribirEstadisticas (int [] stats) {
 				try {
 					String linea;
-					FileWriter salida= new FileWriter("estadisticas.txt");
-					BufferedWriter mibuffer= new BufferedWriter(salida);
+					FileWriter out= new FileWriter("estadisticas.txt");
+					BufferedWriter buffer= new BufferedWriter(out);
 					linea= stats[0] +":"+ stats[1] + ";" + stats[2];
-					mibuffer.write(linea);
-				    mibuffer.close();
+					buffer.write(linea);
+				    buffer.close();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
