@@ -68,6 +68,7 @@ public abstract class Ventana {
 			x++;
 		}
 		
+		
 		switch (est) {
 			case ROTO:
 				this.salud.set(x, Estado.CASIROTO);

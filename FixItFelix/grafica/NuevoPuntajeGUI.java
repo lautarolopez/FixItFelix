@@ -34,11 +34,10 @@ public class NuevoPuntajeGUI extends JFrame {
 	private JTextField txtIngreseNombre;
 	private JTextField textField;
 	private JTextField txtNombreInvalidoIngrese;
-	private JLabel lblNewLabel_1 = new JLabel("New label");
+	private JLabel lblNewLabel_1 = new JLabel("");
 	private JLabel lblNewLabel_2;
 	private JTextField txtNuevoPuntajeAlto;
 	private JFrame aux = this;
-	
 	
 	public NuevoPuntajeGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,8 +56,7 @@ public class NuevoPuntajeGUI extends JFrame {
 		txtNuevoPuntajeAlto.setBorder(null);
 		txtNuevoPuntajeAlto.setBackground(Color.BLACK);
 		txtNuevoPuntajeAlto.setFont(new Font("Arial Black", Font.BOLD, 24));
-		txtNuevoPuntajeAlto.setText("NUEVO PUNTAJE ALTO");
-		txtNuevoPuntajeAlto.setBounds(10, 290, 988, 56);
+		txtNuevoPuntajeAlto.setBounds(10, 306, 988, 48);
 		contentPane.add(txtNuevoPuntajeAlto);
 		txtNuevoPuntajeAlto.setColumns(10);
 		
@@ -70,14 +68,15 @@ public class NuevoPuntajeGUI extends JFrame {
 		txtIngreseNombre.setFont(new Font("Arial Black", Font.BOLD, 18));
 		txtIngreseNombre.setBackground(new Color(0, 0, 0));
 		txtIngreseNombre.setText("INGRESE NOMBRE ");
-		txtIngreseNombre.setBounds(10, 342, 988, 32);
+		txtIngreseNombre.setBounds(10, 357, 988, 32);
 		contentPane.add(txtIngreseNombre);
 		txtIngreseNombre.setColumns(10);
 		
 		
 		
 		textField = new JTextField();
-		textField.setBounds(378, 385, 248, 39);
+		textField.setFont(new Font("Arial Black", Font.BOLD, 13));
+		textField.setBounds(378, 409, 248, 39);
 		contentPane.add(textField);
 		textField.setColumns(10);
 	
@@ -89,8 +88,7 @@ public class NuevoPuntajeGUI extends JFrame {
 		txtNombreInvalidoIngrese.setFont(new Font("Arial Black", Font.BOLD, 15));
 		txtNombreInvalidoIngrese.setForeground(Color.RED);
 		txtNombreInvalidoIngrese.setBackground(new Color(0, 0, 0));
-		
-		txtNombreInvalidoIngrese.setBounds(10, 469, 988, 39);
+		txtNombreInvalidoIngrese.setBounds(10, 519, 988, 39);
 		contentPane.add(txtNombreInvalidoIngrese);
 		txtNombreInvalidoIngrese.setColumns(10);
 		
@@ -100,77 +98,118 @@ public class NuevoPuntajeGUI extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar.setFont(new Font("Arial Black", Font.BOLD, 11));
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(textField.getText().length()>3) {
+				if(textField.getText().length()>3) { 
 					boolean hayBlanco=false;
 					int i=0;
-					while(i<textField.getText().length()&&hayBlanco==false) {
+					while(i<textField.getText().length()&&hayBlanco==false) { //Evaluo caracter por caracter que no existan blancos
 						if(textField.getText().charAt(i)==' ') {
 							hayBlanco=true;
 						}else {
 							i++;
 						}
 					}
-					if(hayBlanco==true) {
+					if(hayBlanco==true) { //Si encontre algun blanco, lo informo y solicito un nuevo nombre
 						txtNombreInvalidoIngrese.setVisible(true);
 						txtNombreInvalidoIngrese.setText("NOMBRE INVALIDO, INGRESE OTRO QUE NO CONTENGA ESPACIOS");
 					}else {
 						String nombreFinal = textField.getText();
-						if(nombreFinal.length()>20) {
+						if(nombreFinal.length()>20) {				//Llegados a este punto el nombre es valido, evaluo si posee mas de 20 caracteres y de ser asi cropeo el String dejando solo los primeros 20.
 							nombreFinal = nombreFinal.substring(0, 19);
 						}
-						aux.setVisible(false); //El nombre es valido, ir al menu
-						Juego.getInstance().guardarEnTopScores(nombreFinal);
+						Juego.getInstance().guardarEnTopScores(nombreFinal);  //Me dirijo al menu y hago invisible esta ventana
 						Juego.getInstance().irAlMenu();
+						dispose();
 					}
 				}else
-					txtNombreInvalidoIngrese.setText("NOMBRE INVALIDO, INGRESE OTRO QUE SEA MAYOR A DOS CARACTERES");
+					txtNombreInvalidoIngrese.setText("NOMBRE INVALIDO, INGRESE OTRO QUE SEA MAYOR A DOS CARACTERES"); //El nombre es menor a 3 caracteres por lo que informo y solicito uno nuevo.
 					txtNombreInvalidoIngrese.setVisible(true);
 			}
 		});
 	
-		btnAceptar.setBounds(458, 435, 89, 23);
+		btnAceptar.setBounds(458, 459, 89, 23);
 		contentPane.add(btnAceptar);
+		lblNewLabel_1.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		lblNewLabel_1.setIcon(new ImageIcon(NuevoPuntajeGUI.class.getResource("/img/ralph/slice197_@.png")));
-		lblNewLabel_1.setBounds(693, 402, 128, 56);
+		lblNewLabel_1.setBounds(695, 365, 128, 145);
 		contentPane.add(lblNewLabel_1);
 		
-		lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setIcon(new ImageIcon(NuevoPuntajeGUI.class.getResource("/img/felix/slice72_72.png")));
-		lblNewLabel_2.setBounds(281, 393, 41, 56);
+		lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblNewLabel_2.setBounds(278, 418, 54, 64);
 		contentPane.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("New label");
+		lblNewLabel_3.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblNewLabel_3.setIcon(new ImageIcon(NuevoPuntajeGUI.class.getResource("/img/medallas/slice29_29.png")));
-		lblNewLabel_3.setBounds(458, 519, 95, 145);
+		lblNewLabel_3.setBounds(458, 557, 95, 113);
 		contentPane.add(lblNewLabel_3);
-		actualizarBarraDeEstado();
-		
+		actualizarAnimaciones(); 
 		
 	}
-	public void actualizarBarraDeEstado() {
 	
+	/** A medida que pase el tiempo alternara las animaciones de Ralph y Felix, dependiendo si la partida se gano o se perdio.
+	 * Ademas alternara el texto que indique si efectivamente se gano o no el juego. **/
+	public void actualizarAnimaciones() {
 		Timer timer = new Timer();
 		TimerTask task = new TimerTask() {
 			int i=1;
 			
 		 	public void run(){
 		 		switch(i) {
-		 		case 1: lblNewLabel_1.setIcon(new ImageIcon(NuevoPuntajeGUI.class.getResource("/img/ralph/slice197_@.png")));
-		 				lblNewLabel_2.setIcon(new ImageIcon(NuevoPuntajeGUI.class.getResource("/img/felix/slice72_72.png")));
+		 		case 1: if(Juego.getInstance().getDificultad()==10) {
+		 					txtNuevoPuntajeAlto.setText("HA GANADO!! NUEVO PUNTAJE ALTO!");
+			 				lblNewLabel_1.setIcon(new ImageIcon(NuevoPuntajeGUI.class.getResource("/img/ralph/slice197_@.png")));
+			 				lblNewLabel_2.setIcon(new ImageIcon(NuevoPuntajeGUI.class.getResource("/img/felix/slice72_72.png")));
+		 					}
+		 				else {
+		 					txtNuevoPuntajeAlto.setText("HA PERDIDO, PERO... NUEVO PUNTAJE ALTO!");
+			 				lblNewLabel_1.setIcon(new ImageIcon(NuevoPuntajeGUI.class.getResource("/img/ralph/slice146_@.png")));
+			 				lblNewLabel_2.setIcon(new ImageIcon(NuevoPuntajeGUI.class.getResource("/img/felix/slice293_@.png")));
+		 					}	
 		 				i++;
 		 				break;
-		 		case 2: lblNewLabel_1.setIcon(new ImageIcon(NuevoPuntajeGUI.class.getResource("/img/ralph/slice196_@.png")));
-		 				lblNewLabel_2.setIcon(new ImageIcon(NuevoPuntajeGUI.class.getResource("/img/felix/slice73_73.png")));
+		 		case 2: if(Juego.getInstance().getDificultad()==10) {
+		 					txtNuevoPuntajeAlto.setText("HA GANADO!! NUEVO PUNTAJE ALTO!");
+			 				lblNewLabel_1.setIcon(new ImageIcon(NuevoPuntajeGUI.class.getResource("/img/ralph/slice196_@.png")));
+			 				lblNewLabel_2.setIcon(new ImageIcon(NuevoPuntajeGUI.class.getResource("/img/felix/slice73_73.png")));
+		 					}
+		 				else {
+		 					txtNuevoPuntajeAlto.setText("HA PERDIDO, PERO... NUEVO PUNTAJE ALTO!");
+			 				lblNewLabel_1.setIcon(new ImageIcon(NuevoPuntajeGUI.class.getResource("/img/ralph/slice150_@.png")));
+			 				lblNewLabel_2.setIcon(new ImageIcon(NuevoPuntajeGUI.class.getResource("/img/felix/slice294_@.png")));
+		 					}	
 		 				i++;
 		 				break;
-		 		case 3: lblNewLabel_1.setIcon(new ImageIcon(NuevoPuntajeGUI.class.getResource("/img/ralph/slice195_@.png")));
-		 				lblNewLabel_2.setIcon(new ImageIcon(NuevoPuntajeGUI.class.getResource("/img/felix/slice77_77.png")));
-		 				i=1;
+		 		case 3: if(Juego.getInstance().getDificultad()==10) {
+		 					txtNuevoPuntajeAlto.setText("HA GANADO!! NUEVO PUNTAJE ALTO!");
+			 				lblNewLabel_1.setIcon(new ImageIcon(NuevoPuntajeGUI.class.getResource("/img/ralph/slice195_@.png")));
+			 				lblNewLabel_2.setIcon(new ImageIcon(NuevoPuntajeGUI.class.getResource("/img/felix/slice77_77.png")));
+		 					}
+		 				else {
+		 					txtNuevoPuntajeAlto.setText("HA PERDIDO, PERO... NUEVO PUNTAJE ALTO!");
+			 				lblNewLabel_1.setIcon(new ImageIcon(NuevoPuntajeGUI.class.getResource("/img/ralph/slice151_@.png")));
+			 				lblNewLabel_2.setIcon(new ImageIcon(NuevoPuntajeGUI.class.getResource("/img/felix/slice295_@.png")));
+		 					}
+		 				i++;
 		 				break;
-		 	}}
+		 		 case 4: if(Juego.getInstance().getDificultad()==10) {
+		 			 		txtNuevoPuntajeAlto.setText("HA GANADO!! NUEVO PUNTAJE ALTO!");
+		 			 		lblNewLabel_1.setIcon(new ImageIcon(NuevoPuntajeGUI.class.getResource("/img/ralph/slice196_@.png")));
+		 			 		lblNewLabel_2.setIcon(new ImageIcon(NuevoPuntajeGUI.class.getResource("/img/felix/slice73_73.png")));
+ 							}
+		 		 		else {
+		 		 			txtNuevoPuntajeAlto.setText("HA PERDIDO, PERO... NUEVO PUNTAJE ALTO!");
+		 		 			lblNewLabel_1.setIcon(new ImageIcon(NuevoPuntajeGUI.class.getResource("/img/ralph/slice151_@.png")));
+		 		 			lblNewLabel_2.setIcon(new ImageIcon(NuevoPuntajeGUI.class.getResource("/img/felix/slice296_@.png")));
+		 		 			}
+		 		 		i=1;
+		 		 		break;
+		 			}
+		 		}
 		};
 		timer.schedule(task, 10, 150);
 	}

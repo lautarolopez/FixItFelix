@@ -5,7 +5,6 @@
 <fullyQualifiedTypeName name="logica.Edificio"/>
 <fullyQualifiedTypeName name="com.sun.org.apache.bcel.internal.generic.NEWARRAY"/>
 <fullyQualifiedTypeName name="java.util.HashMap"/>
-<fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="logica.Estado"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="javax.swing.Icon"/>
@@ -26,4 +25,5 @@
 <fullyQualifiedTypeName name="java.awt.event.MouseEvent"/>
 <fullyQualifiedTypeName name="javax.swing.JLabel"/>
 <fullyQualifiedTypeName name="logica.Juego"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
 </qualifiedTypeNameHistroy>

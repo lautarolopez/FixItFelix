@@ -16,8 +16,6 @@ public class Felix {
 	
 	public void reset() { //Reinicia la posición y la invulnerabilidad se desactiva si está activada, pero no cambian las vidas.
 		this.posFelix = new Posicion (2, 0);
-		this.invulnerable = false;
-		this.timeLeftInv = 0;
 	}
 	
 	
@@ -53,8 +51,11 @@ public class Felix {
 	}
 	
 	public void setInvulnerable() {
-		this.invulnerable = true;
-		this.timeLeftInv = 2;
+		this.invulnerable = !this.invulnerable;
+	}
+	
+	public boolean isInvulnerable() {
+		return this.invulnerable;
 	}
 
 	public void perderVida() {

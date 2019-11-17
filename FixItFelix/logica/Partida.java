@@ -3,6 +3,8 @@ import java.util.*;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.swing.ImageIcon;
+
 import grafica.*;
 public class Partida{
 
@@ -12,17 +14,15 @@ public class Partida{
 	private Ralph boss;
 	private Jugador player;
 	private Edificio tablero;
-	private ArrayList<Objeto> objetosPartida;
 	private PartidaGUI partidaGUI;
 	
 	
 	private Partida() {
 		this.tablero = new Edificio(Juego.getInstance().getDificultad());
-		this.tiempo = 900;
+		this.tiempo = 5000;
 		this.pj = new Felix();
 		this.boss = new Ralph();
 		this.player = new Jugador("");
-		this.objetosPartida = new ArrayList<Objeto>();
 	}
 	
 	public static Partida getInstance () {
@@ -40,7 +40,8 @@ public class Partida{
 	}
 	
 	public void iniciarGrafica() {
-	this.partidaGUI = new PartidaGUI(this.tablero.getVentanas(0), this.tablero.getVentanas(1), this.tablero.getVentanas(2));
+		this.partidaGUI = new PartidaGUI(this.tablero.getVentanas(0), this.tablero.getVentanas(1), this.tablero.getVentanas(2));
+		ciclo();
 	}
 	
 
@@ -85,30 +86,30 @@ public class Partida{
 	
 	public void siguienteNivel() {
 		this.tablero = new Edificio(Juego.getInstance().proximoNivel());
-		partidaGUI.invisible();
+		this.partidaGUI. dispose();
 		this.partidaGUI = new PartidaGUI(tablero.getVentanas(0), tablero.getVentanas(1), tablero.getVentanas(2));
 		this.partidaGUI.visible();
 		this.pj.reset();
+		this.tiempo = 5000;
 	}
 	
 	public void perdiUnaVida() {
-		if (this.pj.getVidas()-1 != 0) {
+		if (this.pj.getVidas() > 0) {
 			this.tablero = new Edificio(Juego.getInstance().getDificultad());
-	   		this.partidaGUI.invisible();
+	   		this.partidaGUI.dispose();
 			this.partidaGUI = new PartidaGUI(tablero.getVentanas(0), tablero.getVentanas(1), tablero.getVentanas(2));
 			this.partidaGUI.visible();
 			this.pj.perderVida();
 			this.pj.reset();
 			this.getJugador().penalizacion();
+			this.tiempo = 5000;
 		} else {
-			this.partidaGUI.invisible();
+			this.partidaGUI.dispose();
 			if (Juego.getInstance().puntajeMaximo(this.player.getPuntaje())) {
 				NuevoPuntajeGUI nuevoMaxScore = new NuevoPuntajeGUI();
 				nuevoMaxScore.setVisible(true);
 			} else { 
 				Juego.getInstance().irAlMenu();
-				this.partidaGUI.invisible();
-
 			}
 		}
 		
@@ -116,32 +117,86 @@ public class Partida{
 	
 	
 	
+	private void ciclo() {
+		Timer timer = new Timer();
+		TimerTask task = new TimerTask() {
+			int cantPajaros = 0;
+			int cont = 0;
+			int cont2 = 0;
+			int cont3 = 0;
+			boolean hayNicelander = false;
+		 	@Override
+		 	public void run(){
+		 		if ((tiempo != 0) && (Juego.getInstance().getDificultad() < 11)) {
+					
+		 			if ((cont >  (10000 / Juego.getInstance().getDificultad())) && (cantPajaros >= 2)) {
+						cantPajaros = 0;
+						cont = 0;
+					}
+		 			
+					if (tablero.generarPajaro()) {
+						if (cantPajaros < 2) {
+							partidaGUI.animarPajaro();
+							cantPajaros++;
+						}	
+					}
+					
+					/** Consulta a todas las ventanas si debe generar un Nicelander. Cada ventana lo implementa a su manera. Si le retornan
+					 * verdadero crea una nueva instancia de Objeto Nicelander y lo agrega a la lista de elementos de la partida.  **/
+					if (!hayNicelander) {	
+						for (ArrayList<Ventana> arrVent : tablero.getVentanas()) {
+							for (Ventana vent : arrVent) {
+								if (vent.generarNicelander()) {
+									partidaGUI.animarNicelanderYTorta(vent.getPos().getX(), vent.getPos().getY());
+									hayNicelander = true;
+								}
+							}
+						}
+					}
+					
+					
+					
+					
+					
+					
+					if (cont2 >  5000) {
+						hayNicelander = false;
+						cont2 = 0;
+					}
+					
+					
+					if(cont3 > 1000 && pj.isInvulnerable()) {
+						cont3 = 0;
+						pj.setInvulnerable();
+					}
+				
+					
+					 
+					
+					cont++;
+					cont2++;
+					cont3++;
+					tiempo--;
+		 		} else {
+		 			if (tiempo == 0) {
+		 				perdiUnaVida();
+		 			} else {
+			 			partidaGUI.dispose();
+						if (Juego.getInstance().puntajeMaximo(player.getPuntaje())) {
+							NuevoPuntajeGUI nuevoMaxScore = new NuevoPuntajeGUI();
+							nuevoMaxScore.setVisible(true);
+						} else { 
+							System.out.println("GANASTE!"); ///reemplazar por pantalla de victoria, pero sin introducir texto porque no logró un puntaje para el top5
+							Juego.getInstance().irAlMenu();
+						}
+		 			}
+		 			timer.cancel();
+		 		}
+		 	};
+		};
+		timer.schedule(task, 10, 10);
+	}	
 	
-	/** Pregunta si Félix se encuentra con algún elemento de la lista, y de acuerdo al objeto realiza las acciones correspondientes.
-	 * Pájaro: reinicia la sección sin perder vidas.
-	 * Ladrillo: reinicia el nivel perdiendo una vida.
-	 * Torta: Vuelve invulnerable a Félix durante una determinada cantidad de ciclos. **/
-	private void gestionarColisiones() {
-		if (this.tablero.getVentanas().get(this.pj.getPosFelix().getX()).get(this.pj.getPosFelix().getY()).pajaro()) {
-			this.objetosPartida.removeAll(objetosPartida);
-			this.tablero.reiniciarEtapa(Juego.getInstance().getDificultad());
-			this.pj.reset();
-			System.out.println("Chocó con un pájaro y se reinició la etapa.");
-		} else {
-			if (this.tablero.getVentanas().get(this.pj.getPosFelix().getX()).get(this.pj.getPosFelix().getY()).ladrillo()) {
-				this.pj.perderVida();
-				this.tablero = new Edificio(Juego.getInstance().getDificultad());
-				this.objetosPartida.removeAll(objetosPartida);
-				this.pj.reset();
-				System.out.println("Chocó con un ladrillo y se reinicia el nivel.");
-			} else {
-				if (this.tablero.getVentanas().get(this.pj.getPosFelix().getX()).get(this.pj.getPosFelix().getY()).ladrillo()){
-					this.pj.setInvulnerable();
-					System.out.println("Félix ahora es invulnerable!");
-				}
-			}
-		}
-	}
 	
 	public Jugador getJugador() {
 		return this.player;
@@ -153,6 +208,9 @@ public class Partida{
 	
 	public ArrayList<ArrayList<Ventana>>  getVentanas(int secc) {
 		return this.tablero.getVentanas(secc);
+	}
+	public void resetTiempo() {
+		this.tiempo = 5000;
 	}
 	
 	public boolean ganeNivel() {
@@ -171,11 +229,16 @@ public class Partida{
 		return this.tablero.getSeccionActual();
 	}
 	
+	public boolean isInvulnerable() {
+		return this.pj.isInvulnerable();
+	}
+	
+	public void setInvulnerable() {
+		this.pj.setInvulnerable();
+	}
 
 	
 	public int getTiempo() {
-		if (tiempo != 0)
-			tiempo--;
 		return tiempo;
 	}
 

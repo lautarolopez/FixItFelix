@@ -39,8 +39,8 @@ public class PantallaPrincipalGUI extends JFrame {
 	public PantallaPrincipalGUI() {
 		aux=this;
 		Fichero arch = new Fichero();
-		this.setResizable(false);
-		setBackground(Color.BLUE);
+		this.setIconImage(new ImageIcon(PantallaPrincipalGUI.class.getResource("/img/Icono.png")).getImage());
+		setResizable(false);		setBackground(Color.BLUE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1080, 720);
 		contentPane = new JPanel();

@@ -159,7 +159,7 @@ public class StatusGUI extends JPanel {
 				mensaje = String.valueOf(Partida.getInstance().getJugador().getPuntaje());
 				textPuntajeAct.setText(mensaje);
 				
-				mensaje = String.valueOf(Partida.getInstance().getTiempo());
+				mensaje = String.valueOf(Partida.getInstance().getTiempo()/10 );
 				textTiemp.setText(mensaje);
 				if(Partida.getInstance().getTiempo()<100)
 					textTiemp.setForeground(new Color(204, 0, 0));

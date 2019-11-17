@@ -29,6 +29,8 @@ public class EstadisticasGUI extends JFrame {
 	public EstadisticasGUI(JFrame principal) {
 		aux=this;
 		Fichero arch = new Fichero();
+		this.setIconImage(new ImageIcon(PantallaPrincipalGUI.class.getResource("/img/Icono.png")).getImage());
+		setResizable(false);
 		arch.leerEstadisticas();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1080, 700);

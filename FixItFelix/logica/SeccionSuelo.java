@@ -28,13 +28,13 @@ public class SeccionSuelo extends Seccion {
 						this.etapa.get(x).add(aux);
 					} else {
 						double r = Math.random();
-						if (r < 0.70) {
+						//if (r < 0.70) {
 							Ventana aux = new VentanaNormal(posi, dificultad);
 							this.etapa.get(x).add(aux);
-						} else {
-							Ventana aux = new VentanaConHojas(posi);
-							this.etapa.get(x).add(aux);
-						}
+						//} else {
+						//	Ventana aux = new VentanaConHojas(posi);
+						//	this.etapa.get(x).add(aux);
+						//}
 					}
 					
 				}

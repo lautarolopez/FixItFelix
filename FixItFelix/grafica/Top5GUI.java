@@ -40,6 +40,8 @@ public class Top5GUI extends JFrame {
 		Fichero datos = new Fichero();
 		datos.leer();
 		aux=this;
+		this.setIconImage(new ImageIcon(PantallaPrincipalGUI.class.getResource("/img/Icono.png")).getImage());
+		setResizable(false);
 		setBounds(100, 100, 1080, 720);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.BLACK);

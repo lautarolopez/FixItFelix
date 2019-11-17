@@ -64,11 +64,6 @@ public boolean ciclo(String dir, int martillazos) {
 			
 			
 			
-			/**Mueve a Félix en la dirección que recibe en este turno. **/
-			this.pj.mover(dir, this.tablero.getVentanas());
-			
-			
-			
 			/** Consulta a todas las ventanas si debe generar un Nicelander. Cada ventana lo implementa a su manera. Si le retornan
 			 * verdadero crea una nueva instancia de Objeto Nicelander y lo agrega a la lista de elementos de la partida.  **/
 			for (ArrayList<Ventana> arrVent : this.tablero.getVentanas()) {

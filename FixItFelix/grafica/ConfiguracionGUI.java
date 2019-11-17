@@ -34,6 +34,7 @@ public class ConfiguracionGUI extends JFrame {
 	public ConfiguracionGUI(JFrame principal) {
 		aux=this;
 		this.setIconImage(new ImageIcon(PantallaPrincipalGUI.class.getResource("/img/Icono.png")).getImage());
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1080, 720);
 		contentPane = new JPanel();
@@ -49,6 +50,7 @@ public class ConfiguracionGUI extends JFrame {
 		slider.setFont(new Font("Arial Black", Font.BOLD, 12));
 		slider.setMajorTickSpacing(1);
 		slider.setMaximum(10);
+		slider.setMinimum(1);
 		slider.setPaintLabels(true);
 		slider.setBounds(170, 463, 700, 114);
 		contentPane.add(slider);
