@@ -22,13 +22,13 @@ public class SeccionMedio extends Seccion {
 			for (int y = 0; y < 3; y++) {
 				posi = new Posicion(x, y);
 				double r = Math.random();
-				//if (r < 0.70) {
+				if (r < 0.70) {
 					Ventana aux = new VentanaNormal(posi, dificultad);
 					this.etapa.get(x).add(aux);
-				//}else {
-					//Ventana aux = new VentanaConHojas(posi);
-					//this.etapa.get(x).add(aux);
-				//}
+				}else {
+					Ventana aux = new VentanaConHojas(posi);
+					this.etapa.get(x).add(aux);
+				}
 			}
 		}
 	}

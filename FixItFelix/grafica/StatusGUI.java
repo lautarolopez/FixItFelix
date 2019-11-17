@@ -148,6 +148,8 @@ public class StatusGUI extends JPanel {
 		textNiv.setBackground(new Color(0, 0, 0));
 		textNiv.setBounds(610, 44, 190, 28);
 		add(textNiv);
+		mensaje = String.valueOf(Juego.getInstance().getDificultad());
+		textNiv.setText(mensaje);
  		textNiv.setColumns(10);
 		
 	}
@@ -163,11 +165,7 @@ public class StatusGUI extends JPanel {
 				textTiemp.setText(mensaje);
 				if(Partida.getInstance().getTiempo()<100)
 					textTiemp.setForeground(new Color(204, 0, 0));
-				
-				mensaje = String.valueOf(Juego.getInstance().getDificultad());
-				textNiv.setText(mensaje);
-				
-				
+			
 				switch(Partida.getInstance().getVidas()) {  
 				case 3: lbVidas.setBounds(867, 46, 80, 28);
 				break;

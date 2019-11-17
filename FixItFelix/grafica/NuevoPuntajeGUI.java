@@ -40,6 +40,7 @@ public class NuevoPuntajeGUI extends JFrame {
 	private JFrame aux = this;
 	
 	public NuevoPuntajeGUI() {
+		this.setIconImage(new ImageIcon(PantallaPrincipalGUI.class.getResource("/img/Icono.png")).getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1024, 720);
 		contentPane = new JPanel();
@@ -101,7 +102,7 @@ public class NuevoPuntajeGUI extends JFrame {
 		btnAceptar.setFont(new Font("Arial Black", Font.BOLD, 11));
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(textField.getText().length()>3) { 
+				if(textField.getText().length()>2) { 
 					boolean hayBlanco=false;
 					int i=0;
 					while(i<textField.getText().length()&&hayBlanco==false) { //Evaluo caracter por caracter que no existan blancos
@@ -117,11 +118,11 @@ public class NuevoPuntajeGUI extends JFrame {
 					}else {
 						String nombreFinal = textField.getText();
 						if(nombreFinal.length()>20) {				//Llegados a este punto el nombre es valido, evaluo si posee mas de 20 caracteres y de ser asi cropeo el String dejando solo los primeros 20.
-							nombreFinal = nombreFinal.substring(0, 19);
+							nombreFinal = nombreFinal.substring(0, 20);
 						}
 						Juego.getInstance().guardarEnTopScores(nombreFinal);  //Me dirijo al menu y hago invisible esta ventana
 						Juego.getInstance().irAlMenu();
-						dispose();
+						  dispose();
 					}
 				}else
 					txtNombreInvalidoIngrese.setText("NOMBRE INVALIDO, INGRESE OTRO QUE SEA MAYOR A DOS CARACTERES"); //El nombre es menor a 3 caracteres por lo que informo y solicito uno nuevo.
@@ -141,7 +142,7 @@ public class NuevoPuntajeGUI extends JFrame {
 		lblNewLabel_2.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblNewLabel_2.setBounds(278, 418, 54, 64);
 		contentPane.add(lblNewLabel_2);
-		
+		  
 		JLabel lblNewLabel_3 = new JLabel("New label");
 		lblNewLabel_3.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblNewLabel_3.setIcon(new ImageIcon(NuevoPuntajeGUI.class.getResource("/img/medallas/slice29_29.png")));

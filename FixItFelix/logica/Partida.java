@@ -86,7 +86,7 @@ public class Partida{
 	
 	public void siguienteNivel() {
 		this.tablero = new Edificio(Juego.getInstance().proximoNivel());
-		this.partidaGUI. dispose();
+		this.partidaGUI.matarInstancia();
 		this.partidaGUI = new PartidaGUI(tablero.getVentanas(0), tablero.getVentanas(1), tablero.getVentanas(2));
 		this.partidaGUI.visible();
 		this.pj.reset();
@@ -94,9 +94,9 @@ public class Partida{
 	}
 	
 	public void perdiUnaVida() {
-		if (this.pj.getVidas() > 0) {
+		if (this.pj.getVidas() > 1) {
 			this.tablero = new Edificio(Juego.getInstance().getDificultad());
-	   		this.partidaGUI.dispose();
+	   		this.partidaGUI.matarInstancia();
 			this.partidaGUI = new PartidaGUI(tablero.getVentanas(0), tablero.getVentanas(1), tablero.getVentanas(2));
 			this.partidaGUI.visible();
 			this.pj.perderVida();
@@ -104,7 +104,7 @@ public class Partida{
 			this.getJugador().penalizacion();
 			this.tiempo = 5000;
 		} else {
-			this.partidaGUI.dispose();
+			this.partidaGUI.matarInstancia();
 			if (Juego.getInstance().puntajeMaximo(this.player.getPuntaje())) {
 				NuevoPuntajeGUI nuevoMaxScore = new NuevoPuntajeGUI();
 				nuevoMaxScore.setVisible(true);
@@ -129,8 +129,8 @@ public class Partida{
 		 	public void run(){
 		 		if ((tiempo != 0) && (Juego.getInstance().getDificultad() < 11)) {
 					
-		 			if ((cont >  (10000 / Juego.getInstance().getDificultad())) && (cantPajaros >= 2)) {
-						cantPajaros = 0;
+		 			if ((cont >  (3000 / Juego.getInstance().getDificultad())) && (cantPajaros >= 2)) {
+						cantPajaros = 0 ;
 						cont = 0;
 					}
 		 			
@@ -157,9 +157,7 @@ public class Partida{
 					
 					
 					
-					
-					
-					if (cont2 >  5000) {
+					if (cont2 >  3000) {
 						hayNicelander = false;
 						cont2 = 0;
 					}
@@ -181,7 +179,7 @@ public class Partida{
 		 			if (tiempo == 0) {
 		 				perdiUnaVida();
 		 			} else {
-			 			partidaGUI.dispose();
+			 			partidaGUI.matarInstancia();
 						if (Juego.getInstance().puntajeMaximo(player.getPuntaje())) {
 							NuevoPuntajeGUI nuevoMaxScore = new NuevoPuntajeGUI();
 							nuevoMaxScore.setVisible(true);

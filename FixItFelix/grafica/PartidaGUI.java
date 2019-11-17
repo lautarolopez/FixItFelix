@@ -25,6 +25,7 @@ public class PartidaGUI extends JFrame{
 	private Posicion posicionCoordenada = new Posicion(2,0);
 	private StatusGUI barraDeEstado = new StatusGUI();
 	boolean congelar = false;
+	boolean muerta = false;
 	
 	
 	
@@ -602,40 +603,44 @@ public class PartidaGUI extends JFrame{
 				int cont = 0;
 				@Override
 			 	public void run(){
-					if (!congelar) {
-				 		if (tiempoParaLadrillos < 1100) { /// A medida que aumente la dificultad el contador va a comenzar con un número más grande, por lo que ralph va a tirar ladrillos más seguido.
-				 			if (izq) {
-					 			if (cont < 10) {
-					 				ralph.setIcon(new ImageIcon("img/ralph/slice221_@_izq.png"));
-					 			} else {
-					 				ralph.setIcon(new ImageIcon("img/ralph/slice228_@_izq.png"));
-					 			}
-					 			if (cont == 20) cont= -1;
-					 			ralph.setLocation(ralph.getX()-1, ralph.getY());
-					 			ralph.repaint();
+					if (!muerta) {
+						if (!congelar) {
+					 		if (tiempoParaLadrillos < 1100) { /// A medida que aumente la dificultad el contador va a comenzar con un número más grande, por lo que ralph va a tirar ladrillos más seguido.
+					 			if (izq) {
+						 			if (cont < 10) {
+						 				ralph.setIcon(new ImageIcon("img/ralph/slice221_@_izq.png"));
+						 			} else {
+						 				ralph.setIcon(new ImageIcon("img/ralph/slice228_@_izq.png"));
+						 			}
+						 			if (cont == 20) cont= -1;
+						 			ralph.setLocation(ralph.getX()-1, ralph.getY());
+						 			ralph.repaint();
+						 		} else {
+						 			if (cont < 10) {
+						 				ralph.setIcon(new ImageIcon("img/ralph/slice221_@.png"));
+						 			} else {
+						 				ralph.setIcon(new ImageIcon("img/ralph/slice228_@.png"));
+						 			}
+						 			if (cont == 20) cont= -1;
+						 			ralph.setLocation(ralph.getX()+1, ralph.getY());
+						 			ralph.repaint();
+						 		}
+						 		if (ralph.getX() == 352) {
+						 			izq = false;
+						 		} else {
+						 			if (ralph.getX() == 570) {
+						 				izq = true;
+						 			}
+						 		}
+						 		cont++;
+						 		tiempoParaLadrillos++;
 					 		} else {
-					 			if (cont < 10) {
-					 				ralph.setIcon(new ImageIcon("img/ralph/slice221_@.png"));
-					 			} else {
-					 				ralph.setIcon(new ImageIcon("img/ralph/slice228_@.png"));
-					 			}
-					 			if (cont == 20) cont= -1;
-					 			ralph.setLocation(ralph.getX()+1, ralph.getY());
-					 			ralph.repaint();
+					 			tiempoParaLadrillos = Juego.getInstance().getDificultad();
+					 			animarTirarLadrillos(izq);
 					 		}
-					 		if (ralph.getX() == 352) {
-					 			izq = false;
-					 		} else {
-					 			if (ralph.getX() == 570) {
-					 				izq = true;
-					 			}
-					 		}
-					 		cont++;
-					 		tiempoParaLadrillos++;
-				 		} else {
-				 			tiempoParaLadrillos = Juego.getInstance().getDificultad();
-				 			animarTirarLadrillos(izq);
-				 		}
+						}
+					} else {
+						timer.cancel();
 					}
 				 	};
 				};
@@ -691,36 +696,43 @@ public class PartidaGUI extends JFrame{
 				boolean ladEliminado = false;
 			 	@Override
 			 	public void run(){
-			 		if (ladrillo.getY() < 720) {
-			 			ladrillo.setLocation(ladrillo.getX(), ladrillo.getY()+1);
-			 			ladrillo.repaint();
-			 		} else {
-			 			ladEliminado = true;
-			 		}
-			 		if (!congelar) {
-			 			if (!Partida.getInstance().isInvulnerable()){
-					 		if (tocaAFelix(ladrillo.getX(), ladrillo.getY(), ladrillo.getWidth(), ladrillo.getHeight())) {
-					 			if (!Partida.getInstance().isInvulnerable()) {
-						 			Partida.getInstance().perdiUnaVida();  
-					 			}
-					 			organizadorDeCapas.remove(ladrillo);
-					 			organizadorDeCapas.repaint();
-					 			timer.cancel(); 
-					 		}
-			 			}
-			 		} else {
-			 			organizadorDeCapas.remove(ladrillo);
+			 		if (!muerta) {
+				 		if (ladrillo.getY() < 720) {
+				 			ladrillo.setLocation(ladrillo.getX(), ladrillo.getY()+1);
+				 			ladrillo.repaint();
+				 		} else {
+				 			ladEliminado = true;
+				 		}
+				 		if (!congelar) {
+				 			if (!Partida.getInstance().isInvulnerable()){
+						 		if (tocaAFelix(ladrillo.getX(), ladrillo.getY(), ladrillo.getWidth(), ladrillo.getHeight())) {
+						 			if (!Partida.getInstance().isInvulnerable()) {
+							 			Partida.getInstance().perdiUnaVida();  
+						 			}
+						 			organizadorDeCapas.remove(ladrillo);
+						 			organizadorDeCapas.repaint();
+						 			timer.cancel(); 
+						 		}
+				 			}
+				 		} else {
+				 			organizadorDeCapas.remove(ladrillo);
+				 			revalidate();
+				 			repaint();
+				 			timer.cancel();
+				 		}
+				 		if (ladEliminado) {
+				 			organizadorDeCapas.remove(ladrillo);
+				 			revalidate();
+				 			repaint();
+				 			timer.cancel();
+				 		}
+				 	} else {
+				 		organizadorDeCapas.remove(ladrillo);
 			 			revalidate();
 			 			repaint();
 			 			timer.cancel();
-			 		}
-			 		if (ladEliminado) {
-			 			organizadorDeCapas.remove(ladrillo);
-			 			revalidate();
-			 			repaint();
-			 			timer.cancel();
-			 		}
-			 	};
+			 	} 
+			 	}
 			};
 			int velocidadCaida = 11-Juego.getInstance().getDificultad();
 			timer.schedule(task, 10, velocidadCaida);
@@ -756,7 +768,6 @@ public class PartidaGUI extends JFrame{
 
 
 	public void animarPajaro() {
-		System.out.println("ENTRO");
 		boolean der;
 		JLabel pajaro;
 		double a = Math.random();
@@ -771,77 +782,77 @@ public class PartidaGUI extends JFrame{
 			der = false;
 		}
 		organizadorDeCapas.add(pajaro, new Integer(4));
-		System.out.println("ACA YA DEBERIA MOVERSE");
 		Timer timer = new Timer();
 		TimerTask task = new TimerTask() {
 			boolean alasArriba = true;
 			int tiempoAlas = 0;
 		 	@Override
 		 	public void run(){
-		 		if (der) {
-		 			if (pajaro.getX() < 1024) {
-		 				pajaro.setLocation(pajaro.getX()+1, pajaro.getY());
-		 				if ((tiempoAlas % 2) == 0) {
-			 				if (alasArriba) {
-			 					pajaro.setIcon(new ImageIcon("img/pajaro/slice08_08.png"));
-			 					alasArriba = false;
-			 				} else {
-			 					pajaro.setIcon(new ImageIcon("img/pajaro/slice09_09.png"));
-			 					alasArriba = true;
+		 		if (!muerta) {
+			 		if (der) {
+			 			if (pajaro.getX() < 1024) {
+			 				pajaro.setLocation(pajaro.getX()+1, pajaro.getY());
+			 				if ((tiempoAlas % 2) == 0) {
+				 				if (alasArriba) {
+				 					pajaro.setIcon(new ImageIcon("img/pajaro/slice08_08.png"));
+				 					alasArriba = false;
+				 				} else {
+				 					pajaro.setIcon(new ImageIcon("img/pajaro/slice09_09.png"));
+				 					alasArriba = true;
+				 				}
 			 				}
-		 				}
-		 				if (tiempoAlas > 4) tiempoAlas = 0;
-		 				pajaro.repaint();
-		 				System.out.println("ACA YA TENDRIA QUE ESTAR VOLANDO");
-		 			} else {
-		 				System.out.println("ACA ENTRO A BORRAR POR ALGUNA RAZON");
-		 				organizadorDeCapas.remove(pajaro);
-						revalidate();
-						repaint();
-						timer.cancel();
-		 			}
-		 		} else {  
-		 			if (pajaro.getX() > -35) {
-		 				pajaro.setLocation(pajaro.getX()-1, pajaro.getY());
-		 				if ((tiempoAlas % 10) == 0) {
-			 				if (alasArriba) {
-			 					pajaro.setIcon(new ImageIcon("img/pajaro/slice41_41.png"));
-			 					alasArriba = false;
-			 				} else {
-			 					pajaro.setIcon(new ImageIcon("img/pajaro/slice61_61.png"));
-			 					alasArriba = true;    
+			 				if (tiempoAlas > 4) tiempoAlas = 0;
+			 				pajaro.repaint();
+			 			} else {
+			 				organizadorDeCapas.remove(pajaro);
+							revalidate();
+							repaint();
+							timer.cancel();
+			 			}
+			 		} else {  
+			 			if (pajaro.getX() > -35) {
+			 				pajaro.setLocation(pajaro.getX()-1, pajaro.getY());
+			 				if ((tiempoAlas % 10) == 0) {
+				 				if (alasArriba) {
+				 					pajaro.setIcon(new ImageIcon("img/pajaro/slice41_41.png"));
+				 					alasArriba = false;
+				 				} else {
+				 					pajaro.setIcon(new ImageIcon("img/pajaro/slice61_61.png"));
+				 					alasArriba = true;    
+				 				}
 			 				}
-		 				}
-		 				if (tiempoAlas > 40) tiempoAlas = 0;
-		 				pajaro.repaint();    
-		 				System.out.println("ACA YA TENDRIA QUE ESTAR VOLANDO");	
-		 			} else {
-		 				System.out.println("ACA POR ALGUNA RAZON ENTRO A ELIMINAR");
-		 				organizadorDeCapas.remove(pajaro);
-				 		revalidate();
-				 		repaint();
-				 		timer.cancel();
-		 			}
-		 		}
-		 		if (!congelar) {	
-		 			System.out.println("ACA TIENE QUE VERIFICAR LA COLISION");
-		 			if (!Partida.getInstance().isInvulnerable()){
-			 			if (tocaAFelix(pajaro.getX(), pajaro.getY(), pajaro.getWidth(), pajaro.getHeight())) {
-					 		Partida.getInstance().perdiUnaVida();  
-				 			organizadorDeCapas.remove(pajaro);
-				 			organizadorDeCapas.repaint();
-				 			timer.cancel(); 
-				 		}
-		 			}
-		 		} else {
-		 			System.out.println("SI ENTRO ACA SE ELIMINA PORQUE ESTA CONGELADO");
-		 			organizadorDeCapas.remove(pajaro);
+			 				if (tiempoAlas > 40) tiempoAlas = 0;
+			 				pajaro.repaint();    
+			 			} else {
+			 				organizadorDeCapas.remove(pajaro);
+					 		revalidate();
+					 		repaint();
+					 		timer.cancel();
+			 			}
+			 		}
+			 		if (!congelar) {	
+			 			if (!Partida.getInstance().isInvulnerable()){
+				 			if (tocaAFelix(pajaro.getX(), pajaro.getY(), pajaro.getWidth(), pajaro.getHeight())) {
+						 		Partida.getInstance().perdiUnaVida();  
+					 			organizadorDeCapas.remove(pajaro);
+					 			organizadorDeCapas.repaint();
+					 			timer.cancel(); 
+					 		}
+			 			}
+			 		} else {
+			 			organizadorDeCapas.remove(pajaro);
+			 			revalidate();
+			 			repaint();
+			 			timer.cancel();
+			 		}
+			 		
+			 	}else {
+			 		organizadorDeCapas.remove(pajaro);
 		 			revalidate();
 		 			repaint();
 		 			timer.cancel();
-		 		}
-		 		
-		 	}
+			 	}
+		 	} 
 		};
 		int velocidadVuelo = 11-Juego.getInstance().getDificultad();
 		timer.schedule(task, 10, velocidadVuelo);	
@@ -852,7 +863,7 @@ public class PartidaGUI extends JFrame{
 	
 	public void animarNicelanderYTorta(int x, int y) {
 		JLabel nicelanderTorta = new JLabel(new ImageIcon("img/nicelander/slice244_@.png"));
-		int aux = Partida.getInstance().getSeccionActual(); 
+  		int aux = Partida.getInstance().getSeccionActual(); 
 		switch(aux) {
 			case 0:
 				nicelanderTorta.setBounds((ventanas_seccion_1.get(x).get(y).getX() + 10), (ventanas_seccion_1.get(x).get(y).getY() + 33), 20, 15);
@@ -878,43 +889,48 @@ public class PartidaGUI extends JFrame{
 			int cont = 0;
 		 	@Override
 		 	public void run(){
-		 		if (!(cont < 100)) {
-		 			if ((cont % 2) == 0) {
-		 				nicelanderTorta.setIcon(new ImageIcon("img/pastel/slice12_12.png"));
-		 				nicelanderTorta.repaint();
-		 			} else {
-		 				nicelanderTorta.setIcon(new ImageIcon("img/pastel/slice13_13.png"));
-		 				nicelanderTorta.repaint();
-		 			}
-		 			if (congelar || ((posicionCoordenada.getX() == x) && (posicionCoordenada.getY() == y))) {
-		 				switch(Partida.getInstance().getSeccionActual()) {
-			 				case 0:
-			 					ventanas_seccion_1.get(x).get(y).setIcon(new ImageIcon("img/ventanas_y_panel/slice100_@.png"));
-			 					ventanas_seccion_1.get(x).get(y).repaint();
-			 				break;
-			 				case 1:
-			 					ventanas_seccion_2.get(x).get(y).setIcon(new ImageIcon("img/ventanas_y_panel/slice100_@.png"));
-			 					ventanas_seccion_1.get(x).get(y).repaint();
-			 				break;
-			 				case 2:
-			 					ventanas_seccion_3.get(x).get(y).setIcon(new ImageIcon("img/ventanas_y_panel/slice100_@.png"));
-			 					ventanas_seccion_1.get(x).get(y).repaint();
-			 				break;
-			 				default:
-			 				break;
-		 				}
-		 				organizadorDeCapas.remove(nicelanderTorta);
-			 			revalidate();
-			 			repaint();
-			 			Partida.getInstance().setInvulnerable();
-			 			cambiarColor();
-			 			timer.cancel();
-			 		}
-		 		} else {
-		 			nicelanderTorta.repaint();
-		 		}
-		 		cont++;
-		 	}
+		 		if (!muerta) {
+			 		if (!(cont < 100)) {
+			 			if ((cont % 2) == 0) {
+			 				nicelanderTorta.setIcon(new ImageIcon("img/pastel/slice12_12.png"));
+			 				nicelanderTorta.repaint();
+			 			} else {
+			 				nicelanderTorta.setIcon(new ImageIcon("img/pastel/slice13_13.png"));
+			 				nicelanderTorta.repaint();
+			 			}
+			 			if (congelar || ((posicionCoordenada.getX() == x) && (posicionCoordenada.getY() == y))) {
+			 				switch(Partida.getInstance().getSeccionActual()) {
+				 				case 0:
+				 					ventanas_seccion_1.get(x).get(y).setIcon(new ImageIcon("img/ventanas_y_panel/slice100_@.png"));
+				 					ventanas_seccion_1.get(x).get(y).repaint();
+				 				break;
+				 				case 1:
+				 					ventanas_seccion_2.get(x).get(y).setIcon(new ImageIcon("img/ventanas_y_panel/slice100_@.png"));
+				 					ventanas_seccion_1.get(x).get(y).repaint();
+				 				break;
+				 				case 2:
+				 					ventanas_seccion_3.get(x).get(y).setIcon(new ImageIcon("img/ventanas_y_panel/slice100_@.png"));
+				 					ventanas_seccion_1.get(x).get(y).repaint();
+				 				break;
+				 				default:
+				 				break;
+			 				}
+			 				organizadorDeCapas.remove(nicelanderTorta);
+				 			revalidate();
+				 			repaint();
+				 			Partida.getInstance().setInvulnerable();
+				 			cambiarColor();
+				 			timer.cancel();
+				 		}
+			 		} 
+			 	}else {
+		 			organizadorDeCapas.remove(nicelanderTorta);
+		 			revalidate();
+			 		repaint();
+			 		timer.cancel();
+			 	}
+			 	cont++;
+			 }   
 		};
 		timer.schedule(task, 10, 10);	
 	}
@@ -938,6 +954,11 @@ public class PartidaGUI extends JFrame{
 		 	}
 		};
 		timer.schedule(task, 10, 500);	
+	}
+	
+	public void matarInstancia() {
+		this.muerta = true;
+		this.dispose();
 	}
 	
 } 

@@ -5,12 +5,10 @@ public class Obstaculo {
 	
 	/**Establece aleatoriamente con un booleano los obstáculos Moldura y Macetero  **/
 	public Obstaculo(){
-		//double x = Math.random();
-		//this.mold = x < 0.20;
-		//double j = Math.random();
-		//this.mac = j < 0.20;
-		this.mold = false;
-		this.mac = false;
+		double x = Math.random();
+		this.mold = x < 0.20;
+		double j = Math.random();
+		this.mac = j < 0.20; 
 	};
 
 	
